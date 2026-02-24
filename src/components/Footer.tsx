@@ -32,19 +32,19 @@ export default function Footer() {
                 <div>
                     <h3 className="font-bold mb-4">Shop</h3>
                     <ul className="flex flex-col gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                        <li><Link className="hover:text-primary transition-colors" to="/shop">All Bats</Link></li>
-                        <li><Link className="hover:text-primary transition-colors" to="/shop">Tennis Ball Bats</Link></li>
-                        <li><Link className="hover:text-primary transition-colors" to="/shop">Leather Ball Bats</Link></li>
-                        <li><Link className="hover:text-primary transition-colors" to="/shop">Accessories</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/shop">All Bats</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/shop">Tennis Ball Bats</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/shop">Leather Ball Bats</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/shop">Accessories</Link></li>
                     </ul>
                 </div>
                 <div>
                     <h3 className="font-bold mb-4">Support</h3>
                     <ul className="flex flex-col gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                        <li><Link className="hover:text-primary transition-colors" to="/dashboard">Track Order</Link></li>
-                        <li><Link className="hover:text-primary transition-colors" to="/contact">Shipping Policy</Link></li>
-                        <li><Link className="hover:text-primary transition-colors" to="/contact">Returns &amp; Exchanges</Link></li>
-                        <li><Link className="hover:text-primary transition-colors" to="/contact">Contact Us</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/dashboard">Track Order</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/contact">Shipping Policy</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/contact">Returns &amp; Exchanges</Link></li>
+                        <li><Link className="hover:text-primary transition-colors" href="/contact">Contact Us</Link></li>
                     </ul>
                 </div>
                 <div>

@@ -1,3 +1,4 @@
+"use client";
 
 import Link from "next/link";
 
@@ -69,9 +70,9 @@ export default function Shop() {
                     {/* Breadcrumbs & Title */}
                     <div className="flex flex-col gap-4">
                         <nav className="flex text-sm text-slate-500 dark:text-slate-400">
-                            <Link className="hover:text-primary transition-colors" to="/">Home</Link>
+                            <Link className="hover:text-primary transition-colors" href="/">Home</Link>
                             <span className="mx-2">/</span>
-                            <Link className="hover:text-primary transition-colors" to="/shop">Shop</Link>
+                            <Link className="hover:text-primary transition-colors" href="/shop">Shop</Link>
                             <span className="mx-2">/</span>
                             <span className="text-slate-900 dark:text-white font-medium">Cricket Bats</span>
                         </nav>

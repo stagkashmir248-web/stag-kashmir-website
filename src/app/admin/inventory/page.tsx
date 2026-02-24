@@ -14,11 +14,11 @@ export default function AdminInventory() {
                         <h2 className="text-text-primary-light dark:text-text-primary-dark text-lg font-bold leading-tight tracking-[-0.015em]">Stag Kashmir Admin</h2>
                     </div>
                     <nav className="hidden md:flex items-center gap-9">
-                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" to="/admin">Dashboard</Link>
-                        <Link className="text-primary dark:text-primary-light text-sm font-bold leading-normal" to="/admin/inventory">Inventory</Link>
-                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" to="/admin/orders">Orders</Link>
-                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" to="/admin/customers">Customers</Link>
-                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" to="/admin/settings">Settings</Link>
+                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="/admin">Dashboard</Link>
+                        <Link className="text-primary dark:text-primary-light text-sm font-bold leading-normal" href="/admin/inventory">Inventory</Link>
+                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="/admin/orders">Orders</Link>
+                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="/admin/customers">Customers</Link>
+                        <Link className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="/admin/settings">Settings</Link>
                     </nav>
                 </div>
                 <div className="flex flex-1 justify-end gap-6 items-center">

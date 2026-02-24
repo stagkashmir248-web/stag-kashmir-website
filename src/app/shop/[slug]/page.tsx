@@ -7,9 +7,9 @@ export default function ProductDetail() {
             <div className="flex flex-col w-full max-w-[1280px]">
                 {/* Breadcrumb */}
                 <div className="flex flex-wrap items-center gap-2 pb-6 text-sm">
-                    <Link className="text-text-secondary hover:text-primary font-medium" to="/">Home</Link>
+                    <Link className="text-text-secondary hover:text-primary font-medium" href="/">Home</Link>
                     <span className="text-text-secondary/50">/</span>
-                    <Link className="text-text-secondary hover:text-primary font-medium" to="/shop">Cricket Bats</Link>
+                    <Link className="text-text-secondary hover:text-primary font-medium" href="/shop">Cricket Bats</Link>
                     <span className="text-text-secondary/50">/</span>
                     <span className="text-text-main font-semibold">Premium Kashmir Willow</span>
                 </div>

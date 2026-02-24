@@ -14,10 +14,10 @@ export default function Header() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-8 ml-auto mr-8">
-                <Link className="text-sm font-medium hover:text-primary transition-colors" to="/shop">Shop</Link>
-                <Link className="text-sm font-medium hover:text-primary transition-colors" to="/custom-bat">Custom Bats</Link>
-                <Link className="text-sm font-medium hover:text-primary transition-colors" to="/about">About Us</Link>
-                <Link className="text-sm font-medium hover:text-primary transition-colors" to="/dashboard">Account</Link>
+                <Link className="text-sm font-medium hover:text-primary transition-colors" href="/shop">Shop</Link>
+                <Link className="text-sm font-medium hover:text-primary transition-colors" href="/custom-bat">Custom Bats</Link>
+                <Link className="text-sm font-medium hover:text-primary transition-colors" href="/about">About Us</Link>
+                <Link className="text-sm font-medium hover:text-primary transition-colors" href="/dashboard">Account</Link>
             </nav>
 
             <div className="flex gap-2">

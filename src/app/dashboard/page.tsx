@@ -19,23 +19,23 @@ export default function Dashboard() {
                         <p className="text-slate-500 text-xs mt-2">Member since 2021</p>
                     </div>
                     <nav className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
-                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" to="#">
+                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" href="#">
                             <span className="material-symbols-outlined text-slate-400">person</span>
                             <span className="text-sm font-medium">Profile Information</span>
                         </Link>
-                        <Link className="flex items-center gap-3 px-5 py-3 bg-primary/5 text-primary border-l-4 border-primary transition-colors border-b border-slate-100" to="#">
+                        <Link className="flex items-center gap-3 px-5 py-3 bg-primary/5 text-primary border-l-4 border-primary transition-colors border-b border-slate-100" href="#">
                             <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>package_2</span>
                             <span className="text-sm font-bold">Orders &amp; Returns</span>
                         </Link>
-                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" to="#">
+                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" href="#">
                             <span className="material-symbols-outlined text-slate-400">location_on</span>
                             <span className="text-sm font-medium">Addresses</span>
                         </Link>
-                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" to="#">
+                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" href="#">
                             <span className="material-symbols-outlined text-slate-400">credit_card</span>
                             <span className="text-sm font-medium">Payment Methods</span>
                         </Link>
-                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" to="#">
+                        <Link className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 text-slate-700 transition-colors border-b border-slate-100" href="#">
                             <span className="material-symbols-outlined text-slate-400">settings</span>
                             <span className="text-sm font-medium">Account Settings</span>
                         </Link>
@@ -195,7 +195,7 @@ export default function Dashboard() {
                             <div className="flex flex-col items-end">
                                 <span className="text-slate-500 text-xs uppercase tracking-wider font-semibold">Order # 405-9283-112</span>
                                 <div className="flex gap-2 text-sm mt-1">
-                                    <Link className="text-primary hover:text-primary/80 font-medium hover:underline" to="#">View Invoice</Link>
+                                    <Link className="text-primary hover:text-primary/80 font-medium hover:underline" href="#">View Invoice</Link>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +255,7 @@ export default function Dashboard() {
                             <div className="flex flex-col items-end">
                                 <span className="text-slate-500 text-xs uppercase tracking-wider font-semibold">Order # 112-9982-123</span>
                                 <div className="flex gap-2 text-sm mt-1">
-                                    <Link className="text-primary hover:text-primary/80 font-medium hover:underline" to="#">View Invoice</Link>
+                                    <Link className="text-primary hover:text-primary/80 font-medium hover:underline" href="#">View Invoice</Link>
                                 </div>
                             </div>
                         </div>

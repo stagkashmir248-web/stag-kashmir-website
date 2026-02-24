@@ -1,0 +1,14 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/admin/inventory/page": "/admin/inventory",
+  "/admin/variations/page": "/admin/variations",
+  "/care-guide/page": "/care-guide",
+  "/contact/page": "/contact",
+  "/custom-bat/page": "/custom-bat",
+  "/dashboard/page": "/dashboard",
+  "/page": "/",
+  "/shop/[slug]/page": "/shop/[slug]",
+  "/shop/page": "/shop"
+}
