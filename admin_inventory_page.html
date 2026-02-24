@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stag Kashmir - Inventory Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1349ec",
+                        "primary-dark": "#0f3bbd",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101522",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2133",
+                        "text-primary-light": "#0d111b",
+                        "text-primary-dark": "#e2e8f0",
+                        "text-secondary-light": "#4c5f9a",
+                        "text-secondary-dark": "#94a3b8",
+                        "border-light": "#e7eaf3",
+                        "border-dark": "#2d3748",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-primary-light dark:text-text-primary-dark transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center justify-between whitespace-nowrap border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-10 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary dark:text-primary-light">
+<div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">sports_cricket</span>
+</div>
+<h2 class="text-text-primary-light dark:text-text-primary-dark text-lg font-bold leading-tight tracking-[-0.015em]">Stag Kashmir Admin</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary dark:text-primary-light text-sm font-bold leading-normal" href="#">Inventory</a>
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="#">Orders</a>
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="#">Customers</a>
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full ring-1 ring-border-light dark:ring-border-dark focus-within:ring-2 focus-within:ring-primary">
+<div class="text-text-secondary-light dark:text-text-secondary-dark flex bg-background-light dark:bg-surface-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-primary-light dark:text-text-primary-dark focus:outline-0 border-none bg-background-light dark:bg-surface-dark h-full placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark px-4 pl-2 text-sm font-normal leading-normal" placeholder="Search products..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-border-light dark:hover:bg-border-dark transition-colors">
+<span class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Admin user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDtG-eJb9t-Q2KXquFoUmKVBnoxZi93VkBVYx9YCjfGz4Uh2H9t3oA6phCU2HFkHmz9xX-152sCfCgO76vQkWq26sQ2VIVgyAgiZ5vRn4hx5YKSw7ezrgHAaKwcgU9QpGu9BmqjUuW9N6WIAKc2w5U8mw7kUWNZd3KdXuXlxyJUZ_YUby2q22OoQNLxna6cRZmC7-SdD5_FvRc-opGqqb7HQd31k4lcWO7dHTrZ9rYkMyQm09CiCMTuZQcG5Er8RYw3UKHkz4imnf6n");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-8 md:px-10 lg:px-20 xl:px-40">
+<div class="flex flex-col max-w-[1200px] mx-auto gap-6">
+<!-- Page Title Area -->
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-text-primary-light dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">Inventory Management</h1>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-base font-normal leading-normal">Manage your Kashmir Willow cricket bat stock levels and pricing.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark text-text-primary-light dark:text-text-primary-dark hover:bg-background-light dark:hover:bg-background-dark transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span class="truncate">Export</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-6 bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-md shadow-primary/30 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="truncate">Add New Product</span>
+</button>
+</div>
+</div>
+<!-- Stats / Filters -->
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white pl-3 pr-4 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">list</span>
+<p class="text-sm font-medium leading-normal">All Stock</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:border-primary/50 pl-3 pr-4 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-amber-500">warning</span>
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium leading-normal">Low Stock</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:border-primary/50 pl-3 pr-4 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-red-500">error</span>
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium leading-normal">Out of Stock</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:border-primary/50 pl-3 pr-4 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-green-500">local_offer</span>
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium leading-normal">Discounted</p>
+</button>
+</div>
+<!-- Table Container -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full min-w-[800px] text-left border-collapse">
+<thead>
+<tr class="bg-background-light dark:bg-background-dark/50 border-b border-border-light dark:border-border-dark">
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">Product Name</th>
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">SKU</th>
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">Category</th>
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold w-48">Stock Level</th>
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold text-right">Base Price</th>
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">Status</th>
+<th class="px-6 py-4 text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<!-- Row 1 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Close up of cricket bat handle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOx5ZrweRYsJQDvaGB5Dhqy5K7coD0nrpAnO804kqXD--knvPykn0QUCLqq0TaS_1yp_yMF6RiipWAI65yr1lULaph59sI_ITHD4TzriagHOwQfVg7617DDMSmotMAuuYbjTFn9vPNdC9gXH01BD_TtK7vKbGi98NlPNDGfGaVenHTlGEvJ0Rdh21mV_fLjBMFjL55JVFC3XwaJkWAcxPfEL-SthBGu6boAVCg0riuZqVkztQptFPSLVM3xciNscRyP8lcAZG8S9dw"/>
+</div>
+<span class="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">Stag Hyperion 500</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">SKU-HYP-500</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-300/10">Premium Willow</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-text-primary-light dark:text-text-primary-dark font-medium">85</span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark">High</span>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-full bg-green-500 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-text-primary-light dark:text-text-primary-dark text-right">₹4,500</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:text-green-300">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                            In Stock
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-red-600 dark:hover:text-red-400 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Cricket bat lying on grass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF_rT530qD-XPlzKI63wO0jnu6hVZ_GREmc56aBavy58CFfLNVbm7_3eTeaMuDnXS-T-0nA7uF4iP3hIawfzKPo7rJynq83hLJEtU7_V9bXUy3-5EzEymaC7v2T8Nw2xenM9gzZDCqOuYDX-78DKWVfYarG_GJdefA3LDJEaXSqscINSojb2iyMc_i1WMZ08p_iVhZwMrcYx0EXMkFXUfeTxhhif1UY0hVY5gFSPCW48wT6aXFz7lG5GMOqCl4Pa1yCErsfs6iZ2uO"/>
+</div>
+<span class="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">Stag Thunder 300</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">SKU-THU-300</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-purple-50 dark:bg-purple-900/30 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10 dark:ring-purple-300/10">Grade 2 Willow</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-text-primary-light dark:text-text-primary-dark font-medium">45</span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark">Medium</span>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-full bg-blue-500 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-text-primary-light dark:text-text-primary-dark text-right">₹3,200</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 dark:bg-amber-900/30 px-2.5 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-400">
+<span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                                            Low Stock
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-red-600 dark:hover:text-red-400 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Cricket equipment on a bench" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1yx9j21AedyNJvtXFOkXHzb8LwWsnOA8xSv2rwEaKIAincGZnEq658NKd_CSRCiVXh8vY3i0zE4ILuel59jaqE7bmRcDQF6LQIiHUD0TFIJHxBUJRMbhALkSOC3XXALrCed4KIDzfz4cUcxjRkAaEy1gd1aaQiVTgBJzYXdoqNxcAHLJiIWMMm4ESbJdf9ofiDP8u7Heu6Ya5-3V86lk-v8YSv6CVVTfZV5CSSdMXduEVvzgfY5sBJAj-SpZoUsLC-CEZFIjHWiu0"/>
+</div>
+<span class="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">Stag Lightning 100</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">SKU-LGT-100</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-700/30 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-500/10 dark:ring-gray-400/10">Tennis Ball</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-text-primary-light dark:text-text-primary-dark font-medium">12</span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark">Critical</span>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-full bg-red-500 rounded-full" style="width: 12%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-text-primary-light dark:text-text-primary-dark text-right">₹1,800</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-red-100 dark:bg-red-900/30 px-2.5 py-0.5 text-xs font-medium text-red-700 dark:text-red-400">
+<span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                            Very Low
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-red-600 dark:hover:text-red-400 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Vintage style cricket bat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCdE6UvW5UeJ3zC2B63zcKuGQt7KL8NiShwcMPdBaCHm1b2xWSVJIhLyFPlEN7EpKC8r8Qtpr6p62feS8pKMaOnRPnZ11OLXbMYPvrY6Jn7axD_bUFYMRt96rIrFDdDw2PIubSfhwQipbGfBRKYeW0o1Srrk9Psf5xzR5PiOnl58HzLobUYWSSxjw7dON5U084MfeCNsrbtG21lCt-Rq9LVAZ6cYS4L3Hc6wBtzM0CKAo6fqBo1VXKy9_rxzJ39skBhRdBAZqSI1r5"/>
+</div>
+<span class="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">Stag Limited Edition</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">SKU-LTD-001</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-yellow-50 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400 ring-1 ring-inset ring-yellow-600/20 dark:ring-yellow-400/20">Player Grade</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-text-primary-light dark:text-text-primary-dark font-medium">95</span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark">Full</span>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-full bg-green-500 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-text-primary-light dark:text-text-primary-dark text-right">₹12,000</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:text-green-300">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                            In Stock
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-red-600 dark:hover:text-red-400 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-background-light dark:hover:bg-background-dark/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Junior cricket bat on field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeHWFszGDGF-ObPbvSnHPyfVBchwSJUzNm59EOJXV5RXuKbeVqGZcJH0Qy_gLMu2b99TzyNJ0Gw0UAZguLelvnb4bqEnytu8nU2fzpBduRYEF0tlPJ-wj72IOlH4suxh2Qtf4lRVBCG1Me4exgZVTmIQSc5iHT7oyad0hXDCSGf45V4vMvUU_w_dTWEU4lfKNBOAy0XFaGTJT2tbNU2bSZTzodGyTuvnx1uQD6F9mtB1-hVmhQM7Sq2f7ImazZXjf0ncFtCeHMHFDO"/>
+</div>
+<span class="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">Stag Junior Blaster</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">SKU-JNR-050</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-teal-50 dark:bg-teal-900/30 px-2 py-1 text-xs font-medium text-teal-700 dark:text-teal-300 ring-1 ring-inset ring-teal-700/10 dark:ring-teal-300/10">Junior</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs mb-1">
+<span class="text-text-primary-light dark:text-text-primary-dark font-medium">0</span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark">Empty</span>
+</div>
+<div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-full bg-red-500 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-text-primary-light dark:text-text-primary-dark text-right">₹1,500</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-red-100 dark:bg-red-900/30 px-2.5 py-0.5 text-xs font-medium text-red-700 dark:text-red-400">
+<span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                            Out of Stock
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors rounded hover:bg-blue-50 dark:hover:bg-blue-900/20">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-red-600 dark:hover:text-red-400 transition-colors rounded hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-4 py-3 sm:px-6">
+<div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                    Showing
+                                    <span class="font-medium text-text-primary-light dark:text-text-primary-dark">1</span>
+                                    to
+                                    <span class="font-medium text-text-primary-light dark:text-text-primary-dark">5</span>
+                                    of
+                                    <span class="font-medium text-text-primary-light dark:text-text-primary-dark">97</span>
+                                    results
+                                </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-background-light dark:hover:bg-background-dark/50 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-primary-light dark:text-text-primary-dark ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-background-light dark:hover:bg-background-dark/50 focus:z-20 focus:outline-offset-0" href="#">2</a>
+<a class="relative hidden items-center px-4 py-2 text-sm font-semibold text-text-primary-light dark:text-text-primary-dark ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-background-light dark:hover:bg-background-dark/50 focus:z-20 focus:outline-offset-0 md:inline-flex" href="#">3</a>
+<span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset ring-border-light dark:ring-border-dark focus:outline-offset-0">...</span>
+<a class="relative hidden items-center px-4 py-2 text-sm font-semibold text-text-primary-light dark:text-text-primary-dark ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-background-light dark:hover:bg-background-dark/50 focus:z-20 focus:outline-offset-0 md:inline-flex" href="#">8</a>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-background-light dark:hover:bg-background-dark/50 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
