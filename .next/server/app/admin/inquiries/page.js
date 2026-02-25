@@ -1,5 +1,5 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/admin/inquiries/page.js")
-R.c("server/chunks/ssr/[root-of-the-server]__3f465aec._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__43c49b10._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__3a08dbff._.js")
 R.c("server/chunks/ssr/Desktop_Playground_StagKashmir_VPS+Coolify+Anitigravity_aca1cbe5._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__f9df2ac8._.js")

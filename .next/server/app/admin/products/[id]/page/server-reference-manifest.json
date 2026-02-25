@@ -1,0 +1,20 @@
+{
+  "node": {
+    "60f415c641d1944d8697dd02f68c333f1cf013e699": {
+      "workers": {
+        "app/admin/products/[id]/page": {
+          "moduleId": 75591,
+          "async": false,
+          "exportedName": "updateProduct",
+          "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/admin-product.ts"
+        }
+      },
+      "layer": {
+        "app/admin/products/[id]/page": "action-browser"
+      },
+      "exportedName": "updateProduct",
+      "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/admin-product.ts"
+    }
+  },
+  "edge": {}
+}

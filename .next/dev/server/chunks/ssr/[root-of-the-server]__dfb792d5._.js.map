@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Suhail%20-%20CGIT/Desktop/Playground_StagKashmir_VPS%2BCoolify%2BAnitigravity/src/app/admin/page.tsx"],"sourcesContent":["import { redirect } from \"next/navigation\";\r\n\r\nexport default function AdminRootPage() {\r\n    redirect(\"/admin/orders\");\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;AAAA;;AAEe,SAAS;IACpB,IAAA,qQAAQ,EAAC;AACb"}}]
+}

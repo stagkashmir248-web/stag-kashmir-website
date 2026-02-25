@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40eaa28daee12ba803b965525c203cfa04fff70859": {
+      "workers": {
+        "app/admin/products/page": {
+          "moduleId": "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/.next-internal/server/app/admin/products/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/admin-product.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteProduct",
+          "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/admin-product.ts"
+        }
+      },
+      "layer": {
+        "app/admin/products/page": "action-browser"
+      },
+      "exportedName": "deleteProduct",
+      "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/admin-product.ts"
+    }
+  },
+  "edge": {}
+}

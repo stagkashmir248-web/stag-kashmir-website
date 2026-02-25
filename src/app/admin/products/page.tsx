@@ -17,10 +17,10 @@ export default async function AdminProductsPage() {
                     <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Product Inventory</h1>
                     <p className="text-slate-500 mt-2">Manage the Stag Kashmir willow bats shown on your active storefront.</p>
                 </div>
-                <button className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold py-2.5 px-6 rounded-lg transition-colors shadow-sm cursor-not-allowed opacity-50" title="Will be implemented in Phase 5">
+                <Link href="/admin/products/new" className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold py-2.5 px-6 rounded-lg transition-colors shadow-sm">
                     <span className="material-symbols-outlined !text-[20px]">add</span>
                     Add New Bat
-                </button>
+                </Link>
             </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
@@ -61,8 +61,8 @@ export default async function AdminProductsPage() {
                                 </td>
                                 <td className="py-4 px-6 align-middle">
                                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wider ${product.stock > 10 ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-                                            : product.stock > 0 ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400'
-                                                : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                                        : product.stock > 0 ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400'
+                                            : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
                                         }`}>
                                         {product.stock} units
                                     </span>
@@ -72,9 +72,9 @@ export default async function AdminProductsPage() {
                                 </td>
                                 <td className="py-4 px-6 align-middle text-right">
                                     <div className="flex items-center justify-end gap-2 text-slate-400">
-                                        <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors hover:text-primary" title="Edit Product">
+                                        <Link href={`/admin/products/${product.id}`} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors hover:text-primary" title="Edit Product">
                                             <span className="material-symbols-outlined !text-[20px]">edit</span>
-                                        </button>
+                                        </Link>
                                         <DeleteProductButton productId={product.id} productName={product.name} />
                                     </div>
                                 </td>
