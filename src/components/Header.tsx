@@ -1,7 +1,11 @@
+"use client";
 
 import Link from "next/link";
+import { useCartStore } from "@/store/cart";
 
 export default function Header() {
+    const cartCount = useCartStore((state) => state.getCartCount());
+
     return (
         <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-border-light dark:border-border-dark bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm px-4 md:px-10 py-3">
             <Link href="/" className="flex items-center gap-4">
@@ -26,7 +30,9 @@ export default function Header() {
                 </button>
                 <Link href="/cart" className="flex size-10 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-text-primary-light dark:text-text-primary-dark relative">
                     <span className="material-symbols-outlined text-[20px]">shopping_bag</span>
-                    <span className="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+                    {cartCount > 0 && (
+                        <span className="absolute -top-1 -right-1 size-5 bg-primary rounded-full flex items-center justify-center text-[10px] text-white font-bold shadow-sm">{cartCount}</span>
+                    )}
                 </Link>
                 <button className="md:hidden flex size-10 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark">
                     <span className="material-symbols-outlined text-[20px]">menu</span>

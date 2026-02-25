@@ -1,0 +1,20 @@
+{
+  "node": {
+    "705a261f755146afc2cd6d858f665baa0479d01723": {
+      "workers": {
+        "app/checkout/page": {
+          "moduleId": 18797,
+          "async": false,
+          "exportedName": "submitOrder",
+          "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/order.ts"
+        }
+      },
+      "layer": {
+        "app/checkout/page": "action-browser"
+      },
+      "exportedName": "submitOrder",
+      "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/order.ts"
+    }
+  },
+  "edge": {}
+}

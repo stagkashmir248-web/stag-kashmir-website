@@ -56,10 +56,28 @@
       "namedRegex": "^/about(?:/)?$"
     },
     {
+      "page": "/admin/inquiries",
+      "regex": "^/admin/inquiries(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/inquiries(?:/)?$"
+    },
+    {
       "page": "/admin/inventory",
       "regex": "^/admin/inventory(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/admin/inventory(?:/)?$"
+    },
+    {
+      "page": "/admin/orders",
+      "regex": "^/admin/orders(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/orders(?:/)?$"
+    },
+    {
+      "page": "/admin/products",
+      "regex": "^/admin/products(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/products(?:/)?$"
     },
     {
       "page": "/admin/variations",
@@ -72,6 +90,18 @@
       "regex": "^/care\\-guide(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/care\\-guide(?:/)?$"
+    },
+    {
+      "page": "/cart",
+      "regex": "^/cart(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cart(?:/)?$"
+    },
+    {
+      "page": "/checkout",
+      "regex": "^/checkout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/checkout(?:/)?$"
     },
     {
       "page": "/contact",

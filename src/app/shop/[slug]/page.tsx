@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/actions/product";
+import ProductCartOptions from "./ProductCartOptions";
 
 export default async function ProductDetail({ params }: { params: Promise<{ slug: string }> }) {
     const resolvedParams = await params;
@@ -65,92 +66,54 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                         </div>
 
                         <div className="space-y-6 flex-1">
-                            {/* Standard Size Selector - Hardcoded for appearance */}
-                            <div>
-                                <div className="flex justify-between items-center mb-3">
-                                    <label className="text-sm font-bold text-text-main uppercase tracking-wide">Select Bat Size</label>
-                                    <button className="text-xs text-primary font-medium hover:underline">Size Guide</button>
+                            <ProductCartOptions product={{
+                                id: product.id,
+                                name: product.name,
+                                price: product.price,
+                                stock: product.stock,
+                                imageUrl: product.imageUrl
+                            }} />
+                            <div className="pt-4">
+                                <div className="flex items-center gap-1.5">
+                                    <span className="material-symbols-outlined !text-lg">local_shipping</span> Free Shipping
                                 </div>
-                                <div className="flex flex-wrap gap-3">
-                                    <label className="cursor-pointer flex-1 min-w-[120px]">
-                                        <input defaultChecked className="peer sr-only" name="size" type="radio" />
-                                        <div className="flex h-14 items-center justify-center border-2 border-primary bg-white px-4 text-base font-medium text-text-main peer-checked:border-primary transition-all hover:border-gray-400">
-                                            34 inches
-                                        </div>
-                                    </label>
-                                    <label className="cursor-pointer flex-1 min-w-[120px]">
-                                        <input className="peer sr-only" name="size" type="radio" />
-                                        <div className="flex h-14 items-center justify-center border border-border-color bg-white px-4 text-base font-medium text-text-main peer-checked:border-2 peer-checked:border-primary transition-all hover:border-gray-400">
-                                            35 inches
-                                        </div>
-                                    </label>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="material-symbols-outlined !text-lg">verified_user</span> 1 Year Warranty
                                 </div>
                             </div>
-                            <div className="pt-4">
-                                <p className="text-text-secondary leading-relaxed text-sm">
+                        </div>
+                    </div>
+
+                    {/* Tabs Section */}
+                    <div className="mt-20">
+                        <div className="border-b border-border-color">
+                            <nav aria-label="Tabs" className="-mb-px flex gap-8 overflow-x-auto">
+                                <span className="border-b-2 border-primary py-4 px-1 text-sm font-bold text-primary cursor-pointer">
+                                    Description
+                                </span>
+                                <span className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-text-secondary hover:border-gray-300 hover:text-text-main cursor-pointer">
+                                    Specifications
+                                </span>
+                            </nav>
+                        </div>
+                        <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div className="space-y-6 text-text-secondary">
+                                <h3 className="text-xl font-bold text-text-main">{product.name}</h3>
+                                <p className="leading-relaxed">
                                     {product.description}
                                 </p>
                             </div>
-                        </div>
-
-                        <div className="mt-8 pt-6 border-t border-border-color flex flex-col gap-4">
-                            <div className="flex gap-4">
-                                <div className="flex w-32 items-center rounded-lg border border-border-color bg-white">
-                                    <button className="flex h-full w-10 items-center justify-center text-text-secondary hover:text-primary transition-colors">
-                                        <span className="material-symbols-outlined !text-lg">remove</span>
-                                    </button>
-                                    <input className="h-full w-full border-none bg-transparent text-center font-medium text-text-main focus:ring-0" readOnly type="text" value="1" />
-                                    <button className="flex h-full w-10 items-center justify-center text-text-secondary hover:text-primary transition-colors">
-                                        <span className="material-symbols-outlined !text-lg">add</span>
-                                    </button>
-                                </div>
-                                <button disabled={product.stock <= 0} className={`flex-1 rounded-lg py-3.5 text-base font-bold text-white shadow-md transition-all flex items-center justify-center gap-2 ${product.stock > 0 ? "bg-primary shadow-primary/20 hover:bg-primary-dark hover:shadow-lg" : "bg-slate-300 cursor-not-allowed"}`}>
-                                    <span className="material-symbols-outlined">{product.stock <= 0 ? "block" : "shopping_bag"}</span>
-                                    {product.stock <= 0 ? "Sold Out" : "Add to Cart"}
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="mt-6 flex items-center justify-center gap-6 text-xs text-text-secondary">
-                            <div className="flex items-center gap-1.5">
-                                <span className="material-symbols-outlined !text-lg">local_shipping</span> Free Shipping
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                                <span className="material-symbols-outlined !text-lg">verified_user</span> 1 Year Warranty
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Tabs Section */}
-                <div className="mt-20">
-                    <div className="border-b border-border-color">
-                        <nav aria-label="Tabs" className="-mb-px flex gap-8 overflow-x-auto">
-                            <span className="border-b-2 border-primary py-4 px-1 text-sm font-bold text-primary cursor-pointer">
-                                Description
-                            </span>
-                            <span className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-text-secondary hover:border-gray-300 hover:text-text-main cursor-pointer">
-                                Specifications
-                            </span>
-                        </nav>
-                    </div>
-                    <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div className="space-y-6 text-text-secondary">
-                            <h3 className="text-xl font-bold text-text-main">{product.name}</h3>
-                            <p className="leading-relaxed">
-                                {product.description}
-                            </p>
-                        </div>
-                        <div className="bg-white rounded-2xl border border-border-color p-6 md:p-8">
-                            <h3 className="text-lg font-bold text-text-main mb-6">Technical Specs</h3>
-                            <div className="space-y-4">
-                                <div className="grid grid-cols-2 py-3 border-b border-gray-100">
-                                    <span className="text-text-secondary">Willow Type</span>
-                                    <span className="text-text-main font-medium text-right">Kashmir Willow</span>
-                                </div>
-                                <div className="grid grid-cols-2 py-3 border-b border-gray-100">
-                                    <span className="text-text-secondary">Grade</span>
-                                    <span className="text-text-main font-medium text-right">Premium</span>
+                            <div className="bg-white rounded-2xl border border-border-color p-6 md:p-8">
+                                <h3 className="text-lg font-bold text-text-main mb-6">Technical Specs</h3>
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-2 py-3 border-b border-gray-100">
+                                        <span className="text-text-secondary">Willow Type</span>
+                                        <span className="text-text-main font-medium text-right">Kashmir Willow</span>
+                                    </div>
+                                    <div className="grid grid-cols-2 py-3 border-b border-gray-100">
+                                        <span className="text-text-secondary">Grade</span>
+                                        <span className="text-text-main font-medium text-right">Premium</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
