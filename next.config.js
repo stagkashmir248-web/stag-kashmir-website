@@ -4,12 +4,9 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
-    // Disable Turbopack for production builds.
-    // Turbopack in Next.js 16 doesn't correctly honor serverExternalPackages
-    // for Prisma's native binaries — it bundles them with hashed IDs that
-    // can't be resolved at runtime inside Docker/Nixpacks containers.
-    // Webpack handles serverExternalPackages correctly.
-    turbopack: false,
+    // Prevent Next.js/Turbopack from bundling Prisma's native binaries.
+    // Turbopack bundles them with hashed IDs that can't be resolved in Docker.
+    // serverExternalPackages tells it to resolve from node_modules at runtime.
     serverExternalPackages: ["@prisma/client", "prisma"],
 };
 
