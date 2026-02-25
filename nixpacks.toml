@@ -3,4 +3,5 @@ NIXPACKS_NODE_VERSION = "22"
 
 [phases.build]
 cmds = ["npm run build"]
-cacheDirectories = ["node_modules/.cache", ".next/cache"]
+cacheDirectories = [".next/cache"]
+
