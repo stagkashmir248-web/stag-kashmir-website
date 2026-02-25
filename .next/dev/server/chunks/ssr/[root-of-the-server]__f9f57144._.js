@@ -50,7 +50,9 @@ __turbopack_context__.n(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$
 
 __turbopack_context__.s([
     "default",
-    ()=>ProductDetail
+    ()=>ProductDetail,
+    "dynamic",
+    ()=>dynamic
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/node_modules/next/dist/client/app-dir/link.react-server.js [app-rsc] (ecmascript)");
@@ -63,6 +65,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKa
 ;
 ;
 ;
+const dynamic = "force-dynamic";
 async function ProductDetail({ params }) {
     const resolvedParams = await params;
     const product = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$src$2f$actions$2f$product$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getProductBySlug"])(resolvedParams.slug);
@@ -83,23 +86,6 @@ async function ProductDetail({ params }) {
                             children: "Home"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                            lineNumber: 19,
-                            columnNumber: 21
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "text-text-secondary/50",
-                            children: "/"
-                        }, void 0, false, {
-                            fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                            lineNumber: 20,
-                            columnNumber: 21
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                            className: "text-text-secondary hover:text-primary font-medium",
-                            href: "/shop",
-                            children: "Cricket Bats"
-                        }, void 0, false, {
-                            fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
                             lineNumber: 21,
                             columnNumber: 21
                         }, this),
@@ -111,18 +97,35 @@ async function ProductDetail({ params }) {
                             lineNumber: 22,
                             columnNumber: 21
                         }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                            className: "text-text-secondary hover:text-primary font-medium",
+                            href: "/shop",
+                            children: "Cricket Bats"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
+                            lineNumber: 23,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-text-secondary/50",
+                            children: "/"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
+                            lineNumber: 24,
+                            columnNumber: 21
+                        }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "text-text-main font-semibold",
                             children: product.name
                         }, void 0, false, {
                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                            lineNumber: 23,
+                            lineNumber: 25,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                    lineNumber: 18,
+                    lineNumber: 20,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -139,7 +142,7 @@ async function ProductDetail({ params }) {
                                         src: product.imageUrl || "/placeholder.jpg"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                        lineNumber: 30,
+                                        lineNumber: 32,
                                         columnNumber: 29
                                     }, this),
                                     product.stock <= 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -147,7 +150,7 @@ async function ProductDetail({ params }) {
                                         children: "Sold Out"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                        lineNumber: 36,
+                                        lineNumber: 38,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -157,23 +160,23 @@ async function ProductDetail({ params }) {
                                             children: "zoom_in"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 41,
+                                            lineNumber: 43,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                        lineNumber: 40,
+                                        lineNumber: 42,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                lineNumber: 29,
+                                lineNumber: 31,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                            lineNumber: 28,
+                            lineNumber: 30,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -184,7 +187,7 @@ async function ProductDetail({ params }) {
                                     children: product.name
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                    lineNumber: 48,
+                                    lineNumber: 50,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -193,22 +196,6 @@ async function ProductDetail({ params }) {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex items-center gap-1 text-yellow-400",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "material-symbols-outlined !text-[20px] fill-current",
-                                                    children: "star"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 51,
-                                                    columnNumber: 33
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "material-symbols-outlined !text-[20px] fill-current",
-                                                    children: "star"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 52,
-                                                    columnNumber: 33
-                                                }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "material-symbols-outlined !text-[20px] fill-current",
                                                     children: "star"
@@ -232,11 +219,27 @@ async function ProductDetail({ params }) {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
                                                     lineNumber: 55,
                                                     columnNumber: 33
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "material-symbols-outlined !text-[20px] fill-current",
+                                                    children: "star"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
+                                                    lineNumber: 56,
+                                                    columnNumber: 33
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "material-symbols-outlined !text-[20px] fill-current",
+                                                    children: "star"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
+                                                    lineNumber: 57,
+                                                    columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 50,
+                                            lineNumber: 52,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -244,14 +247,14 @@ async function ProductDetail({ params }) {
                                             children: "Reviews"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 57,
+                                            lineNumber: 59,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "h-4 w-px bg-gray-300"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 58,
+                                            lineNumber: 60,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -262,20 +265,20 @@ async function ProductDetail({ params }) {
                                                     children: product.stock > 0 ? "check_circle" : "cancel"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 60,
+                                                    lineNumber: 62,
                                                     columnNumber: 33
                                                 }, this),
                                                 product.stock > 0 ? "In Stock" : "Out of Stock"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 59,
+                                            lineNumber: 61,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                    lineNumber: 49,
+                                    lineNumber: 51,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -288,12 +291,12 @@ async function ProductDetail({ params }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 67,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                    lineNumber: 64,
+                                    lineNumber: 66,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -309,7 +312,7 @@ async function ProductDetail({ params }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 69,
+                                            lineNumber: 71,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -323,14 +326,14 @@ async function ProductDetail({ params }) {
                                                             children: "local_shipping"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                            lineNumber: 78,
+                                                            lineNumber: 80,
                                                             columnNumber: 37
                                                         }, this),
                                                         " Free Shipping"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 77,
+                                                    lineNumber: 79,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -341,32 +344,32 @@ async function ProductDetail({ params }) {
                                                             children: "verified_user"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                            lineNumber: 81,
+                                                            lineNumber: 83,
                                                             columnNumber: 37
                                                         }, this),
                                                         " 1 Year Warranty"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 80,
+                                                    lineNumber: 82,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 76,
+                                            lineNumber: 78,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                    lineNumber: 68,
+                                    lineNumber: 70,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                            lineNumber: 47,
+                            lineNumber: 49,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -383,7 +386,7 @@ async function ProductDetail({ params }) {
                                                 children: "Description"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                lineNumber: 91,
+                                                lineNumber: 93,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -391,18 +394,18 @@ async function ProductDetail({ params }) {
                                                 children: "Specifications"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                lineNumber: 94,
+                                                lineNumber: 96,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                        lineNumber: 90,
+                                        lineNumber: 92,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 91,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -416,7 +419,7 @@ async function ProductDetail({ params }) {
                                                     children: product.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 101,
+                                                    lineNumber: 103,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -424,13 +427,13 @@ async function ProductDetail({ params }) {
                                                     children: product.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 104,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 100,
+                                            lineNumber: 102,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -441,7 +444,7 @@ async function ProductDetail({ params }) {
                                                     children: "Technical Specs"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 107,
+                                                    lineNumber: 109,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -455,7 +458,7 @@ async function ProductDetail({ params }) {
                                                                     children: "Willow Type"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                                    lineNumber: 110,
+                                                                    lineNumber: 112,
                                                                     columnNumber: 41
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -463,13 +466,13 @@ async function ProductDetail({ params }) {
                                                                     children: "Kashmir Willow"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                                    lineNumber: 111,
+                                                                    lineNumber: 113,
                                                                     columnNumber: 41
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                            lineNumber: 109,
+                                                            lineNumber: 111,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -480,7 +483,7 @@ async function ProductDetail({ params }) {
                                                                     children: "Grade"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                                    lineNumber: 114,
+                                                                    lineNumber: 116,
                                                                     columnNumber: 41
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$Playground_StagKashmir_VPS$2b$Coolify$2b$Anitigravity$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -488,54 +491,54 @@ async function ProductDetail({ params }) {
                                                                     children: "Premium"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                                    lineNumber: 115,
+                                                                    lineNumber: 117,
                                                                     columnNumber: 41
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                            lineNumber: 113,
+                                                            lineNumber: 115,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                                    lineNumber: 108,
+                                                    lineNumber: 110,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                            lineNumber: 106,
+                                            lineNumber: 108,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 101,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                            lineNumber: 88,
+                            lineNumber: 90,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-                    lineNumber: 26,
+                    lineNumber: 28,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-            lineNumber: 16,
+            lineNumber: 18,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/[slug]/page.tsx",
-        lineNumber: 15,
+        lineNumber: 17,
         columnNumber: 9
     }, this);
 }

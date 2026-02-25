@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/actions/product";
 import ProductCartOptions from "./ProductCartOptions";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductDetail({ params }: { params: Promise<{ slug: string }> }) {
     const resolvedParams = await params;
     const product = await getProductBySlug(resolvedParams.slug);

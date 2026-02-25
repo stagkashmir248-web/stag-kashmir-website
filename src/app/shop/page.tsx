@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getProducts } from "@/actions/product";
 
+export const dynamic = "force-dynamic";
+
 export default async function Shop() {
     const products = await getProducts();
 

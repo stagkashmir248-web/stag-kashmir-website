@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminInquiriesPage() {
     const inquiries = await prisma.inquiry.findMany({
         orderBy: { createdAt: "desc" },

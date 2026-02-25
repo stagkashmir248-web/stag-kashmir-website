@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import EditProductForm from "./EditProductForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
 

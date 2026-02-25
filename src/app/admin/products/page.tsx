@@ -3,6 +3,8 @@ import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import DeleteProductButton from "./DeleteProductButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminProductsPage() {
     const products = await prisma.product.findMany({
         orderBy: { createdAt: "desc" },
