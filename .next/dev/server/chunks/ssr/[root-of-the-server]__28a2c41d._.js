@@ -463,7 +463,7 @@ async function Shop() {
                                                                 className: "text-xl font-bold text-slate-900 dark:text-white",
                                                                 children: [
                                                                     "₹",
-                                                                    product.price.toLocaleString("en-IN")
+                                                                    product.price.toLocaleString()
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/shop/page.tsx",
