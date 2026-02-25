@@ -68,7 +68,7 @@ export default async function AdminProductsPage() {
                                     </span>
                                 </td>
                                 <td className="py-4 px-6 align-middle text-right">
-                                    <span className="font-bold text-slate-900 dark:text-white">₹{product.price.toLocaleString("en-IN")}</span>
+                                    <span className="font-bold text-slate-900 dark:text-white">₹{product.price.toLocaleString()}</span>
                                 </td>
                                 <td className="py-4 px-6 align-middle text-right">
                                     <div className="flex items-center justify-end gap-2 text-slate-400">

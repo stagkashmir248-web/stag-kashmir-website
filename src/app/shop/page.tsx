@@ -95,7 +95,7 @@ export default async function Shop() {
                                     <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4">{product.description}</p>
                                     <div className="mt-auto flex items-center justify-between">
                                         <div className="flex flex-col">
-                                            <span className="text-xl font-bold text-slate-900 dark:text-white">₹{product.price.toLocaleString("en-IN")}</span>
+                                            <span className="text-xl font-bold text-slate-900 dark:text-white">₹{product.price.toLocaleString()}</span>
                                         </div>
                                         <button className={`flex items-center justify-center size-10 rounded-lg transition-colors ${product.stock > 0 ? "bg-primary/10 text-primary hover:bg-primary hover:text-white" : "bg-slate-100 text-slate-400 cursor-not-allowed"}`} disabled={product.stock <= 0}>
                                             <span className="material-symbols-outlined">{product.stock <= 0 ? "block" : "add_shopping_cart"}</span>

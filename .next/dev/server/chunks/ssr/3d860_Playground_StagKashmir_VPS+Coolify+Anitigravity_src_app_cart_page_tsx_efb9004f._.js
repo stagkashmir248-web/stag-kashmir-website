@@ -209,7 +209,7 @@ function CartPage() {
                                                             className: "font-bold text-lg text-slate-900 dark:text-white",
                                                             children: [
                                                                 "₹",
-                                                                (item.price * item.quantity).toLocaleString("en-IN")
+                                                                (item.price * item.quantity).toLocaleString()
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/cart/page.tsx",
@@ -274,7 +274,7 @@ function CartPage() {
                                                     className: "font-medium text-slate-900 dark:text-white",
                                                     children: [
                                                         "₹",
-                                                        getCartTotal().toLocaleString("en-IN")
+                                                        getCartTotal().toLocaleString()
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/cart/page.tsx",
@@ -358,7 +358,7 @@ function CartPage() {
                                                 className: "text-2xl font-black text-primary",
                                                 children: [
                                                     "₹",
-                                                    getCartTotal().toLocaleString("en-IN")
+                                                    getCartTotal().toLocaleString()
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/app/cart/page.tsx",

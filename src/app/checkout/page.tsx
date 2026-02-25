@@ -131,7 +131,7 @@ export default function CheckoutPage() {
                                         {item.size && <span className="text-xs text-slate-500">Size: {item.size}</span>}
                                     </div>
                                     <div className="font-bold text-sm text-slate-900 dark:text-white flex items-center">
-                                        ₹{(item.price * item.quantity).toLocaleString("en-IN")}
+                                        ₹{(item.price * item.quantity).toLocaleString()}
                                     </div>
                                 </div>
                             ))}
@@ -140,7 +140,7 @@ export default function CheckoutPage() {
                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 space-y-3 text-sm">
                             <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                 <span>Subtotal</span>
-                                <span className="font-medium text-slate-900 dark:text-white">₹{getCartTotal().toLocaleString("en-IN")}</span>
+                                <span className="font-medium text-slate-900 dark:text-white">₹{getCartTotal().toLocaleString()}</span>
                             </div>
                             <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                 <span>Shipping estimate</span>
@@ -151,7 +151,7 @@ export default function CheckoutPage() {
                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mt-6">
                             <div className="flex justify-between items-center bg-primary/5 p-4 rounded-xl border border-primary/10">
                                 <span className="font-bold text-slate-900 dark:text-white">Amount Due</span>
-                                <span className="text-2xl font-black text-primary">₹{getCartTotal().toLocaleString("en-IN")}</span>
+                                <span className="text-2xl font-black text-primary">₹{getCartTotal().toLocaleString()}</span>
                             </div>
                             <p className="text-center text-xs text-slate-500 mt-4 leading-relaxed">
                                 No payment required now. Our team will verify inventory and contact you with a direct payment link to complete this order.

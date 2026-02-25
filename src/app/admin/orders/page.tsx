@@ -80,7 +80,7 @@ export default async function AdminOrdersPage() {
                                     </div>
                                 </td>
                                 <td className="py-4 px-6 text-right">
-                                    <span className="font-bold text-slate-900 dark:text-white">₹{order.total.toLocaleString("en-IN")}</span>
+                                    <span className="font-bold text-slate-900 dark:text-white">₹{order.total.toLocaleString()}</span>
                                 </td>
                                 <td className="py-4 px-6 align-middle text-center">
                                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400">

@@ -62,7 +62,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                             </span>
                         </div>
                         <div className="flex items-baseline gap-3 mb-8">
-                            <span className="text-4xl font-bold text-text-main">₹{product.price.toLocaleString("en-IN")}</span>
+                            <span className="text-4xl font-bold text-text-main">₹{product.price.toLocaleString()}</span>
                         </div>
 
                         <div className="space-y-6 flex-1">

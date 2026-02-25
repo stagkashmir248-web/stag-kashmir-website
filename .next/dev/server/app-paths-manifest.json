@@ -2,6 +2,7 @@
   "/admin/inquiries/page": "app/admin/inquiries/page.js",
   "/admin/orders/page": "app/admin/orders/page.js",
   "/admin/page": "app/admin/page.js",
+  "/admin/products/new/page": "app/admin/products/new/page.js",
   "/admin/products/page": "app/admin/products/page.js",
   "/cart/page": "app/cart/page.js",
   "/checkout/page": "app/checkout/page.js",

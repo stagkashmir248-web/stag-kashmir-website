@@ -74,7 +74,7 @@ export default function CartPage() {
                                             </button>
                                         </div>
                                         <span className="font-bold text-lg text-slate-900 dark:text-white">
-                                            ₹{(item.price * item.quantity).toLocaleString("en-IN")}
+                                            ₹{(item.price * item.quantity).toLocaleString()}
                                         </span>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@ export default function CartPage() {
                         <div className="space-y-4 mb-6 text-sm">
                             <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                 <span>Subtotal</span>
-                                <span className="font-medium text-slate-900 dark:text-white">₹{getCartTotal().toLocaleString("en-IN")}</span>
+                                <span className="font-medium text-slate-900 dark:text-white">₹{getCartTotal().toLocaleString()}</span>
                             </div>
                             <div className="flex justify-between text-slate-600 dark:text-slate-400">
                                 <span>Shipping</span>
@@ -106,7 +106,7 @@ export default function CartPage() {
                         <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mb-8">
                             <div className="flex justify-between items-center bg-primary/5 p-4 rounded-xl border border-primary/10">
                                 <span className="font-bold text-slate-900 dark:text-white">Total</span>
-                                <span className="text-2xl font-black text-primary">₹{getCartTotal().toLocaleString("en-IN")}</span>
+                                <span className="text-2xl font-black text-primary">₹{getCartTotal().toLocaleString()}</span>
                             </div>
                         </div>
 
