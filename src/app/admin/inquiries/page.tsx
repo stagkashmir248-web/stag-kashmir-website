@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
-
-const prisma = new PrismaClient();
 
 export default async function AdminInquiriesPage() {
     const inquiries = await prisma.inquiry.findMany({

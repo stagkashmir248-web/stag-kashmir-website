@@ -10,5 +10,6 @@
   "/dashboard/page": "app/dashboard/page.js",
   "/page": "app/page.js",
   "/shop/[slug]/page": "app/shop/[slug]/page.js",
-  "/shop/page": "app/shop/page.js"
+  "/shop/page": "app/shop/page.js",
+  "/test/[slug]/page": "app/test/[slug]/page.js"
 }

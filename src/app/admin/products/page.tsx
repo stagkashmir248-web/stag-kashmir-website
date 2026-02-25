@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import DeleteProductButton from "./DeleteProductButton";
-
-const prisma = new PrismaClient();
 
 export default async function AdminProductsPage() {
     const products = await prisma.product.findMany({
