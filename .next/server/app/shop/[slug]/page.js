@@ -1,8 +1,8 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/shop/[slug]/page.js")
 R.c("server/chunks/ssr/Desktop_Playground_StagKashmir_VPS+Coolify+Anitigravity_9dd7484f._.js")
-R.c("server/chunks/ssr/48170_StagKashmir_VPS+Coolify+Anitigravity_src_app_shop_[slug]_page_tsx_24ebb931._.js")
 R.c("server/chunks/ssr/Desktop_Playground_StagKashmir_VPS+Coolify+Anitigravity_11d72e61._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__3a08dbff._.js")
+R.c("server/chunks/ssr/Desktop_Playground_StagKashmir_VPS+Coolify+Anitigravity_0c504b94._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__81b6ead3._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__1248fb68._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__bccbe6d1._.js")
@@ -11,6 +11,6 @@ R.c("server/chunks/ssr/Desktop_Playground_StagKashmir_VPS+Coolify+Anitigravity_7
 R.c("server/chunks/ssr/e74b6_next_dist_client_components_3706b568._.js")
 R.c("server/chunks/ssr/e74b6_next_dist_client_components_builtin_forbidden_ac677ece.js")
 R.c("server/chunks/ssr/e74b6_next_dist_client_components_builtin_unauthorized_1372eb86.js")
-R.c("server/chunks/ssr/6d3dc_Coolify+Anitigravity__next-internal_server_app_shop_[slug]_page_actions_a5b88cfc.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0271b15e._.js")
 R.m(57063)
 module.exports=R.m(57063).exports

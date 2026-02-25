@@ -1,4 +1,35 @@
 {
-  "node": {},
+  "node": {
+    "00ec4904cb62cf15c55200050228bc5a2b8e04a735": {
+      "workers": {
+        "app/shop/[slug]/page": {
+          "moduleId": 43076,
+          "async": false,
+          "exportedName": "getProducts",
+          "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/product.ts"
+        }
+      },
+      "layer": {
+        "app/shop/[slug]/page": "rsc"
+      },
+      "exportedName": "getProducts",
+      "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/product.ts"
+    },
+    "40bcdd9a097b0035308838c9ca25f39803cef8b4b8": {
+      "workers": {
+        "app/shop/[slug]/page": {
+          "moduleId": 43076,
+          "async": false,
+          "exportedName": "getProductBySlug",
+          "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/product.ts"
+        }
+      },
+      "layer": {
+        "app/shop/[slug]/page": "rsc"
+      },
+      "exportedName": "getProductBySlug",
+      "filename": "Desktop/Playground_StagKashmir_VPS+Coolify+Anitigravity/src/actions/product.ts"
+    }
+  },
   "edge": {}
 }

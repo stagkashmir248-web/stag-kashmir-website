@@ -1,6 +1,24 @@
+"use client";
 
+import { useState } from "react";
+import { submitInquiry } from "@/actions/inquiry";
 
 export default function Contact() {
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    async function handleSubmit(formData: FormData) {
+        setStatus("submitting");
+        const result = await submitInquiry(formData);
+
+        if (result.success) {
+            setStatus("success");
+        } else {
+            setStatus("error");
+            setErrorMessage(result.error || "Something went wrong.");
+        }
+    }
+
     return (
         <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-12">
             {/* Hero Section */}
@@ -19,36 +37,43 @@ export default function Contact() {
                             <span className="material-symbols-outlined text-primary">mail</span>
                             Send us a message
                         </h3>
-                        <form className="space-y-6">
+                        <form action={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
-                                    <input className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="John Doe" type="text" />
+                                    <input name="name" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="John Doe" type="text" />
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address</label>
-                                    <input className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="john@example.com" type="email" />
+                                    <input name="email" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="john@example.com" type="email" />
                                 </div>
                             </div>
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
-                                <select className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all">
-                                    <option>General Inquiry</option>
-                                    <option>Order Status</option>
-                                    <option>Custom Bat Customization</option>
-                                    <option>Wholesale/Bulk Orders</option>
+                                <select name="subject" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all">
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Order Status">Order Status</option>
+                                    <option value="Custom Bat Customization">Custom Bat Customization</option>
+                                    <option value="Wholesale/Bulk Orders">Wholesale/Bulk Orders</option>
                                 </select>
                             </div>
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Your Message</label>
-                                <textarea className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="Tell us how we can help..." rows={5}></textarea>
+                                <textarea name="message" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="Tell us how we can help..." rows={5}></textarea>
                             </div>
 
-                            <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2" type="submit">
-                                <span className="material-symbols-outlined">send</span>
-                                Send Message
+                            {status === "success" && (
+                                <div className="p-4 bg-green-50 text-green-600 rounded-lg text-sm font-medium border border-green-200">Message sent successfully! We will get back to you soon.</div>
+                            )}
+                            {status === "error" && (
+                                <div className="p-4 bg-red-50 text-red-600 rounded-lg text-sm font-medium border border-red-200">{errorMessage}</div>
+                            )}
+
+                            <button disabled={status === "submitting"} className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed" type="submit">
+                                <span className="material-symbols-outlined">{status === "submitting" ? "hourglass_empty" : "send"}</span>
+                                {status === "submitting" ? "Sending..." : "Send Message"}
                             </button>
                         </form>
                     </div>
