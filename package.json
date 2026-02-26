@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npx prisma generate && next build",
+    "postbuild": "node -e \"const fs = require('fs'); const cp = (s, d) => fs.existsSync(s) && fs.cpSync(s, d, { recursive: true, force: true }); cp('public', '.next/standalone/public'); cp('.next/static', '.next/standalone/.next/static');\"",
     "start": "npx prisma db push && next start",
     "lint": "next lint"
   },
