@@ -3542,6 +3542,10 @@ body {
     grid-column: span 7 / span 7;
   }
 
+  .lg\:col-span-12{
+    grid-column: span 12 / span 12;
+  }
+
   .lg\:flex{
     display: flex;
   }

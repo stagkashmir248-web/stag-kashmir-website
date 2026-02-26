@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useCartStore } from "@/store/cart";
+import { toast } from "react-hot-toast";
 
 interface ProductCartOptionsProps {
     product: {
@@ -29,8 +30,23 @@ export default function ProductCartOptions({ product }: ProductCartOptionsProps)
             size: selectedSize,
         });
 
-        // Optional: Add a toast notification here later
-        alert("Added to cart!");
+        toast.success(
+            <div className="flex flex-col gap-1">
+                <span className="font-bold text-white">Added to Cart!</span>
+                <span className="text-sm text-slate-300">{product.name} ({selectedSize})</span>
+            </div>,
+            {
+                style: {
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                },
+                iconTheme: {
+                    primary: '#d4af37', // Gold primary color
+                    secondary: '#1a1a1a',
+                },
+            }
+        );
     };
 
     const handleDecreaseQuantity = () => {

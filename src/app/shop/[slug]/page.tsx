@@ -90,7 +90,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                     </div>
 
                     {/* Tabs Section */}
-                    <div className="mt-20">
+                    <div className="mt-20 lg:col-span-12">
                         <div className="border-b border-white/10">
                             <nav aria-label="Tabs" className="-mb-px flex gap-8 overflow-x-auto">
                                 <span className="border-b-2 border-primary py-4 px-1 text-sm font-bold text-primary cursor-pointer">

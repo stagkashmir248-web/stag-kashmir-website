@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import AddToCartButton from "@/components/AddToCartButton";
 
 export default function Home() {
     return (
@@ -163,9 +164,7 @@ export default function Home() {
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-xl font-bold text-white">₹3,499</span>
-                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
-                                        Add to Cart
-                                    </button>
+                                    <AddToCartButton product={{ id: "wolverine-gold-edition", name: "Wolverine Gold Edition", price: 3499, imageUrl: "/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp" }} />
                                 </div>
                             </div>
                         </div>
@@ -206,9 +205,7 @@ export default function Home() {
                                         <span className="text-sm text-slate-500 line-through">₹3,599</span>
                                         <span className="text-xl font-bold text-white">₹2,999</span>
                                     </div>
-                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
-                                        Add to Cart
-                                    </button>
+                                    <AddToCartButton product={{ id: "thala-edition-hard-tennis-bat", name: "Thala Edition", price: 2999, imageUrl: "/Thala%20Edition%20Hard%20Tennis%20Bat.webp" }} />
                                 </div>
                             </div>
                         </div>
@@ -245,9 +242,7 @@ export default function Home() {
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-xl font-bold text-white">₹2,499</span>
-                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
-                                        Add to Cart
-                                    </button>
+                                    <AddToCartButton product={{ id: "gorilla-edition-hard-tennis-bat", name: "Gorilla Edition", price: 2499, imageUrl: "/Gorilla%20Edition%20Hard%20Tennis%20Bat.webp" }} />
                                 </div>
                             </div>
                         </div>
@@ -284,9 +279,7 @@ export default function Home() {
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-xl font-bold text-white">₹1,899</span>
-                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
-                                        Add to Cart
-                                    </button>
+                                    <AddToCartButton product={{ id: "wolverine-hard-tennis", name: "Wolverine", price: 1899, imageUrl: "/Wolverine%20Hard%20Tennis%20Bat.webp" }} />
                                 </div>
                             </div>
                         </div>
