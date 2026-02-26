@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Suhail%20-%20CGIT/Desktop/Playground_StagKashmir_VPS%2BCoolify%2BAnitigravity/src/app/test/%5Bslug%5D/page.tsx"],"sourcesContent":["export default async function TestPage({ params }: { params: Promise<{ slug: string }> }) {\r\n    const resolvedParams = await params;\r\n    return <div>Test: {resolvedParams.slug}</div>;\r\n}\r\n"],"names":[],"mappings":";;;;;;AAAe,eAAe,SAAS,EAAE,MAAM,EAAyC;IACpF,MAAM,iBAAiB,MAAM;IAC7B,qBAAO,kTAAC;;YAAI;YAAO,eAAe,IAAI;;;;;;;AAC1C"}}]
-}

@@ -1,5 +1,0 @@
-:HL["/_next/static/chunks/f2ef3f39fed7ae3b.css","style"]
-:HL["https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&display=swap","style"]
-:HL["https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200","style"]
-:HL["https://lh3.googleusercontent.com/aida-public/AB6AXuCpogOC2Mf7Wggmp6h0TNB_GAGDd7-XE05W2I0tlIJKA_CnzldrwPkRvqk2IpzZ_PWQg1_kixDY0Ud0mel_WmBE-3ml1-6qqmW_sInmhjXlrbVctf1McbqPsRCxahTcxZqEuLxZmngT-sIvmE_Cmu1dZFEsGOCBgRgeAJKhr1Gj6u5r_CxJpZzJShPfvasucwwyR2K4RMS4iBemPgbBFvI6ra-3MNv4h_dZBSgjDZV1Pve9VRTOlONZU7I7Hoqj6w3DOUggfs2xkZSv","image"]
-0:{"buildId":"guMXKQK7RW4yREbl9nSOu","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"care-guide","paramType":null,"paramKey":"care-guide","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

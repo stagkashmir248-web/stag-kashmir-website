@@ -1,4 +1,0 @@
-:HL["/_next/static/chunks/f2ef3f39fed7ae3b.css","style"]
-:HL["https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&display=swap","style"]
-:HL["https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200","style"]
-0:{"buildId":"guMXKQK7RW4yREbl9nSOu","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"admin","paramType":null,"paramKey":"admin","hasRuntimePrefetch":false,"slots":{"children":{"name":"variations","paramType":null,"paramKey":"variations","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

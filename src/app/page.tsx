@@ -1,197 +1,315 @@
-
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
     return (
-        <>
+        <div className="relative flex w-full flex-col group/design-root">
             {/* Hero Section */}
-            <section className="w-full px-4 md:px-10 py-6">
-                <div className="relative w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden bg-gray-900 group">
-                    <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                        style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnUnXrdAZJjAvr0csLJhKarsNLU7gohatrGCFW2bcSWEhEatKcZPrsadGdN5HDERjkusKt5iPjAnQLm1ziwZe_uewhpSUvqsWn4tQgjZXfi7zkKECaOFJUv6zdzSgqSvdrG1SESb2og9ZYf8gau5rKvzZ4IJ82I_4njNguNx0arLqdt8bXaXVMd7aWxbQg4mRew9PwOW7Glv28N7eYd3GfjOek7Ep_CSuThHmmqjaAu5l8gNR4dwfw-TZ1P_zMaF0PdnYfLIyOkkg7")' }}
-                    ></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="relative h-full flex flex-col justify-end items-start p-8 md:p-16 max-w-3xl">
-                        <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-white uppercase bg-primary rounded-full">Premium Series</span>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-4 tracking-tight">
-                            Master Your Game
-                        </h1>
-                        <p className="text-gray-200 text-lg md:text-xl mb-8 max-w-lg font-light leading-relaxed">
-                            Experience the power of authentic Kashmir Willow bats designed for champions. Crafted for precision, built for power.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <Link href="/shop" className="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
-                                Shop Collection
-                                <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                            </Link>
-                            <Link href="/custom-bat" className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
-                                View Custom Bats
-                            </Link>
-                        </div>
+            <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center z-0"
+                    style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuACJJkjBQqoshz-ycCQC5nQFp0w02RxHUt743T_P9goHxCGF_objQa9-kIyWnP81FYto3Y3V0rhLMtARjDWHSFOtL2g3fc4rocrTRrTatEeqbcVbY3E36JaJiZT6DLaruTKITZObygSI0wJQOuUiMPnXLl4iMAtuOaNkNNxE3LvLvHlSPSDNQ77XVL97rXeCeDs81A2p0YNlqket9Wqw2p4v1PT2VNSoGD85EuYAA4KoTrXGYFrGTHBzrgYx1b_SQzrxPJyCVFydoSI')" }}
+                />
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10" />
+
+                {/* Content */}
+                <div className="relative z-20 container mx-auto px-6 lg:px-12 flex flex-col items-start gap-6 max-w-7xl">
+                    <span className="inline-block px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-2 backdrop-blur-sm">
+                        Limited Edition Series
+                    </span>
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] tracking-tight">
+                        HANDCRAFTED <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-200">PERFECTION</span>
+                    </h1>
+                    <p className="text-slate-300 text-lg md:text-xl max-w-xl font-light leading-relaxed">
+                        Experience the raw power of premium Kashmir Willow. Meticulously shaped for the modern cricketer who demands excellence in every stroke.
+                    </p>
+                    <div className="flex flex-wrap gap-4 mt-4">
+                        <Link href="/shop" className="bg-primary hover:bg-primary-dark text-background-dark font-bold text-base px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                            Shop Season Collection
+                        </Link>
+                        <button className="bg-white/5 hover:bg-white/10 border border-white/20 backdrop-blur-sm text-white font-medium text-base px-8 py-4 rounded-full transition-all flex items-center gap-2">
+                            <span className="material-symbols-outlined !text-[20px]">play_circle</span>
+                            Watch The Craft
+                        </button>
                     </div>
                 </div>
             </section>
 
-            {/* Featured Categories */}
-            <section className="px-4 md:px-10 py-12 md:py-16 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            {/* Stats/Trust Indicators */}
+            <div className="w-full bg-card-dark border-y border-white/5 py-8">
+                <div className="container mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div className="flex flex-col items-center md:items-start gap-1">
+                        <span className="text-3xl font-bold text-white">50+</span>
+                        <span className="text-sm text-slate-400 uppercase tracking-wider">Years of Legacy</span>
+                    </div>
+                    <div className="flex flex-col items-center md:items-start gap-1">
+                        <span className="text-3xl font-bold text-white">100%</span>
+                        <span className="text-sm text-slate-400 uppercase tracking-wider">Kashmir Willow</span>
+                    </div>
+                    <div className="flex flex-col items-center md:items-start gap-1">
+                        <span className="text-3xl font-bold text-white">15k+</span>
+                        <span className="text-sm text-slate-400 uppercase tracking-wider">Happy Cricketers</span>
+                    </div>
+                    <div className="flex flex-col items-center md:items-start gap-1">
+                        <span className="text-3xl font-bold text-white">Global</span>
+                        <span className="text-sm text-slate-400 uppercase tracking-wider">Shipping</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Categories Grid */}
+            <section className="py-20 px-6 lg:px-12 container mx-auto max-w-7xl">
+                <div className="flex justify-between items-end mb-10">
                     <div>
-                        <h2 className="text-3xl font-bold tracking-tight mb-2">Shop by Category</h2>
-                        <p className="text-text-secondary-light dark:text-text-secondary-dark">Select your weapon of choice</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Explore Categories</h2>
+                        <p className="text-slate-400">Find the perfect blade for your playing style.</p>
                     </div>
-                    <Link href="/shop" className="text-primary font-medium hover:underline flex items-center gap-1">
-                        View all categories
-                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                    <Link href="/shop" className="hidden md:flex items-center gap-1 text-primary hover:text-primary-dark font-medium transition-colors">
+                        View All Categories <span className="material-symbols-outlined !text-[18px]">arrow_forward</span>
                     </Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Link href="/shop" className="group relative flex flex-col gap-4">
-                        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBGf79ikAZiHvi_hzdqzOCx8Fyt1DcRBzozhdkE-DnWJy5aWjczA7o_UngXH1P1S1FyRjHrALGPvJWEujtppIsus5WleQdrDlGvQHR6nEsUPy3hsUKqnMpdxhSQbISt5NQbAZyMjSanyExYITY0UgAxsqjAwiKMxvpsmtHB3IIG_P0uRMr-T-XZwvZ2uRGQ7tYGl8-x9bbXq5_QL1GgjpI75Fc7mkngID2ClIDpoGV1qwBOg-eeox8pAmg3kuj0byTV0S0ndjBD7xfL")' }}></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                            <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                                Best Seller
-                            </div>
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">Hard Tennis Bats</h3>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">Engineered for power &amp; extreme durability.</p>
-                        </div>
-                    </Link>
-                    <Link href="/shop" className="group relative flex flex-col gap-4">
-                        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCerm1ewU9S3Ai1Ump-UD066Ua6DDjhe1uUmL9K2-bU23PENs7TohWmcS_6S3o3BeXGz5gdHWrN5k5E0A1dYxYQ5yPRuL4FyFsp2dK6RcgsV-i_trmGCv4krE8tDjxAxQ1QVmHm6RDLDXW2Lj9_3YuqAwQCbt-N79dBa3vALr1Ju4j6_PMjyoBACKNopGbMZV7CJvbFens5WoJQEmrR9qRkylSdOE7J4XQ5co0EDO7bCJ0L7LhgiXlxqAyY9JLKDiXLeoxccHvi4RcF")' }}></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">Soft Tennis Bats</h3>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">Lightweight control for technical play.</p>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+                    {/* Large Card */}
+                    <Link href="/shop?category=season" className="md:col-span-8 relative group overflow-hidden rounded-2xl h-[300px] md:h-full bg-neutral-800">
+                        <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCU5Ko31NNNh-DsSXePo0HqB6XWUh3WJedyFSRRVbOjwEYFZvIBYyP3oCmldxtLSVb-sQv_cQsomZIUrYLMzFAvw6FcXA1Y7VqllZt-zNoO8Ttxs9gX7QLWGT9DrIj7p46IcWKH2YVhsH-Wt1Y0ToqGyokRfO5IlUbk5IuTlerPY7OWp33_1AvNrmaHXzIFfENFg__GlSX30QxFLrF2_wtkTkAnz6YEZ82L2MHuiKAoj0NhRb4NXD_k6FSBg2kOZb9DaotTHFlPSQNX')" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                        <div className="absolute bottom-0 left-0 p-8 w-full">
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Season Bats</h3>
+                            <p className="text-slate-300 text-sm mb-4 max-w-md line-clamp-2">Premium grade willow designed for leather ball cricket. Superior balance and punch.</p>
+                            <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-primary transition-colors">
+                                Shop Now <span className="material-symbols-outlined !text-[18px]">arrow_right_alt</span>
+                            </span>
                         </div>
                     </Link>
-                    <Link href="/custom-bat" className="group relative flex flex-col gap-4">
-                        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuARQcNUeC1cOzq6Gx4TwwwIgs2MOLHY-EQ1DhATnVIg9bwFthdE0TWZoEfJe1nfc_RWq3eDFOC55p6gSCjpQhN_s2peSNLUUQhq3CggyNW2Z4uAiOw7seyo6jqOS0R9SrvqiTRUR-pNSKg8doecxUvYC0y79Ac93sy2LWTrlGVd8pV0OTAqtWBPbjdNCxCOBjFDEbkmt22lXi-LYXAX-QehbrLOBow01J8-9EsDSgcellSzQQ9N165glDTwru5FsggkHFKOJdrYDBbO")' }}></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                            <div className="absolute bottom-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                                New Arrival
-                            </div>
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">Custom Bats</h3>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">Tailored to your grip, weight, and style.</p>
-                        </div>
-                    </Link>
-                </div>
-            </section>
 
-            {/* Featured Product Showcase */}
-            <section className="bg-surface-light dark:bg-surface-dark py-16 md:py-24 border-y border-border-light dark:border-border-dark">
-                <div className="max-w-7xl mx-auto px-4 md:px-10">
-                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        <div className="flex-1 w-full relative">
-                            <div className="absolute -inset-4 bg-primary/5 rounded-full blur-3xl"></div>
-                            <img alt="Premium cricket bat angled shot" className="relative w-full rounded-2xl shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JI6jCDohiSWbxgyviFK5lQcDpE61N5a4nfF3fzsvzPKnxUXzNkKuaQ8JHlUlsacxRYNWIOig4T0B92YmY4lvk0theppmz8-ypmf-3rGT9F_axc-9CAIJ22tYTP5XzxKouLRkO8LAK23SehHQkt-OURUic28jRU2626ITtMT1rD1iL9GuF8_108h36PWYN8wKizm6S1ZBfjOey6BhlTL4npgRsUBkzqOAT1MObQetz-C5vAHuzeRFrH1dpZEXqUb-4Dy9NdgM22WE" />
-                        </div>
-                        <div className="flex-1 flex flex-col gap-6">
-                            <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
-                                <span className="material-symbols-outlined text-lg">star</span> Editor's Choice
+                    <div className="md:col-span-4 flex flex-col gap-6 h-full">
+                        {/* Small Card 1 */}
+                        <Link href="/shop?category=hard-tennis" className="flex-1 relative group overflow-hidden rounded-2xl bg-neutral-800 h-[250px] md:h-auto">
+                            <div
+                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ3bs7rI3vDpKLVBNElac5Jr2HkwLkLPCsYKKTAgJ_4rJqPJeVib1ojWQFd-meHiTsT6q6qZ7_rBF-7V1dtdaa21ujJmYhSegg9POwunu5qTv_mdiEPduLOJCUIR1SbxFYNtrSDx6A9Bz3fpmbjh45Z_ncZEZi84vwf4GthhCDL-yot4qpP_mg45CC-5mANA5_MCMBIGi3bV7CQZ5tid765GywcEfgWNu7ZItM6wRjkIahRoci4QXeQ7cElDDS6c9QFJgaJBTqy92M')" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                            <div className="absolute bottom-0 left-0 p-6 w-full">
+                                <h3 className="text-xl font-bold text-white">Hard Tennis</h3>
+                                <span className="text-sm text-primary font-medium mt-1 inline-block">View Collection</span>
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-black text-text-primary-light dark:text-text-primary-dark leading-tight">
-                                The Beast: Edition 1
-                            </h2>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed">
-                                Our flagship Kashmir Willow bat. Hand-pressed for immediate playability and designed with an extended sweet spot for explosive power hitting.
-                            </p>
-                            <div className="flex gap-8 py-4 border-y border-border-light dark:border-border-dark">
-                                <div>
-                                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-1">Weight</p>
-                                    <p className="font-bold text-lg">1150g - 1200g</p>
-                                </div>
-                                <div>
-                                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-1">Grade</p>
-                                    <p className="font-bold text-lg">Grade 1+</p>
-                                </div>
-                                <div>
-                                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-1">Handle</p>
-                                    <p className="font-bold text-lg">Singapore Cane</p>
-                                </div>
+                        </Link>
+
+                        {/* Small Card 2 */}
+                        <Link href="/shop?category=soft-tennis" className="flex-1 relative group overflow-hidden rounded-2xl bg-neutral-800 h-[250px] md:h-auto">
+                            <div
+                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfTCVb0NnI2licMGUZh9PR4vNOx2_DWmNwcIEhrEvld5jDE3vu9Ajy9KTutKSyBaxo5EmjGXm2wNfh15_XygfNRGKbwMSgrFF1yXOe7Twv-X9_a18bFpe9XxujHKiRS_icL5JYqwLgFi4MZIhwyqvl_WsNbAUcdIhpKlHMu56wjlKNHVzTERRVpkX9-lURIZ7x7bqkUrgXZChH3NUvFP_7ZBpCEYErlmIemPuXM5yEJNAz9cxr0w2Z8qZ3AONttfyVcxC63TqMmOXG')" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                            <div className="absolute bottom-0 left-0 p-6 w-full">
+                                <h3 className="text-xl font-bold text-white">Soft Tennis</h3>
+                                <span className="text-sm text-primary font-medium mt-1 inline-block">View Collection</span>
                             </div>
-                            <div className="flex items-center gap-6 mt-2">
-                                <div className="text-3xl font-bold text-text-primary-light dark:text-text-primary-dark">
-                                    ₹2,499
-                                </div>
-                                <button className="flex-1 bg-text-primary-light dark:bg-white text-white dark:text-background-dark hover:bg-primary dark:hover:bg-gray-200 py-4 px-8 rounded-lg font-bold transition-colors flex items-center justify-center gap-2">
-                                    Add to Cart
-                                    <span className="material-symbols-outlined">shopping_cart</span>
-                                </button>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Trust Badges Section */}
-            <section className="py-16 px-4 md:px-10 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between mb-12">
-                    <div className="max-w-2xl">
-                        <h2 className="text-3xl font-black mb-4">Why Choose Stag Kashmir?</h2>
-                        <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg">Authenticity and quality you can trust, delivered straight from the valley to your doorstep.</p>
+            {/* Featured Masterpieces */}
+            <section className="bg-card-dark py-20 border-t border-white/5">
+                <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+                    <div className="text-center mb-12">
+                        <span className="text-primary text-sm font-bold tracking-widest uppercase mb-2 block">Premium Selection</span>
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Featured Masterpieces</h2>
+                        <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
                     </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="flex flex-col gap-4 p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:border-primary/50 transition-colors group">
-                        <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                            <span className="material-symbols-outlined text-2xl">verified_user</span>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {/* Product Card 1 */}
+                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
+                                <div className="absolute top-3 left-3 z-10 bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">NEW</div>
+                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
+                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
+                                    </button>
+                                </div>
+                                <Image
+                                    fill
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMRjKMo2LqZs6PNzXTIKYeoXd3lvPBQSzh6M_sLcZVoLN8Emroa3BXHZqOqKJn3B08tdT6JH7L1UpmH8Qo81Pw-OIMNBgZDlvywqFZXa3RvJPLrFjKFzGkeypiFipbjAYpayXEe90LlzFEGNlV0zYImCjWkDYgmJmNU-LW6_qYmViFWThKQL4KIl9RV_eWiqhwU7Vsv9t2W2ryVX--1-o3i9qxMEaI90zalCsffS2Hb2PyIYt8vFvUVPoyS91b8A3MSAdofYvid_y"
+                                    alt="Stag Kashmir Pro Edition Bat"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                            <div className="p-5">
+                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="text-xs text-slate-500 ml-1">(24)</span>
+                                </div>
+                                <h3 className="text-lg font-bold text-white mb-1">Stag Pro Edition</h3>
+                                <p className="text-slate-400 text-sm mb-4">Grade 1 Kashmir Willow</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xl font-bold text-white">$149.00</span>
+                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="text-lg font-bold mb-2">Authentic Craftsmanship</h3>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
-                                Every bat is handcrafted by expert artisans in Kashmir using 100% genuine Kashmir Willow, ensuring superior stroke play.
-                            </p>
+
+                        {/* Product Card 2 */}
+                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
+                                <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-20%</div>
+                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
+                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
+                                    </button>
+                                </div>
+                                <Image
+                                    fill
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNugucrS7p9pYg3PPfU6BdiVnT5BZjNC2gRnEi6FrEnFbuA4AwLkwIausXTKd3gy0entDTttiVR_oLFJxveZ4vWUk3zBRy11aZ26ZIkrgzJYtTahGzx14DEs7SpZzdb62p2rY2Cf3AQhU7n8XXun4eQ9h9w2mSkcLzyVnjI72pzOMTq8-9tGP-LVn4eyHxThpSkt2fDY94yfwVhOxU1Tfb3XmXpaJpmtQbPtDcPTbUftswxl0JYRyjOo2lBENDD54QoE9s9p-u0GNK"
+                                    alt="Stag Thunder Striker Bat"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                            <div className="p-5">
+                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px]">star_half</span>
+                                    <span className="text-xs text-slate-500 ml-1">(18)</span>
+                                </div>
+                                <h3 className="text-lg font-bold text-white mb-1">Thunder Striker</h3>
+                                <p className="text-slate-400 text-sm mb-4">Grade 2 Kashmir Willow</p>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex flex-col">
+                                        <span className="text-sm text-slate-500 line-through">$120.00</span>
+                                        <span className="text-xl font-bold text-white">$96.00</span>
+                                    </div>
+                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+                        {/* Product Card 3 */}
+                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
+                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
+                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
+                                    </button>
+                                </div>
+                                <Image
+                                    fill
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZqyHHqK6qP70Gdi2XQV8CkXZ-5LGhims73DpQTVWqUdqlwC1g2cb2bLet6lzfJEwewuOIz5_H1aDB7pQL9mZE7FoXlkm45DaL7UWfzMNDUR7eKqQ5PYhcfn_sfP7-DfneYZDfsnXQd1nKcmOPAbxksYwt3VCcHrfKgUhTgSvhk-Mnyta9FrbKSQL5lz8T2FrRm7gEqvFLMVPDjbCezdOT5WnI_AFgwhXuXslPozXFLO2gdzBV5G_8FaZPROfWH5hH7wt9LDwYmEyO"
+                                    alt="Stag Gold Limited Bat"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105 brightness-90"
+                                />
+                            </div>
+                            <div className="p-5">
+                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="text-xs text-slate-500 ml-1">(42)</span>
+                                </div>
+                                <h3 className="text-lg font-bold text-white mb-1">Gold Limited</h3>
+                                <p className="text-slate-400 text-sm mb-4">Player Grade Willow</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xl font-bold text-white">$199.00</span>
+                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Product Card 4 */}
+                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
+                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
+                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
+                                    </button>
+                                </div>
+                                <Image
+                                    fill
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEQc3RZ-CtnjL5HE7-1Raq0nk5UBaowY7t9_CoWP8oLHvA6NFjXcI6YboEb6YOhIMnhKY2HiStZfPi3g3qLeVIf4MYUtEzACUTY1TmfAusNhKiPRnjXDvlBMu3_s3L0hdbu9XXbELWJmLXbF6vGxLe0-Dm_zdLTTDErH2j2P4UYQIqn5e1uUPkZF-A15b-tANu2xDrwuuiDQ_Zy-Tdz7a1PNL5mlICvQyfb1iitunxOLwvWrvGFa194-aXnBkLR4G-wzfwtMHZL26m"
+                                    alt="Stag Classic Retro Bat"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                            <div className="p-5">
+                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                    <span className="text-xs text-slate-500 ml-1">(12)</span>
+                                </div>
+                                <h3 className="text-lg font-bold text-white mb-1">Classic Retro</h3>
+                                <p className="text-slate-400 text-sm mb-4">Vintage Finish</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xl font-bold text-white">$129.00</span>
+                                    <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div className="flex flex-col gap-4 p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:border-primary/50 transition-colors group">
-                        <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                            <span className="material-symbols-outlined text-2xl">local_shipping</span>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-bold mb-2">PAN India Delivery</h3>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
-                                Fast, secure, and trackable shipping to every corner of India. We ensure your gear reaches you safely before match day.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-4 p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:border-primary/50 transition-colors group">
-                        <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                            <span className="material-symbols-outlined text-2xl">forest</span>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-bold mb-2">Premium Willow Sourcing</h3>
-                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
-                                We source wood directly from the finest willow trees in the valley, selected for density and grain structure for optimal performance.
-                            </p>
-                        </div>
+
+                    <div className="mt-12 text-center">
+                        <Link href="/shop" className="inline-flex items-center justify-center gap-2 bg-white text-background-dark font-bold text-base px-8 py-3 rounded-full hover:bg-gray-200 transition-colors">
+                            View All Products
+                        </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Newsletter */}
-            <section className="px-4 md:px-10 py-12">
-                <div className="w-full rounded-2xl bg-surface-dark dark:bg-surface-light text-white dark:text-background-dark p-8 md:p-16 text-center relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#ea2a33 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-                    <div className="relative z-10 max-w-2xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-black mb-4">Join the Squad</h2>
-                        <p className="text-gray-300 dark:text-gray-600 mb-8 text-lg">Subscribe for exclusive drops, early access to custom bats, and cricket tips from the pros.</p>
-                        <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                            <input className="flex-1 px-4 py-3 rounded-lg border-0 text-gray-900 focus:ring-2 focus:ring-primary" placeholder="Enter your email" required type="email" />
-                            <button className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition-colors" type="submit">
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
+            {/* Newsletter CTA */}
+            <section className="relative py-20 px-6 lg:px-12 overflow-hidden border-t border-white/5 bg-background-dark">
+                <div
+                    className="absolute inset-0 bg-cover bg-center z-0"
+                    style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJyo8wA-fPKyGDCb5cKHc089cUJpiM4I0bQF2j5N5wHLh7fuoIRXkwphmUR31yvjKMi6PIstWe4AYJEVUjYyHVxRbwF31GieAY9cDD23j3BlDsDLRUhW4EFuQ5uHrk4_o0t59yO609odTTDk_ohZuyoJzXtIt97zbqqpKUwdzroN-dcNqHOfrqZ3r65ZJRgxrRIRi03nF4JiDjtv_x7KtFOqyzC2WzbebQr5Sn6Bbl1WVXSMpMpx-8Ol-466NIPwEXuIWNUi3f6xY_')" }}
+                />
+
+                <div className="absolute inset-0 bg-background-dark/90 z-10" />
+
+                <div className="relative z-20 container mx-auto max-w-4xl text-center">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Join The Elite Club</h2>
+                    <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">Subscribe to receive updates on limited edition drops, exclusive cricketer interviews, and early access to sales.</p>
+
+                    <form className="flex flex-col md:flex-row gap-4 justify-center items-stretch max-w-lg mx-auto">
+                        <input
+                            className="flex-1 bg-white/10 border border-white/20 text-white placeholder-slate-400 rounded-lg px-6 py-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                            placeholder="Enter your email address"
+                            type="email"
+                        />
+                        <button className="bg-primary hover:bg-primary-dark text-background-dark font-bold px-8 py-4 rounded-lg transition-colors whitespace-nowrap" type="submit">
+                            Subscribe Now
+                        </button>
+                    </form>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

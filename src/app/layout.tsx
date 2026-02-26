@@ -14,15 +14,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="en" className="dark">
             <head>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&display=swap" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             </head>
-            <body className="font-sans">
-                <div className="flex min-h-screen flex-col bg-background-main selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+            <body className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden">
+                <div className="flex min-h-screen flex-col selection:bg-primary/20 selection:text-primary">
                     <Header />
-                    <main className="flex-grow pt-[84px] md:pt-[104px]">
+                    <main className="flex flex-col flex-grow pt-[72px]">
                         {children}
                     </main>
                     <Footer />

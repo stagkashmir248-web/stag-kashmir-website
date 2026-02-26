@@ -1,22 +1,3 @@
 {
-  "/_global-error/page": "app/_global-error/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/about/page": "app/about/page.js",
-  "/admin/inquiries/page": "app/admin/inquiries/page.js",
-  "/admin/inventory/page": "app/admin/inventory/page.js",
-  "/admin/orders/page": "app/admin/orders/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/products/[id]/page": "app/admin/products/[id]/page.js",
-  "/admin/products/new/page": "app/admin/products/new/page.js",
-  "/admin/products/page": "app/admin/products/page.js",
-  "/admin/variations/page": "app/admin/variations/page.js",
-  "/care-guide/page": "app/care-guide/page.js",
-  "/cart/page": "app/cart/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/custom-bat/page": "app/custom-bat/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/page": "app/page.js",
-  "/shop/[slug]/page": "app/shop/[slug]/page.js",
-  "/shop/page": "app/shop/page.js"
+  "/page": "app/page.js"
 }
