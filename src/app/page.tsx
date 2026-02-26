@@ -141,8 +141,8 @@ export default function Home() {
                                 </div>
                                 <Image
                                     fill
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMRjKMo2LqZs6PNzXTIKYeoXd3lvPBQSzh6M_sLcZVoLN8Emroa3BXHZqOqKJn3B08tdT6JH7L1UpmH8Qo81Pw-OIMNBgZDlvywqFZXa3RvJPLrFjKFzGkeypiFipbjAYpayXEe90LlzFEGNlV0zYImCjWkDYgmJmNU-LW6_qYmViFWThKQL4KIl9RV_eWiqhwU7Vsv9t2W2ryVX--1-o3i9qxMEaI90zalCsffS2Hb2PyIYt8vFvUVPoyS91b8A3MSAdofYvid_y"
-                                    alt="Stag Kashmir Pro Edition Bat"
+                                    src="/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp"
+                                    alt="Wolverine Gold Edition"
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
@@ -155,8 +155,8 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
                                     <span className="text-xs text-slate-500 ml-1">(24)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Stag Pro Edition</h3>
-                                <p className="text-slate-400 text-sm mb-4">Grade 1 Kashmir Willow</p>
+                                <h3 className="text-lg font-bold text-white mb-1">Wolverine Gold Edition</h3>
+                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-xl font-bold text-white">$149.00</span>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
@@ -177,8 +177,8 @@ export default function Home() {
                                 </div>
                                 <Image
                                     fill
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNugucrS7p9pYg3PPfU6BdiVnT5BZjNC2gRnEi6FrEnFbuA4AwLkwIausXTKd3gy0entDTttiVR_oLFJxveZ4vWUk3zBRy11aZ26ZIkrgzJYtTahGzx14DEs7SpZzdb62p2rY2Cf3AQhU7n8XXun4eQ9h9w2mSkcLzyVnjI72pzOMTq8-9tGP-LVn4eyHxThpSkt2fDY94yfwVhOxU1Tfb3XmXpaJpmtQbPtDcPTbUftswxl0JYRyjOo2lBENDD54QoE9s9p-u0GNK"
-                                    alt="Stag Thunder Striker Bat"
+                                    src="/Thala%20Edition%20Hard%20Tennis%20Bat.webp"
+                                    alt="Thala Edition Hard Tennis Bat"
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
@@ -191,8 +191,8 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px]">star_half</span>
                                     <span className="text-xs text-slate-500 ml-1">(18)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Thunder Striker</h3>
-                                <p className="text-slate-400 text-sm mb-4">Grade 2 Kashmir Willow</p>
+                                <h3 className="text-lg font-bold text-white mb-1">Thala Edition</h3>
+                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <div className="flex flex-col">
                                         <span className="text-sm text-slate-500 line-through">$120.00</span>
@@ -215,8 +215,8 @@ export default function Home() {
                                 </div>
                                 <Image
                                     fill
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZqyHHqK6qP70Gdi2XQV8CkXZ-5LGhims73DpQTVWqUdqlwC1g2cb2bLet6lzfJEwewuOIz5_H1aDB7pQL9mZE7FoXlkm45DaL7UWfzMNDUR7eKqQ5PYhcfn_sfP7-DfneYZDfsnXQd1nKcmOPAbxksYwt3VCcHrfKgUhTgSvhk-Mnyta9FrbKSQL5lz8T2FrRm7gEqvFLMVPDjbCezdOT5WnI_AFgwhXuXslPozXFLO2gdzBV5G_8FaZPROfWH5hH7wt9LDwYmEyO"
-                                    alt="Stag Gold Limited Bat"
+                                    src="/Gorilla%20Edition%20Hard%20Tennis%20Bat.webp"
+                                    alt="Gorilla Edition Hard Tennis Bat"
                                     className="object-cover transition-transform duration-500 group-hover:scale-105 brightness-90"
                                 />
                             </div>
@@ -229,8 +229,8 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
                                     <span className="text-xs text-slate-500 ml-1">(42)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Gold Limited</h3>
-                                <p className="text-slate-400 text-sm mb-4">Player Grade Willow</p>
+                                <h3 className="text-lg font-bold text-white mb-1">Gorilla Edition</h3>
+                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-xl font-bold text-white">$199.00</span>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
@@ -250,8 +250,8 @@ export default function Home() {
                                 </div>
                                 <Image
                                     fill
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEQc3RZ-CtnjL5HE7-1Raq0nk5UBaowY7t9_CoWP8oLHvA6NFjXcI6YboEb6YOhIMnhKY2HiStZfPi3g3qLeVIf4MYUtEzACUTY1TmfAusNhKiPRnjXDvlBMu3_s3L0hdbu9XXbELWJmLXbF6vGxLe0-Dm_zdLTTDErH2j2P4UYQIqn5e1uUPkZF-A15b-tANu2xDrwuuiDQ_Zy-Tdz7a1PNL5mlICvQyfb1iitunxOLwvWrvGFa194-aXnBkLR4G-wzfwtMHZL26m"
-                                    alt="Stag Classic Retro Bat"
+                                    src="/Wolverine%20Hard%20Tennis%20Bat.webp"
+                                    alt="Wolverine Hard Tennis Bat"
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
@@ -264,8 +264,8 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
                                     <span className="text-xs text-slate-500 ml-1">(12)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Classic Retro</h3>
-                                <p className="text-slate-400 text-sm mb-4">Vintage Finish</p>
+                                <h3 className="text-lg font-bold text-white mb-1">Wolverine</h3>
+                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <span className="text-xl font-bold text-white">$129.00</span>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
