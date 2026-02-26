@@ -1,5 +1,7 @@
 [variables]
 NIXPACKS_NODE_VERSION = "22"
+HOSTNAME = "0.0.0.0"
+PORT = "3000"
 
 [phases.build]
 cmds = ["npm run build", "cp -a public .next/standalone/ || true", "cp -a .next/static .next/standalone/.next/ || true"]
