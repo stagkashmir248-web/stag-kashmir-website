@@ -49,10 +49,10 @@ export default function ProductCartOptions({ product }: ProductCartOptionsProps)
         <>
             <div>
                 <div className="flex justify-between items-center mb-3">
-                    <label className="text-sm font-bold text-text-main uppercase tracking-wide">
+                    <label className="text-sm font-bold text-white uppercase tracking-wide">
                         Select Bat Size
                     </label>
-                    <button className="text-xs text-primary font-medium hover:underline">
+                    <button className="text-xs text-primary font-medium hover:underline transition-all">
                         Size Guide
                     </button>
                 </div>
@@ -66,7 +66,7 @@ export default function ProductCartOptions({ product }: ProductCartOptionsProps)
                                 checked={selectedSize === size}
                                 onChange={() => setSelectedSize(size)}
                             />
-                            <div className="flex h-14 items-center justify-center border-2 border-border-color bg-white px-4 text-base font-medium text-text-main peer-checked:border-primary transition-all hover:border-gray-400">
+                            <div className="flex h-14 items-center justify-center border border-white/10 bg-card-dark px-4 text-base font-medium text-slate-300 peer-checked:border-primary peer-checked:text-primary transition-all hover:border-white/30 rounded-lg">
                                 {size}
                             </div>
                         </label>
@@ -74,17 +74,17 @@ export default function ProductCartOptions({ product }: ProductCartOptionsProps)
                 </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-border-color flex flex-col gap-4">
+            <div className="mt-8 pt-6 border-t border-white/5 flex flex-col gap-4">
                 <div className="flex gap-4">
-                    <div className="flex w-32 items-center rounded-lg border border-border-color bg-white">
+                    <div className="flex w-32 items-center rounded-lg border border-white/10 bg-card-dark">
                         <button
                             onClick={handleDecreaseQuantity}
-                            className="flex h-full w-10 items-center justify-center text-text-secondary hover:text-primary transition-colors"
+                            className="flex h-full w-10 items-center justify-center text-slate-400 hover:text-white transition-colors"
                         >
                             <span className="material-symbols-outlined !text-lg">remove</span>
                         </button>
                         <input
-                            className="h-full w-full border-none bg-transparent text-center font-medium text-text-main focus:ring-0"
+                            className="h-full w-full border-none bg-transparent text-center font-bold text-white focus:ring-0"
                             readOnly
                             type="text"
                             value={quantity}
@@ -92,7 +92,7 @@ export default function ProductCartOptions({ product }: ProductCartOptionsProps)
                         <button
                             onClick={handleIncreaseQuantity}
                             disabled={quantity >= product.stock}
-                            className="flex h-full w-10 items-center justify-center text-text-secondary hover:text-primary transition-colors disabled:opacity-50"
+                            className="flex h-full w-10 items-center justify-center text-slate-400 hover:text-white transition-colors disabled:opacity-50"
                         >
                             <span className="material-symbols-outlined !text-lg">add</span>
                         </button>
@@ -100,9 +100,9 @@ export default function ProductCartOptions({ product }: ProductCartOptionsProps)
                     <button
                         onClick={handleAddToCart}
                         disabled={product.stock <= 0}
-                        className={`flex-1 rounded-lg py-3.5 text-base font-bold text-white shadow-md transition-all flex items-center justify-center gap-2 ${product.stock > 0
-                                ? "bg-primary shadow-primary/20 hover:bg-primary-dark hover:shadow-lg"
-                                : "bg-slate-300 cursor-not-allowed"
+                        className={`flex-1 rounded-lg py-3.5 text-base font-bold transition-all flex items-center justify-center gap-2 ${product.stock > 0
+                            ? "bg-primary text-background-dark shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:bg-primary-dark hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:scale-[1.02]"
+                            : "bg-white/10 text-slate-400 cursor-not-allowed border border-white/5"
                             }`}
                     >
                         <span className="material-symbols-outlined">

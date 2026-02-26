@@ -139,12 +139,14 @@ export default function Home() {
                                         <span className="material-symbols-outlined !text-[16px]">favorite</span>
                                     </button>
                                 </div>
-                                <Image
-                                    fill
-                                    src="/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp"
-                                    alt="Wolverine Gold Edition"
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                <Link href="/shop/wolverine-gold-edition" className="block absolute inset-0 z-0">
+                                    <Image
+                                        fill
+                                        src="/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp"
+                                        alt="Wolverine Gold Edition"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </Link>
                             </div>
                             <div className="p-5">
                                 <div className="flex items-center gap-1 text-yellow-500 mb-2">
@@ -155,10 +157,12 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
                                     <span className="text-xs text-slate-500 ml-1">(24)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Wolverine Gold Edition</h3>
+                                <Link href="/shop/wolverine-gold-edition">
+                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Wolverine Gold Edition</h3>
+                                </Link>
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold text-white">$149.00</span>
+                                    <span className="text-xl font-bold text-white">₹3,499</span>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
                                         Add to Cart
                                     </button>
@@ -175,12 +179,14 @@ export default function Home() {
                                         <span className="material-symbols-outlined !text-[16px]">favorite</span>
                                     </button>
                                 </div>
-                                <Image
-                                    fill
-                                    src="/Thala%20Edition%20Hard%20Tennis%20Bat.webp"
-                                    alt="Thala Edition Hard Tennis Bat"
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                <Link href="/shop/thala-edition-hard-tennis-bat" className="block absolute inset-0 z-0">
+                                    <Image
+                                        fill
+                                        src="/Thala%20Edition%20Hard%20Tennis%20Bat.webp"
+                                        alt="Thala Edition Hard Tennis Bat"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </Link>
                             </div>
                             <div className="p-5">
                                 <div className="flex items-center gap-1 text-yellow-500 mb-2">
@@ -191,12 +197,14 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px]">star_half</span>
                                     <span className="text-xs text-slate-500 ml-1">(18)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Thala Edition</h3>
+                                <Link href="/shop/thala-edition-hard-tennis-bat">
+                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Thala Edition</h3>
+                                </Link>
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
                                     <div className="flex flex-col">
-                                        <span className="text-sm text-slate-500 line-through">$120.00</span>
-                                        <span className="text-xl font-bold text-white">$96.00</span>
+                                        <span className="text-sm text-slate-500 line-through">₹3,599</span>
+                                        <span className="text-xl font-bold text-white">₹2,999</span>
                                     </div>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
                                         Add to Cart
@@ -213,12 +221,14 @@ export default function Home() {
                                         <span className="material-symbols-outlined !text-[16px]">favorite</span>
                                     </button>
                                 </div>
-                                <Image
-                                    fill
-                                    src="/Gorilla%20Edition%20Hard%20Tennis%20Bat.webp"
-                                    alt="Gorilla Edition Hard Tennis Bat"
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105 brightness-90"
-                                />
+                                <Link href="/shop/gorilla-edition-hard-tennis-bat" className="block absolute inset-0 z-0">
+                                    <Image
+                                        fill
+                                        src="/Gorilla%20Edition%20Hard%20Tennis%20Bat.webp"
+                                        alt="Gorilla Edition Hard Tennis Bat"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105 brightness-90"
+                                    />
+                                </Link>
                             </div>
                             <div className="p-5">
                                 <div className="flex items-center gap-1 text-yellow-500 mb-2">
@@ -229,10 +239,12 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
                                     <span className="text-xs text-slate-500 ml-1">(42)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Gorilla Edition</h3>
+                                <Link href="/shop/gorilla-edition-hard-tennis-bat">
+                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Gorilla Edition</h3>
+                                </Link>
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold text-white">$199.00</span>
+                                    <span className="text-xl font-bold text-white">₹2,499</span>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
                                         Add to Cart
                                     </button>
@@ -248,12 +260,14 @@ export default function Home() {
                                         <span className="material-symbols-outlined !text-[16px]">favorite</span>
                                     </button>
                                 </div>
-                                <Image
-                                    fill
-                                    src="/Wolverine%20Hard%20Tennis%20Bat.webp"
-                                    alt="Wolverine Hard Tennis Bat"
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                <Link href="/shop/wolverine-hard-tennis" className="block absolute inset-0 z-0">
+                                    <Image
+                                        fill
+                                        src="/Wolverine%20Hard%20Tennis%20Bat.webp"
+                                        alt="Wolverine Hard Tennis Bat"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </Link>
                             </div>
                             <div className="p-5">
                                 <div className="flex items-center gap-1 text-yellow-500 mb-2">
@@ -264,10 +278,12 @@ export default function Home() {
                                     <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
                                     <span className="text-xs text-slate-500 ml-1">(12)</span>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-1">Wolverine</h3>
+                                <Link href="/shop/wolverine-hard-tennis">
+                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Wolverine</h3>
+                                </Link>
                                 <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold text-white">$129.00</span>
+                                    <span className="text-xl font-bold text-white">₹1,899</span>
                                     <button className="text-primary hover:text-white border border-primary hover:bg-primary px-4 py-2 rounded-lg text-sm font-medium transition-all">
                                         Add to Cart
                                     </button>
