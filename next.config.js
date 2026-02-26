@@ -7,6 +7,8 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
+    output: "standalone",
+    serverExternalPackages: ["@prisma/client", "prisma"],
 };
 
 module.exports = nextConfig;
