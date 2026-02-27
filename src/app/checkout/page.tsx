@@ -7,6 +7,7 @@ import Link from "next/link";
 import Script from "next/script";
 
 const PARTIAL_AMOUNT = 300;
+const RZP_KEY = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 
 const INDIAN_STATES = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat",
@@ -95,7 +96,7 @@ export default function CheckoutPage() {
 
             // 2. Initialize Razorpay widget
             const options = {
-                key: "rzp_live_SL8CeZntngQnAy", // Client-safe key
+                key: RZP_KEY,
                 amount: amountToPay * 100,
                 currency: "INR",
                 name: "Stag Kashmir",
