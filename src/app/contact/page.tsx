@@ -1,16 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { submitInquiry } from "@/actions/inquiry";
+
+const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
 
 export default function Contact() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
 
+    // Load reCAPTCHA v3 script
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
+        script.async = true;
+        document.head.appendChild(script);
+        return () => { document.head.removeChild(script); };
+    }, []);
+
     async function handleSubmit(formData: FormData) {
         setStatus("submitting");
+        try {
+            // Get invisible reCAPTCHA token
+            const token = await (window as any).grecaptcha.execute(SITE_KEY, { action: "contact" });
+            formData.append("recaptchaToken", token);
+        } catch {
+            setStatus("error");
+            setErrorMessage("Security check failed. Please refresh the page and try again.");
+            return;
+        }
         const result = await submitInquiry(formData);
-
         if (result.success) {
             setStatus("success");
         } else {

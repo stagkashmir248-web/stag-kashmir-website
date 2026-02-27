@@ -7,6 +7,11 @@ import { Toaster } from 'react-hot-toast';
 export const metadata: Metadata = {
     title: 'Stag Kashmir',
     description: 'Handcrafted English Willow Cricket Bats',
+    icons: {
+        icon: '/siteicon.jpg',
+        shortcut: '/siteicon.jpg',
+        apple: '/siteicon.jpg',
+    },
 };
 
 export default function RootLayout({

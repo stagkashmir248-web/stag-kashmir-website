@@ -10,3 +10,18 @@
     font-family: 'Lexend', sans-serif;
   }
 }
+
+/* Hide scrollbar universally for elements that use overflow scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide reCAPTCHA floating badge — disclosure shown via text per Google policy */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}

@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProductBySlug } from "@/actions/product";
+import { getProductBySlug, getRelatedProducts } from "@/actions/product";
+import { getReviewsForProduct } from "@/actions/review";
 import ProductCartOptions from "./ProductCartOptions";
+import ProductGallery from "./ProductGallery";
+import ProductReviews from "./ProductReviews";
+import ShareButtons from "./ShareButtons";
+import RelatedProducts from "./RelatedProducts";
+import { auth } from "@/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -9,9 +15,15 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
     const resolvedParams = await params;
     const product = await getProductBySlug(resolvedParams.slug);
 
-    if (!product) {
-        notFound();
-    }
+    if (!product) notFound();
+
+    const [reviews, session, relatedProducts] = await Promise.all([
+        getReviewsForProduct(product.id),
+        auth(),
+        getRelatedProducts(product.id, (product as any).category ?? null),
+    ]);
+    const avgRating = reviews.length > 0 ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
+    const productUrl = `${process.env.NEXT_PUBLIC_SITE_URL || "https://stagkashmir.com"}/shop/${product.slug}`;
 
     return (
         <main className="flex-1 flex justify-center py-8 px-4 sm:px-8 lg:px-12">
@@ -27,57 +39,79 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16">
                     {/* Image Gallery */}
-                    <div className="lg:col-span-7 flex flex-col gap-4">
-                        <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 border border-white/5 p-8 relative group">
-                            <img
-                                alt={product.name}
-                                className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
-                                style={{ mixBlendMode: product.imageUrl?.includes("placeholder") ? "normal" : "normal" }} // Assuming clear assets. Real shots don't need multiply unless they have white backgrounds.
-                                src={product.imageUrl || "/placeholder.jpg"}
-                            />
-                            {product.stock <= 0 && (
-                                <div className="absolute top-4 left-4 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                                    Sold Out
-                                </div>
-                            )}
-                            <button className="absolute bottom-4 right-4 size-10 bg-white/10 backdrop-blur-md shadow-lg rounded-full flex items-center justify-center text-white hover:text-primary hover:bg-white/20 transition-all border border-white/10">
-                                <span className="material-symbols-outlined">zoom_in</span>
-                            </button>
-                        </div>
+                    <div className="lg:col-span-6">
+                        <ProductGallery
+                            mainImage={product.imageUrl}
+                            extraImages={product.images || []}
+                            productName={product.name}
+                            outOfStock={product.stock <= 0}
+                        />
                     </div>
 
                     {/* Product Info */}
-                    <div className="lg:col-span-5 flex flex-col h-full">
+                    <div className="lg:col-span-6 flex flex-col h-full">
                         <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">{product.name}</h1>
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="flex items-center gap-1 text-yellow-500">
-                                <span className="material-symbols-outlined !text-[20px] fill-current">star</span>
-                                <span className="material-symbols-outlined !text-[20px] fill-current">star</span>
-                                <span className="material-symbols-outlined !text-[20px] fill-current">star</span>
-                                <span className="material-symbols-outlined !text-[20px] fill-current">star</span>
-                                <span className="material-symbols-outlined !text-[20px] fill-current">star</span>
+
+                        {/* Rating row */}
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="flex items-center gap-0.5">
+                                {[1, 2, 3, 4, 5].map(i => (
+                                    <span key={i} className={`material-symbols-outlined !text-[18px] ${Math.round(avgRating) >= i ? "text-yellow-400" : "text-slate-600"}`}
+                                        style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                                ))}
                             </div>
-                            <span className="text-sm font-medium text-slate-400 hover:text-primary transition-colors cursor-pointer">Reviews</span>
+                            {reviews.length > 0 && (
+                                <span className="text-sm text-slate-400">{avgRating.toFixed(1)} ({reviews.length} {reviews.length === 1 ? "review" : "reviews"})</span>
+                            )}
                             <span className="h-4 w-px bg-white/10"></span>
                             <span className={`text-sm font-medium flex items-center gap-1 ${product.stock > 0 ? "text-green-500" : "text-red-500"}`}>
                                 <span className="material-symbols-outlined !text-[16px]">{product.stock > 0 ? "check_circle" : "cancel"}</span>
                                 {product.stock > 0 ? "In Stock" : "Out of Stock"}
                             </span>
                         </div>
-                        <div className="flex items-baseline gap-3 mb-8">
-                            <span className="text-4xl font-bold text-white">₹{product.price.toLocaleString('en-IN')}</span>
-                        </div>
 
-                        <div className="space-y-6 flex-1">
+                        {/* Stock urgency */}
+                        {product.stock > 0 && product.stock <= 5 && (
+                            <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-lg w-fit">
+                                <span className="material-symbols-outlined !text-[16px] text-red-400 animate-pulse">warning</span>
+                                <span className="text-red-400 text-sm font-semibold">Only {product.stock} left in stock — order soon!</span>
+                            </div>
+                        )}
+
+                        <div className="space-y-6 flex-1 mt-4">
                             <ProductCartOptions product={{
                                 id: product.id,
                                 name: product.name,
                                 price: product.price,
+                                compareAtPrice: (product as any).compareAtPrice,
                                 stock: product.stock,
-                                imageUrl: product.imageUrl
+                                imageUrl: product.imageUrl,
+                                variations: product.variations
                             }} />
-                            <div className="pt-4 text-slate-400">
-                                <div className="flex items-center gap-2 mb-2">
+
+                            {/* COD + Payment badges — tile style */}
+                            <div className="border border-white/8 rounded-xl overflow-hidden divide-x divide-white/8 flex flex-wrap">
+                                <div className="flex items-center gap-2 px-4 py-3 flex-1 min-w-[130px]">
+                                    <span className="material-symbols-outlined !text-[20px] text-green-400">payments</span>
+                                    <span className="text-xs font-semibold text-white leading-tight">Cash on<br />Delivery</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-3 flex-1 min-w-[120px] border-l border-white/8">
+                                    <span className="material-symbols-outlined !text-[20px] text-blue-400">smartphone</span>
+                                    <span className="text-xs font-semibold text-white leading-tight">UPI<br />Accepted</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-3 flex-1 min-w-[100px] border-l border-white/8">
+                                    <span className="material-symbols-outlined !text-[20px] text-purple-400">credit_card</span>
+                                    <span className="text-xs font-semibold text-white leading-tight">All<br />Cards</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-3 flex-1 min-w-[120px] border-l border-white/8">
+                                    <span className="material-symbols-outlined !text-[20px] text-yellow-400">lock</span>
+                                    <span className="text-xs font-semibold text-white leading-tight">Secure<br />Checkout</span>
+                                </div>
+                            </div>
+
+                            {/* Trust badges */}
+                            <div className="flex flex-col gap-2 text-slate-400 text-sm">
+                                <div className="flex items-center gap-2">
                                     <span className="material-symbols-outlined !text-lg text-primary">local_shipping</span>
                                     <span>Free Expedited Shipping</span>
                                 </div>
@@ -86,43 +120,84 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                                     <span>1 Year Professional Warranty</span>
                                 </div>
                             </div>
+
+                            {/* Share buttons */}
+                            <ShareButtons productName={product.name} productUrl={productUrl} />
                         </div>
                     </div>
 
-                    {/* Tabs Section */}
-                    <div className="mt-20 lg:col-span-12">
-                        <div className="border-b border-white/10">
-                            <nav aria-label="Tabs" className="-mb-px flex gap-8 overflow-x-auto">
-                                <span className="border-b-2 border-primary py-4 px-1 text-sm font-bold text-primary cursor-pointer">
-                                    Description
-                                </span>
-                                <span className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-slate-400 hover:border-white/20 hover:text-white transition-colors cursor-pointer">
-                                    Specifications
-                                </span>
-                            </nav>
-                        </div>
-                        <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-12">
-                            <div className="space-y-6 text-slate-300">
-                                <h3 className="text-xl font-bold text-white">{product.name}</h3>
-                                <p className="leading-relaxed font-light">
+                    {/* Description + Specs Section */}
+                    <div className="mt-8 lg:col-span-12">
+                        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+                            {/* LEFT: Description */}
+                            <div className="lg:col-span-3 flex flex-col gap-6">
+                                <div className="flex items-center gap-3">
+                                    <span className="w-1 h-6 bg-primary rounded-full inline-block"></span>
+                                    <h2 className="text-xl font-bold text-white tracking-tight">About this Bat</h2>
+                                </div>
+                                <p className="text-slate-300 leading-relaxed text-base font-light border-l-2 border-primary/30 pl-5">
                                     {product.description}
                                 </p>
-                            </div>
-                            <div className="bg-card-dark rounded-2xl border border-white/5 p-6 md:p-8">
-                                <h3 className="text-lg font-bold text-white mb-6">Technical Specs</h3>
-                                <div className="space-y-4">
-                                    <div className="grid grid-cols-2 py-3 border-b border-white/5">
-                                        <span className="text-slate-400">Willow Type</span>
-                                        <span className="text-white font-medium text-right">Kashmir Willow</span>
+                                {(product as any).features?.length > 0 && (
+                                    <div className="flex flex-wrap gap-2 mt-2">
+                                        {(product as any).features.map((f: string) => (
+                                            <span key={f} className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/5 text-slate-300 border border-white/10">
+                                                <span className="material-symbols-outlined !text-[14px] text-primary">check_circle</span>
+                                                {f}
+                                            </span>
+                                        ))}
                                     </div>
-                                    <div className="grid grid-cols-2 py-3 border-b border-white/5">
-                                        <span className="text-slate-400">Grade</span>
-                                        <span className="text-white font-medium text-right">Premium</span>
-                                    </div>
-                                </div>
+                                )}
                             </div>
+
+                            {/* RIGHT: Specs */}
+                            {(() => {
+                                const p = product as any;
+                                const specRows = [
+                                    { icon: "nature", label: "Willow Type", value: p.willowType },
+                                    { icon: "workspace_premium", label: "Grade", value: p.grade },
+                                    { icon: "straighten", label: "Blade", value: p.blade },
+                                    { icon: "sports_cricket", label: "Ball Type", value: p.ballType },
+                                    { icon: "verified", label: "Warranty", value: p.warranty },
+                                ].filter(r => r.value);
+                                if (specRows.length === 0) return null;
+                                return (
+                                    <div className="lg:col-span-2 flex flex-col gap-4">
+                                        <div className="flex items-center gap-3">
+                                            <span className="w-1 h-6 bg-primary rounded-full inline-block"></span>
+                                            <h2 className="text-xl font-bold text-white tracking-tight">Technical Specs</h2>
+                                        </div>
+                                        <div className="bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden divide-y divide-white/5">
+                                            {specRows.map(({ icon, label, value }) => (
+                                                <div key={label} className="flex items-center justify-between px-5 py-3.5 hover:bg-white/[0.03] transition-colors group">
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="material-symbols-outlined !text-[18px] text-primary/70 group-hover:text-primary transition-colors">{icon}</span>
+                                                        <span className="text-sm text-slate-400">{label}</span>
+                                                    </div>
+                                                    <span className="text-sm font-semibold text-white">{value}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            })()}
                         </div>
                     </div>
+
+                    {/* Reviews Section */}
+                    <ProductReviews
+                        productId={product.id}
+                        productSlug={product.slug}
+                        reviews={reviews}
+                        user={session?.user ?? null}
+                    />
+
+                    {/* Related Products */}
+                    <RelatedProducts
+                        products={relatedProducts}
+                        currentCategory={(product as any).category ?? null}
+                    />
                 </div>
             </div>
         </main>

@@ -5,12 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export async function deleteProduct(productId: string) {
     try {
-        // Note: In a real app we might prevent deletion if it's tied to an order, 
-        // or use soft deletes. For this MVP, we allow raw deletion.
-        await prisma.product.delete({
-            where: { id: productId },
-        });
-
+        await prisma.product.delete({ where: { id: productId } });
         revalidatePath("/admin/products");
         revalidatePath("/shop");
         return { success: true };
@@ -20,14 +15,28 @@ export async function deleteProduct(productId: string) {
     }
 }
 
+type ProductSpecsInput = {
+    willowType?: string;
+    grade?: string;
+    blade?: string;
+    ballType?: string;
+    warranty?: string;
+    features?: string[];
+    category?: string;
+};
+
 export async function createProduct(data: {
     name: string;
     slug: string;
     description: string;
     price: number;
+    compareAtPrice?: number;
     stock: number;
     imageUrl?: string;
-}) {
+    images?: string[];
+    videoUrl?: string;
+    variations?: { name: string; price: number; compareAtPrice?: number; stock: number }[];
+} & ProductSpecsInput) {
     try {
         const product = await prisma.product.create({
             data: {
@@ -35,17 +44,26 @@ export async function createProduct(data: {
                 slug: data.slug,
                 description: data.description,
                 price: data.price,
+                compareAtPrice: data.compareAtPrice || null,
                 stock: data.stock,
                 imageUrl: data.imageUrl,
+                images: data.images || [],
+                videoUrl: data.videoUrl,
+                willowType: data.willowType || null,
+                grade: data.grade || null,
+                blade: data.blade || null,
+                ballType: data.ballType || null,
+                warranty: data.warranty || null,
+                features: data.features || [],
+                category: data.category || null,
+                variations: { create: data.variations || [] }
             },
         });
-
         revalidatePath("/admin/products");
         revalidatePath("/shop");
         return { success: true, product };
     } catch (error) {
         console.error("Failed to create product:", error);
-        // Prisma unique constraint validation
         if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
             return { success: false, error: "A product with this slug already exists." };
         }
@@ -58,10 +76,16 @@ export async function updateProduct(id: string, data: {
     slug: string;
     description: string;
     price: number;
+    compareAtPrice?: number;
     stock: number;
     imageUrl?: string;
-}) {
+    images?: string[];
+    videoUrl?: string;
+    variations?: { id?: string; name: string; price: number; compareAtPrice?: number; stock: number }[];
+} & ProductSpecsInput) {
     try {
+        await prisma.productVariation.deleteMany({ where: { productId: id } });
+
         const product = await prisma.product.update({
             where: { id },
             data: {
@@ -69,8 +93,26 @@ export async function updateProduct(id: string, data: {
                 slug: data.slug,
                 description: data.description,
                 price: data.price,
+                compareAtPrice: data.compareAtPrice || null,
                 stock: data.stock,
-                ...(data.imageUrl && { imageUrl: data.imageUrl }), // Only update image if provided
+                ...(data.imageUrl && { imageUrl: data.imageUrl }),
+                ...(data.images !== undefined && { images: data.images }),
+                ...(data.videoUrl !== undefined && { videoUrl: data.videoUrl }),
+                willowType: data.willowType || null,
+                grade: data.grade || null,
+                blade: data.blade || null,
+                ballType: data.ballType || null,
+                warranty: data.warranty || null,
+                features: data.features || [],
+                category: data.category || null,
+                variations: {
+                    create: data.variations?.map(v => ({
+                        name: v.name,
+                        price: v.price,
+                        compareAtPrice: v.compareAtPrice || null,
+                        stock: v.stock
+                    })) || []
+                }
             },
         });
 
@@ -80,7 +122,6 @@ export async function updateProduct(id: string, data: {
         return { success: true, product };
     } catch (error) {
         console.error("Failed to update product:", error);
-        // Prisma unique constraint validation
         if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
             return { success: false, error: "A product with this slug already exists." };
         }
