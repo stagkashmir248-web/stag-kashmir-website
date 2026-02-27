@@ -1,9 +1,7 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-
-const prisma = new PrismaClient();
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
     try {
@@ -31,6 +29,11 @@ export async function submitInquiry(formData: FormData) {
         if (!name || !email || !subject || !message) {
             return { success: false, error: "All fields are required." };
         }
+
+        // Length guards — prevent oversized payloads
+        if (name.length > 120) return { success: false, error: "Name is too long." };
+        if (subject.length > 200) return { success: false, error: "Subject is too long." };
+        if (message.length > 3000) return { success: false, error: "Message must be under 3000 characters." };
 
         // Verify reCAPTCHA token
         if (!token || !(await verifyRecaptcha(token))) {

@@ -4,7 +4,7 @@ export async function subscribeNewsletter(formData: FormData) {
     const email = (formData.get("email") as string)?.trim().toLowerCase();
     const token = formData.get("recaptchaToken") as string;
 
-    if (!email || !email.includes("@")) {
+    if (!email || !email.includes("@") || email.length > 254) {
         return { success: false, error: "Please enter a valid email address." };
     }
 
