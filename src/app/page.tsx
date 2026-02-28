@@ -13,9 +13,12 @@ export default async function Home() {
             {/* Hero Section */}
             <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
                 {/* Background Image */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center z-0"
-                    style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuACJJkjBQqoshz-ycCQC5nQFp0w02RxHUt743T_P9goHxCGF_objQa9-kIyWnP81FYto3Y3V0rhLMtARjDWHSFOtL2g3fc4rocrTRrTatEeqbcVbY3E36JaJiZT6DLaruTKITZObygSI0wJQOuUiMPnXLl4iMAtuOaNkNNxE3LvLvHlSPSDNQ77XVL97rXeCeDs81A2p0YNlqket9Wqw2p4v1PT2VNSoGD85EuYAA4KoTrXGYFrGTHBzrgYx1b_SQzrxPJyCVFydoSI')" }}
+                <Image
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuACJJkjBQqoshz-ycCQC5nQFp0w02RxHUt743T_P9goHxCGF_objQa9-kIyWnP81FYto3Y3V0rhLMtARjDWHSFOtL2g3fc4rocrTRrTatEeqbcVbY3E36JaJiZT6DLaruTKITZObygSI0wJQOuUiMPnXLl4iMAtuOaNkNNxE3LvLvHlSPSDNQ77XVL97rXeCeDs81A2p0YNlqket9Wqw2p4v1PT2VNSoGD85EuYAA4KoTrXGYFrGTHBzrgYx1b_SQzrxPJyCVFydoSI"
+                    alt="Stag Kashmir Hero"
+                    fill
+                    priority
+                    className="object-cover z-0"
                 />
 
                 {/* Gradient Overlay */}
@@ -81,8 +84,13 @@ export default async function Home() {
                     {/* Hard Tennis */}
                     <Link href="/shop?category=hard-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
-                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('/HARD%20TENNIS%20BAT.png')" }} />
+                        <Image
+                            src="/HARD TENNIS BAT.png"
+                            alt="Hard Tennis Bats"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                        />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -123,8 +131,13 @@ export default async function Home() {
                     {/* Soft Tennis */}
                     <Link href="/shop?category=soft-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
-                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('/SOFT%20TENNIS%20BAT.png')" }} />
+                        <Image
+                            src="/SOFT TENNIS BAT.png"
+                            alt="Soft Tennis Bats"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                        />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -165,8 +178,13 @@ export default async function Home() {
                     {/* Season Bats */}
                     <Link href="/shop?category=season-leather" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
-                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('/PREMIUM%20SEASON%20LEATHER%20BAT.png')" }} />
+                        <Image
+                            src="/PREMIUM SEASON LEATHER BAT.png"
+                            alt="Season Leather Bats"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                        />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -207,8 +225,13 @@ export default async function Home() {
                     {/* Junior Bats */}
                     <Link href="/shop?category=junior-bats" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
-                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('/JUNIOR%20BAT.png')" }} />
+                        <Image
+                            src="/JUNIOR BAT.png"
+                            alt="Junior Bats"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                        />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -363,9 +386,11 @@ export default async function Home() {
 
             {/* Newsletter CTA */}
             <section className="relative py-20 px-6 lg:px-12 overflow-hidden border-t border-white/5 bg-background-dark">
-                <div
-                    className="absolute inset-0 bg-cover bg-center z-0"
-                    style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJyo8wA-fPKyGDCb5cKHc089cUJpiM4I0bQF2j5N5wHLh7fuoIRXkwphmUR31yvjKMi6PIstWe4AYJEVUjYyHVxRbwF31GieAY9cDD23j3BlDsDLRUhW4EFuQ5uHrk4_o0t59yO609odTTDk_ohZuyoJzXtIt97zbqqpKUwdzroN-dcNqHOfrqZ3r65ZJRgxrRIRi03nF4JiDjtv_x7KtFOqyzC2WzbebQr5Sn6Bbl1WVXSMpMpx-8Ol-466NIPwEXuIWNUi3f6xY_')" }}
+                <Image
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJyo8wA-fPKyGDCb5cKHc089cUJpiM4I0bQF2j5N5wHLh7fuoIRXkwphmUR31yvjKMi6PIstWe4AYJEVUjYyHVxRbwF31GieAY9cDD23j3BlDsDLRUhW4EFuQ5uHrk4_o0t59yO609odTTDk_ohZuyoJzXtIt97zbqqpKUwdzroN-dcNqHOfrqZ3r65ZJRgxrRIRi03nF4JiDjtv_x7KtFOqyzC2WzbebQr5Sn6Bbl1WVXSMpMpx-8Ol-466NIPwEXuIWNUi3f6xY_"
+                    alt="Newsletter Background"
+                    fill
+                    className="object-cover z-0"
                 />
 
                 <div className="absolute inset-0 bg-background-dark/90 z-10" />

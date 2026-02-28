@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCartStore } from "@/store/cart";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -70,7 +71,14 @@ export default function HeaderClient({ isLoggedIn }: HeaderClientProps) {
                     </button>
                     <Link href="/" className="relative flex items-center justify-center gap-2 hover:opacity-80 transition-opacity cursor-pointer group shrink-0">
                         <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/40 to-white/30 blur-xl rounded-full opacity-70 group-hover:opacity-100 transition-opacity" />
-                        <img src="/Stag_logo-removebg-preview.png" alt="Stag Kashmir" className="relative z-10 w-[120px] md:w-[140px] h-auto object-contain drop-shadow-sm" />
+                        <Image
+                            src="/Stag_logo-removebg-preview.png"
+                            alt="Stag Kashmir"
+                            width={140}
+                            height={50}
+                            priority
+                            className="relative z-10 w-[120px] md:w-[140px] h-auto object-contain drop-shadow-sm"
+                        />
                     </Link>
                 </div>
 
