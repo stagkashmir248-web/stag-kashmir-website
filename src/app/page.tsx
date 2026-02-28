@@ -75,10 +75,10 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full mt-2">
 
                     {/* Hard Tennis */}
-                    <Link href="/shop?category=hard-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                    <Link href="/shop?category=hard-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
                         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ3bs7rI3vDpKLVBNElac5Jr2HkwLkLPCsYKKTAgJ_4rJqPJeVib1ojWQFd-meHiTsT6q6qZ7_rBF-7V1dtdaa21ujJmYhSegg9POwunu5qTv_mdiEPduLOJCUIR1SbxFYNtrSDx6A9Bz3fpmbjh45Z_ncZEZi84vwf4GthhCDL-yot4qpP_mg45CC-5mANA5_MCMBIGi3bV7CQZ5tid765GywcEfgWNu7ZItM6wRjkIahRoci4QXeQ7cElDDS6c9QFJgaJBTqy92M')" }} />
+                            style={{ backgroundImage: "url('/HARD%20TENNIS%20BAT.png')" }} />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -117,10 +117,10 @@ export default function Home() {
                     </Link>
 
                     {/* Soft Tennis */}
-                    <Link href="/shop?category=soft-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                    <Link href="/shop?category=soft-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
                         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfTCVb0NnI2licMGUZh9PR4vNOx2_DWmNwcIEhrEvld5jDE3vu9Ajy9KTutKSyBaxo5EmjGXm2wNfh15_XygfNRGKbwMSgrFF1yXOe7Twv-X9_a18bFpe9XxujHKiRS_icL5JYqwLgFi4MZIhwyqvl_WsNbAUcdIhpKlHMu56wjlKNHVzTERRVpkX9-lURIZ7x7bqkUrgXZChH3NUvFP_7ZBpCEYErlmIemPuXM5yEJNAz9cxr0w2Z8qZ3AONttfyVcxC63TqMmOXG')" }} />
+                            style={{ backgroundImage: "url('/SOFT%20TENNIS%20BAT.png')" }} />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -159,9 +159,10 @@ export default function Home() {
                     </Link>
 
                     {/* Season Bats */}
-                    <Link href="/shop?category=season-leather" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                    <Link href="/shop?category=season-leather" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
-                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQqA8Q54B86hN1l2B150p7205a2Pz0u11E152HnC4aA31mD9r1A3q2o9Q0KzL1TqWpF5QO7_p9N-z5_929z5xX3mB6L4yv4_E31Q0QZzMhF3d96924hN9qF_L461m_a6tP6A_5L7s4e0uF87x_B1Z1G_5vW_t0V_O_U_C1z7Bv4g9a63M9A3a3z8i_b5zM2Y2Q6r2N703U8aF7_L7a2tB28Xk')]" />
+                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
+                            style={{ backgroundImage: "url('/PREMIUM%20SEASON%20LEATHER%20BAT.png')" }} />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
@@ -200,10 +201,10 @@ export default function Home() {
                     </Link>
 
                     {/* Junior Bats */}
-                    <Link href="/shop?category=junior-bats" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                    <Link href="/shop?category=junior-bats" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[250px] sm:h-[300px] lg:h-[350px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
                         {/* Background Image */}
                         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
-                            style={{ backgroundImage: "url('/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp')" }} />
+                            style={{ backgroundImage: "url('/JUNIOR%20BAT.png')" }} />
 
                         {/* Gradients */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
