@@ -742,6 +742,9 @@ body {
 .order-2{
   order: 2;
 }
+.col-span-full{
+  grid-column: 1 / -1;
+}
 .float-right{
   float: right;
 }
@@ -3002,6 +3005,9 @@ body {
 .text-yellow-500{
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity, 1));
+}
+.text-white\/20{
+  color: rgb(255 255 255 / 0.2);
 }
 .underline{
   text-decoration-line: underline;

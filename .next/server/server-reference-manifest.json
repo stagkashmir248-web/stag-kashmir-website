@@ -54,11 +54,15 @@
           "async": false
         },
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cnewsletter.ts%22%2C%5B%7B%22id%22%3A%22401167a89a0e49608c671c84b431f02c2b93fc85b7%22%2C%22exportedName%22%3A%22subscribeNewsletter%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         },
         "app/shop/[slug]/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Creview.ts%22%2C%5B%7B%22id%22%3A%2200bc0f97afd3e2d2c7101acb2ba9566a55c94cbfbf%22%2C%22exportedName%22%3A%22getAllReviews%22%7D%2C%7B%22id%22%3A%22407e233d0ac7f47786c68b226cad313f0730972575%22%2C%22exportedName%22%3A%22submitReview%22%7D%2C%7B%22id%22%3A%22409bea58edeab63b7651f78b41d043450c5ced6a63%22%2C%22exportedName%22%3A%22approveReview%22%7D%2C%7B%22id%22%3A%2240d6f4173ab27a077080d48a73327997ca3018ce9b%22%2C%22exportedName%22%3A%22deleteReview%22%7D%2C%7B%22id%22%3A%2240e9ccb5dbaeb3c402313b733a9ff700e3683f6fba%22%2C%22exportedName%22%3A%22getReviewsForProduct%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/shop/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         }
       },
@@ -68,8 +72,9 @@
         "app/admin/inquiries/page": "action-browser",
         "app/admin/customers/page": "action-browser",
         "app/admin/reviews/page": "action-browser",
-        "app/page": "action-browser",
-        "app/shop/[slug]/page": "rsc"
+        "app/page": "rsc",
+        "app/shop/[slug]/page": "rsc",
+        "app/shop/page": "rsc"
       }
     },
     "7f57427a84a646118002d5cd67de268ed9131f7a24": {
@@ -95,11 +100,15 @@
           "async": false
         },
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cnewsletter.ts%22%2C%5B%7B%22id%22%3A%22401167a89a0e49608c671c84b431f02c2b93fc85b7%22%2C%22exportedName%22%3A%22subscribeNewsletter%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         },
         "app/shop/[slug]/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Creview.ts%22%2C%5B%7B%22id%22%3A%2200bc0f97afd3e2d2c7101acb2ba9566a55c94cbfbf%22%2C%22exportedName%22%3A%22getAllReviews%22%7D%2C%7B%22id%22%3A%22407e233d0ac7f47786c68b226cad313f0730972575%22%2C%22exportedName%22%3A%22submitReview%22%7D%2C%7B%22id%22%3A%22409bea58edeab63b7651f78b41d043450c5ced6a63%22%2C%22exportedName%22%3A%22approveReview%22%7D%2C%7B%22id%22%3A%2240d6f4173ab27a077080d48a73327997ca3018ce9b%22%2C%22exportedName%22%3A%22deleteReview%22%7D%2C%7B%22id%22%3A%2240e9ccb5dbaeb3c402313b733a9ff700e3683f6fba%22%2C%22exportedName%22%3A%22getReviewsForProduct%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/shop/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         }
       },
@@ -109,8 +118,9 @@
         "app/admin/inquiries/page": "action-browser",
         "app/admin/customers/page": "action-browser",
         "app/admin/reviews/page": "action-browser",
-        "app/page": "action-browser",
-        "app/shop/[slug]/page": "rsc"
+        "app/page": "rsc",
+        "app/shop/[slug]/page": "rsc",
+        "app/shop/page": "rsc"
       }
     },
     "7f968c88eb464a3622087bfbc6c0b8b9a5109a8131": {
@@ -136,11 +146,15 @@
           "async": false
         },
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cnewsletter.ts%22%2C%5B%7B%22id%22%3A%22401167a89a0e49608c671c84b431f02c2b93fc85b7%22%2C%22exportedName%22%3A%22subscribeNewsletter%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         },
         "app/shop/[slug]/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Creview.ts%22%2C%5B%7B%22id%22%3A%2200bc0f97afd3e2d2c7101acb2ba9566a55c94cbfbf%22%2C%22exportedName%22%3A%22getAllReviews%22%7D%2C%7B%22id%22%3A%22407e233d0ac7f47786c68b226cad313f0730972575%22%2C%22exportedName%22%3A%22submitReview%22%7D%2C%7B%22id%22%3A%22409bea58edeab63b7651f78b41d043450c5ced6a63%22%2C%22exportedName%22%3A%22approveReview%22%7D%2C%7B%22id%22%3A%2240d6f4173ab27a077080d48a73327997ca3018ce9b%22%2C%22exportedName%22%3A%22deleteReview%22%7D%2C%7B%22id%22%3A%2240e9ccb5dbaeb3c402313b733a9ff700e3683f6fba%22%2C%22exportedName%22%3A%22getReviewsForProduct%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/shop/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         }
       },
@@ -150,8 +164,9 @@
         "app/admin/inquiries/page": "action-browser",
         "app/admin/customers/page": "action-browser",
         "app/admin/reviews/page": "action-browser",
-        "app/page": "action-browser",
-        "app/shop/[slug]/page": "rsc"
+        "app/page": "rsc",
+        "app/shop/[slug]/page": "rsc",
+        "app/shop/page": "rsc"
       }
     },
     "7fe405c67d1c0db1ace49ea43db24c8d93b7d3f676": {
@@ -177,11 +192,15 @@
           "async": false
         },
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cnewsletter.ts%22%2C%5B%7B%22id%22%3A%22401167a89a0e49608c671c84b431f02c2b93fc85b7%22%2C%22exportedName%22%3A%22subscribeNewsletter%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         },
         "app/shop/[slug]/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Creview.ts%22%2C%5B%7B%22id%22%3A%2200bc0f97afd3e2d2c7101acb2ba9566a55c94cbfbf%22%2C%22exportedName%22%3A%22getAllReviews%22%7D%2C%7B%22id%22%3A%22407e233d0ac7f47786c68b226cad313f0730972575%22%2C%22exportedName%22%3A%22submitReview%22%7D%2C%7B%22id%22%3A%22409bea58edeab63b7651f78b41d043450c5ced6a63%22%2C%22exportedName%22%3A%22approveReview%22%7D%2C%7B%22id%22%3A%2240d6f4173ab27a077080d48a73327997ca3018ce9b%22%2C%22exportedName%22%3A%22deleteReview%22%7D%2C%7B%22id%22%3A%2240e9ccb5dbaeb3c402313b733a9ff700e3683f6fba%22%2C%22exportedName%22%3A%22getReviewsForProduct%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/shop/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         }
       },
@@ -191,8 +210,9 @@
         "app/admin/inquiries/page": "action-browser",
         "app/admin/customers/page": "action-browser",
         "app/admin/reviews/page": "action-browser",
-        "app/page": "action-browser",
-        "app/shop/[slug]/page": "rsc"
+        "app/page": "rsc",
+        "app/shop/[slug]/page": "rsc",
+        "app/shop/page": "rsc"
       }
     },
     "404ce44822ec5c46ecfc1d9fab15774785f69bf107": {
@@ -344,7 +364,7 @@
     "401167a89a0e49608c671c84b431f02c2b93fc85b7": {
       "workers": {
         "app/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cproduct.ts%22%2C%5B%7B%22id%22%3A%227f3b2c42cab10e20cad01db774d9f831841c6fb349%22%2C%22exportedName%22%3A%22getProductBySlug%22%7D%2C%7B%22id%22%3A%227f57427a84a646118002d5cd67de268ed9131f7a24%22%2C%22exportedName%22%3A%22getRelatedProducts%22%7D%2C%7B%22id%22%3A%227f968c88eb464a3622087bfbc6c0b8b9a5109a8131%22%2C%22exportedName%22%3A%22getProducts%22%7D%2C%7B%22id%22%3A%227fe405c67d1c0db1ace49ea43db24c8d93b7d3f676%22%2C%22exportedName%22%3A%22searchProducts%22%7D%5D%5D%2C%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cnewsletter.ts%22%2C%5B%7B%22id%22%3A%22401167a89a0e49608c671c84b431f02c2b93fc85b7%22%2C%22exportedName%22%3A%22subscribeNewsletter%22%7D%5D%5D%5D&__client_imported__=true!",
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CSuhail%20-%20CGIT%5C%5CDesktop%5C%5CPlayground_StagKashmir_VPS%2BCoolify%2BAnitigravity%5C%5Csrc%5C%5Cactions%5C%5Cnewsletter.ts%22%2C%5B%7B%22id%22%3A%22401167a89a0e49608c671c84b431f02c2b93fc85b7%22%2C%22exportedName%22%3A%22subscribeNewsletter%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
         }
       },

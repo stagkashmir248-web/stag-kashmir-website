@@ -2,8 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 import NewsletterForm from "@/components/NewsletterForm";
+import { getProducts } from "@/actions/product";
 
-export default function Home() {
+export default async function Home() {
+    const products = await getProducts();
+    const featuredProducts = products.slice(0, 4);
+
     return (
         <div className="relative flex w-full flex-col group/design-root">
             {/* Hero Section */}
@@ -290,143 +294,63 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Product Card 1 */}
-                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
-                                <div className="absolute top-3 left-3 z-10 bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">NEW</div>
+                        {featuredProducts.length > 0 ? (
+                            featuredProducts.map((product) => (
+                                <div key={product.id} className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                                    <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
+                                        {/* Tag Logic */}
+                                        {(new Date(product.createdAt).getTime() > Date.now() - 30 * 24 * 60 * 60 * 1000) && (
+                                            <div className="absolute top-3 left-3 z-10 bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">NEW</div>
+                                        )}
+                                        {product.compareAtPrice && product.compareAtPrice > product.price && (
+                                            <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                                -{Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}%
+                                            </div>
+                                        )}
 
-                                <Link href="/shop/wolverine-gold-edition" className="block absolute inset-0 z-0">
-                                    <Image
-                                        fill
-                                        src="/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp"
-                                        alt="Wolverine Gold Edition"
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </Link>
-                            </div>
-                            <div className="p-5">
-                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="text-xs text-slate-500 ml-1">(24)</span>
-                                </div>
-                                <Link href="/shop/wolverine-gold-edition">
-                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Wolverine Gold Edition</h3>
-                                </Link>
-                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold text-white">₹3,499</span>
-                                    <AddToCartButton product={{ id: "wolverine-gold-edition", name: "Wolverine Gold Edition", price: 3499, imageUrl: "/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp" }} />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Product Card 2 */}
-                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
-                                <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-20%</div>
-
-                                <Link href="/shop/thala-edition-hard-tennis-bat" className="block absolute inset-0 z-0">
-                                    <Image
-                                        fill
-                                        src="/Thala%20Edition%20Hard%20Tennis%20Bat.webp"
-                                        alt="Thala Edition Hard Tennis Bat"
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </Link>
-                            </div>
-                            <div className="p-5">
-                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px]">star_half</span>
-                                    <span className="text-xs text-slate-500 ml-1">(18)</span>
-                                </div>
-                                <Link href="/shop/thala-edition-hard-tennis-bat">
-                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Thala Edition</h3>
-                                </Link>
-                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex flex-col">
-                                        <span className="text-sm text-slate-500 line-through">₹3,599</span>
-                                        <span className="text-xl font-bold text-white">₹2,999</span>
+                                        <Link href={`/shop/${product.slug}`} className="block absolute inset-0 z-0">
+                                            <Image
+                                                fill
+                                                src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.jpg"}
+                                                alt={product.name}
+                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        </Link>
                                     </div>
-                                    <AddToCartButton product={{ id: "thala-edition-hard-tennis-bat", name: "Thala Edition", price: 2999, imageUrl: "/Thala%20Edition%20Hard%20Tennis%20Bat.webp" }} />
+                                    <div className="p-5">
+                                        <div className="flex items-center gap-1 text-yellow-500 mb-2">
+                                            <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                            <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                            <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                            <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                            <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
+                                            <span className="text-xs text-slate-500 ml-1">(0)</span>
+                                        </div>
+                                        <Link href={`/shop/${product.slug}`}>
+                                            <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">{product.name}</h3>
+                                        </Link>
+                                        <p className="text-slate-400 text-sm mb-4">Premium Kashmir Willow</p>
+                                        <div className="flex items-center justify-between">
+                                            {product.compareAtPrice && product.compareAtPrice > product.price ? (
+                                                <div className="flex flex-col">
+                                                    <span className="text-sm text-slate-500 line-through">₹{product.compareAtPrice}</span>
+                                                    <span className="text-xl font-bold text-white">₹{product.price}</span>
+                                                </div>
+                                            ) : (
+                                                <span className="text-xl font-bold text-white">₹{product.price}</span>
+                                            )}
+                                            <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, imageUrl: product.images?.[0] || "/placeholder.jpg" }} />
+                                        </div>
+                                    </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="col-span-full py-16 text-center border border-dashed border-white/10 rounded-xl bg-white/5">
+                                <span className="material-symbols-outlined !text-[48px] text-white/20 mb-4 block">inventory_2</span>
+                                <h3 className="text-xl font-bold text-white mb-2">New Masterpieces Coming Soon</h3>
+                                <p className="text-slate-400 max-w-md mx-auto">Our craftsmen are meticulously preparing a new selection. Check back soon for the latest drops.</p>
                             </div>
-                        </div>
-
-                        {/* Product Card 3 */}
-                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
-
-                                <Link href="/shop/gorilla-edition-hard-tennis-bat" className="block absolute inset-0 z-0">
-                                    <Image
-                                        fill
-                                        src="/Gorilla%20Edition%20Hard%20Tennis%20Bat.webp"
-                                        alt="Gorilla Edition Hard Tennis Bat"
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105 brightness-90"
-                                    />
-                                </Link>
-                            </div>
-                            <div className="p-5">
-                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="text-xs text-slate-500 ml-1">(42)</span>
-                                </div>
-                                <Link href="/shop/gorilla-edition-hard-tennis-bat">
-                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Gorilla Edition</h3>
-                                </Link>
-                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold text-white">₹2,499</span>
-                                    <AddToCartButton product={{ id: "gorilla-edition-hard-tennis-bat", name: "Gorilla Edition", price: 2499, imageUrl: "/Gorilla%20Edition%20Hard%20Tennis%20Bat.webp" }} />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Product Card 4 */}
-                        <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                            <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
-
-                                <Link href="/shop/wolverine-hard-tennis" className="block absolute inset-0 z-0">
-                                    <Image
-                                        fill
-                                        src="/Wolverine%20Hard%20Tennis%20Bat.webp"
-                                        alt="Wolverine Hard Tennis Bat"
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </Link>
-                            </div>
-                            <div className="p-5">
-                                <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                    <span className="text-xs text-slate-500 ml-1">(12)</span>
-                                </div>
-                                <Link href="/shop/wolverine-hard-tennis">
-                                    <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">Wolverine</h3>
-                                </Link>
-                                <p className="text-slate-400 text-sm mb-4">Hard Tennis Bat</p>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold text-white">₹1,899</span>
-                                    <AddToCartButton product={{ id: "wolverine-hard-tennis", name: "Wolverine", price: 1899, imageUrl: "/Wolverine%20Hard%20Tennis%20Bat.webp" }} />
-                                </div>
-                            </div>
-                        </div>
-
+                        )}
                     </div>
 
                     <div className="mt-12 text-center">
