@@ -147,7 +147,7 @@ export function ShopSidebar() {
                 <p className="text-slate-300 text-sm mb-5 leading-relaxed">
                     Personalize the weight, handle size, and exact willow grade to match your playstyle.
                 </p>
-                <Link href="/custom-bat" className="text-sm font-bold bg-white text-slate-900 px-5 py-2.5 rounded-lg hover:bg-slate-100 transition-colors shadow-sm flex items-center gap-2">
+                <Link href="/customise" className="text-sm font-bold bg-white text-slate-900 px-5 py-2.5 rounded-lg hover:bg-slate-100 transition-colors shadow-sm flex items-center gap-2">
                     Start Building
                     <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </Link>
