@@ -110,12 +110,43 @@ export default function NewProductPage() {
     const compressImage = (file: File, cb: (b64: string) => void) => {
         if (!file.type.startsWith("image/")) return;
         const r = new FileReader();
-        r.onload = ev => { const img = new Image(); img.onload = () => { const c = document.createElement("canvas"); const MAX = 800; let w = img.width, h = img.height; if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; } c.width = w; c.height = h; const ctx = c.getContext("2d"); if (!ctx) return; ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h); ctx.drawImage(img, 0, 0, w, h); cb(c.toDataURL("image/webp", 0.8)); }; img.src = ev.target?.result as string; };
+        r.onload = ev => {
+            const img = new Image();
+            img.onload = () => {
+                try {
+                    const c = document.createElement("canvas");
+                    const MAX = 800;
+                    let w = img.width, h = img.height;
+                    if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+                    c.width = w; c.height = h;
+                    const ctx = c.getContext("2d");
+                    if (!ctx) { cb(ev.target?.result as string); return; }
+                    ctx.fillStyle = "#fff";
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.drawImage(img, 0, 0, w, h);
+                    cb(c.toDataURL("image/webp", 0.8));
+                } catch (err) {
+                    console.error("Canvas compression failed", err);
+                    cb(ev.target?.result as string);
+                }
+            };
+            img.onerror = () => cb(ev.target?.result as string);
+            img.src = ev.target?.result as string;
+        };
+        r.onerror = () => console.error("FileReader failed");
         r.readAsDataURL(file);
     };
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => { const f = e.target.files?.[0]; if (f) compressImage(f, b64 => { setBase64Image(b64); setImagePreview(b64); }); };
-    const handleExtraImagesUpload = (e: React.ChangeEvent<HTMLInputElement>) => Array.from(e.target.files || []).forEach(f => compressImage(f, b64 => setExtraImages(p => [...p, b64])));
+    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const f = e.target.files?.[0];
+        if (f) compressImage(f, b64 => { setBase64Image(b64); setImagePreview(b64); });
+        e.target.value = '';
+    };
+
+    const handleExtraImagesUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        Array.from(e.target.files || []).forEach(f => compressImage(f, b64 => setExtraImages(p => [...p, b64])));
+        e.target.value = '';
+    };
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => { setName(e.target.value); setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "")); };
 
     const handleSubmit = async (e: React.FormEvent) => {
