@@ -27,19 +27,18 @@ export default function Footer() {
                     <div>
                         <h3 className="text-white font-bold mb-6">Shop</h3>
                         <ul className="flex flex-col gap-3">
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=season">Season Bats</Link></li>
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=hard-tennis">Tennis Bats</Link></li>
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=accessories">Gloves &amp; Pads</Link></li>
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=accessories">Kit Bags</Link></li>
+                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=season-bats">Season Bats</Link></li>
+                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=hard-tennis">Hard Tennis</Link></li>
+                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shop?category=soft-tennis">Soft Tennis</Link></li>
                         </ul>
                     </div>
                     <div>
                         <h3 className="text-white font-bold mb-6">Support</h3>
                         <ul className="flex flex-col gap-3">
                             <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/contact">Contact Us</Link></li>
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shipping">Shipping &amp; Returns</Link></li>
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/care">Bat Care Guide</Link></li>
-                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/warranty">Warranty Policy</Link></li>
+                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/shipping-returns">Shipping &amp; Returns</Link></li>
+                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/care-guide">Bat Care Guide</Link></li>
+                            <li><Link className="text-slate-500 hover:text-primary transition-colors text-sm" href="/warranty-policy">Warranty Policy</Link></li>
                         </ul>
                     </div>
                     <div>
@@ -63,8 +62,8 @@ export default function Footer() {
                         </span>
                     </div>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link className="text-slate-600 hover:text-slate-400 text-xs" href="/privacy">Privacy Policy</Link>
-                        <Link className="text-slate-600 hover:text-slate-400 text-xs" href="/terms">Terms of Service</Link>
+                        <Link className="text-slate-600 hover:text-slate-400 text-xs" href="/privacy-policy">Privacy Policy</Link>
+                        <Link className="text-slate-600 hover:text-slate-400 text-xs" href="/refund-policy">Refund Policy</Link>
                     </div>
                 </div>
             </div>
