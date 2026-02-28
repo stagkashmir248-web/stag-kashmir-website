@@ -1,8 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/shipping-returns/page": "app/shipping-returns/page.js",
-  "/refund-policy/page": "app/refund-policy/page.js",
-  "/warranty-policy/page": "app/warranty-policy/page.js",
-  "/privacy-policy/page": "app/privacy-policy/page.js",
-  "/care-guide/page": "app/care-guide/page.js"
-}
