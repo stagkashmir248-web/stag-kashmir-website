@@ -60,17 +60,17 @@ export default function Contact() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
-                                    <input name="name" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="John Doe" type="text" />
+                                    <input name="name" required className="rounded-lg border border-primary/20 bg-white/5 text-white focus:border-primary focus:ring-1 focus:ring-primary w-full p-3 transition-all placeholder-slate-500" placeholder="John Doe" type="text" />
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address</label>
-                                    <input name="email" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="john@example.com" type="email" />
+                                    <input name="email" required className="rounded-lg border border-primary/20 bg-white/5 text-white focus:border-primary focus:ring-1 focus:ring-primary w-full p-3 transition-all placeholder-slate-500" placeholder="john@example.com" type="email" />
                                 </div>
                             </div>
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
-                                <select name="subject" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all">
+                                <select name="subject" required className="rounded-lg border border-primary/20 bg-white/5 text-white focus:border-primary focus:ring-1 focus:ring-primary w-full p-3 transition-all [&>option]:bg-background-dark [&>option]:text-white">
                                     <option value="General Inquiry">General Inquiry</option>
                                     <option value="Order Status">Order Status</option>
                                     <option value="Custom Bat Customization">Custom Bat Customization</option>
@@ -80,7 +80,7 @@ export default function Contact() {
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Your Message</label>
-                                <textarea name="message" required className="rounded-lg border-primary/20 bg-background-light dark:bg-background-dark/20 focus:border-primary focus:ring-primary w-full p-3 transition-all" placeholder="Tell us how we can help..." rows={5}></textarea>
+                                <textarea name="message" required className="rounded-lg border border-primary/20 bg-white/5 text-white focus:border-primary focus:ring-1 focus:ring-primary w-full p-3 transition-all placeholder-slate-500" placeholder="Tell us how we can help..." rows={5}></textarea>
                             </div>
 
                             {status === "success" && (
@@ -89,6 +89,10 @@ export default function Contact() {
                             {status === "error" && (
                                 <div className="p-4 bg-red-50 text-red-600 rounded-lg text-sm font-medium border border-red-200">{errorMessage}</div>
                             )}
+
+                            <div className="text-xs text-slate-500 dark:text-slate-400">
+                                This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="text-primary hover:underline">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer" className="text-primary hover:underline">Terms of Service</a> apply.
+                            </div>
 
                             <button disabled={status === "submitting"} className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed" type="submit">
                                 <span className="material-symbols-outlined">{status === "submitting" ? "hourglass_empty" : "send"}</span>
@@ -145,7 +149,7 @@ export default function Contact() {
                             <h4 className="font-bold text-lg text-slate-900 dark:text-slate-100">WhatsApp Support</h4>
                             <p className="text-sm text-slate-600 dark:text-slate-400">Instant help from our experts</p>
                         </div>
-                        <a className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition-all w-full flex items-center justify-center gap-2" href="#">
+                        <a className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition-all w-full flex items-center justify-center gap-2" href="https://wa.me/919469886630" target="_blank" rel="noopener noreferrer">
                             Chat on WhatsApp
                         </a>
                     </div>
@@ -166,14 +170,14 @@ export default function Contact() {
                         <div className="p-6">
                             <h4 className="font-bold text-lg mb-2">Our Workshop</h4>
                             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                                Industrial Area, Anantnag,<br />
-                                Jammu &amp; Kashmir, 192101<br />
-                                India
+                                Ground floor Busserbugh Alesteng<br />
+                                Near MAsjid Abu Bakar Peer Mohalla<br />
+                                Ganderbal, Jammu and Kashmir 191201
                             </p>
                             <div className="flex flex-col gap-3">
                                 <div className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                                     <span className="material-symbols-outlined text-primary text-lg">call</span>
-                                    +91 98765 43210
+                                    +91 94698 86630
                                 </div>
                                 <div className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                                     <span className="material-symbols-outlined text-primary text-lg">schedule</span>

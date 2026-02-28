@@ -36,15 +36,10 @@ export function ProductCard({ product }: ProductCardProps) {
                 ) : null}
             </div>
 
-            {/* Favorite Button Overlay (Cosmetic) */}
-            <div className="absolute top-3 right-3 z-10">
-                <button className="flex items-center justify-center size-8 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-slate-400 hover:text-red-500 hover:scale-105 transition-all duration-300 shadow-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
-                    <span className="material-symbols-outlined text-[16px]">favorite</span>
-                </button>
-            </div>
+
 
             {/* Subtly Framed Image Container */}
-            <div className="relative aspect-[4/5] w-full bg-slate-100 dark:bg-slate-800/50 rounded-2xl overflow-hidden mb-4 border border-slate-100 dark:border-slate-800/80 group-hover:shadow-lg group-hover:shadow-primary/5 transition-all">
+            <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800/50 rounded-2xl overflow-hidden mb-4 border border-slate-100 dark:border-slate-800/80 group-hover:shadow-lg group-hover:shadow-primary/5 transition-all">
                 <img
                     alt={product.name}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"

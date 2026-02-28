@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { updateProduct } from "@/actions/admin-product";
 import { Product, ProductVariation } from "@prisma/client";
+import DeleteProductButton from "../DeleteProductButton";
 
 type ProductWithVariations = Product & { variations: ProductVariation[] };
 
@@ -442,6 +443,7 @@ export default function EditProductForm({ product }: { product: ProductWithVaria
                     <span className="text-slate-400 text-xs">/shop/{slug}</span>
                 </p>
                 <div className="flex items-center gap-3">
+                    <DeleteProductButton productId={product.id} productName={name} />
                     <button type="button" onClick={() => router.push("/admin/products")}
                         className="px-5 py-2.5 rounded-xl border border-slate-600 text-slate-300 hover:text-white hover:border-slate-400 text-sm font-semibold transition-colors">
                         Cancel

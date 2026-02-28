@@ -72,62 +72,209 @@ export default function Home() {
                     </Link>
                 </div>
                 {/* Mobile: stacked vertically | Desktop: asymmetric 8+4 layout */}
-                <div className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-6 md:h-[700px]">
-                    {/* Season Bats */}
-                    <Link href="/shop?category=season" className="md:col-span-8 relative group overflow-hidden rounded-2xl h-[220px] md:h-full bg-neutral-800">
-                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCU5Ko31NNNh-DsSXePo0HqB6XWUh3WJedyFSRRVbOjwEYFZvIBYyP3oCmldxtLSVb-sQv_cQsomZIUrYLMzFAvw6FcXA1Y7VqllZt-zNoO8Ttxs9gX7QLWGT9DrIj7p46IcWKH2YVhsH-Wt1Y0ToqGyokRfO5IlUbk5IuTlerPY7OWp33_1AvNrmaHXzIFfENFg__GlSX30QxFLrF2_wtkTkAnz6YEZ82L2MHuiKAoj0NhRb4NXD_k6FSBg2kOZb9DaotTHFlPSQNX')" }} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                        <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full">
-                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">Season Bats</h3>
-                            <p className="text-slate-300 text-sm mb-3 md:mb-4 max-w-md line-clamp-2">Premium grade willow designed for leather ball cricket. Superior balance and punch.</p>
-                            <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-primary transition-colors text-sm">
-                                Shop Now <span className="material-symbols-outlined !text-[16px]">arrow_right_alt</span>
-                            </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full mt-2">
+
+                    {/* Hard Tennis */}
+                    <Link href="/shop?category=hard-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                        {/* Background Image */}
+                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
+                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ3bs7rI3vDpKLVBNElac5Jr2HkwLkLPCsYKKTAgJ_4rJqPJeVib1ojWQFd-meHiTsT6q6qZ7_rBF-7V1dtdaa21ujJmYhSegg9POwunu5qTv_mdiEPduLOJCUIR1SbxFYNtrSDx6A9Bz3fpmbjh45Z_ncZEZi84vwf4GthhCDL-yot4qpP_mg45CC-5mANA5_MCMBIGi3bV7CQZ5tid765GywcEfgWNu7ZItM6wRjkIahRoci4QXeQ7cElDDS6c9QFJgaJBTqy92M')" }} />
+
+                        {/* Gradients */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
+
+                        {/* Content */}
+                        <div className="relative z-10 p-4 sm:p-6 md:p-8 w-full transition-transform duration-500 ease-out transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
+                            {/* Title */}
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="w-4 h-1 md:w-6 bg-primary rounded-full origin-left scale-x-100 md:scale-x-0 md:group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+                                <h3 className="text-lg sm:text-[22px] md:text-2xl lg:text-[22px] xl:text-3xl font-black text-primary md:text-white uppercase tracking-tight drop-shadow-lg md:group-hover:text-primary transition-colors duration-500 ml-0 md:-ml-8 md:group-hover:ml-0">
+                                    Hard Tennis
+                                </h3>
+                            </div>
+
+                            {/* Expandable Content */}
+                            <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div className="overflow-hidden items-end flex">
+                                    <div className="pt-1 md:pt-2 w-full">
+                                        <p className="text-slate-300 text-[11px] sm:text-sm md:text-base leading-snug md:leading-relaxed mb-4 md:mb-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-100 line-clamp-3 md:line-clamp-none">
+                                            Engineered for explosive power and maximum durability under tough conditions.
+                                        </p>
+
+                                        {/* CTA */}
+                                        <div className="flex items-center justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-200">
+                                            <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-primary after:origin-left after:scale-x-100 md:after:scale-x-0 md:group-hover:after:scale-x-100 after:transition-transform after:duration-500 after:delay-300">
+                                                Explore
+                                            </span>
+                                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary md:bg-primary/20 backdrop-blur-sm border md:border-primary/30 flex items-center justify-center md:group-hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] md:shadow-[0_0_15px_rgba(212,175,55,0)] md:group-hover:shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                                                <span className="material-symbols-outlined !text-[16px] md:!text-[20px] text-black md:text-primary md:group-hover:text-black -rotate-45 md:rotate-0 md:group-hover:-rotate-45 transition-all duration-300">arrow_forward</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </Link>
 
-                    <div className="md:col-span-4 flex flex-col gap-4 md:gap-5 md:h-full">
-                        {/* Hard Tennis */}
-                        <Link href="/shop?category=hard-tennis" className="relative group overflow-hidden rounded-2xl bg-neutral-800 h-[190px] md:flex-1">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ3bs7rI3vDpKLVBNElac5Jr2HkwLkLPCsYKKTAgJ_4rJqPJeVib1ojWQFd-meHiTsT6q6qZ7_rBF-7V1dtdaa21ujJmYhSegg9POwunu5qTv_mdiEPduLOJCUIR1SbxFYNtrSDx6A9Bz3fpmbjh45Z_ncZEZi84vwf4GthhCDL-yot4qpP_mg45CC-5mANA5_MCMBIGi3bV7CQZ5tid765GywcEfgWNu7ZItM6wRjkIahRoci4QXeQ7cElDDS6c9QFJgaJBTqy92M')" }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-6 w-full">
-                                <h3 className="text-xl font-bold text-white">Hard Tennis</h3>
-                                <span className="text-sm text-primary font-medium mt-1 inline-block">View Collection</span>
-                            </div>
-                        </Link>
+                    {/* Soft Tennis */}
+                    <Link href="/shop?category=soft-tennis" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                        {/* Background Image */}
+                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
+                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfTCVb0NnI2licMGUZh9PR4vNOx2_DWmNwcIEhrEvld5jDE3vu9Ajy9KTutKSyBaxo5EmjGXm2wNfh15_XygfNRGKbwMSgrFF1yXOe7Twv-X9_a18bFpe9XxujHKiRS_icL5JYqwLgFi4MZIhwyqvl_WsNbAUcdIhpKlHMu56wjlKNHVzTERRVpkX9-lURIZ7x7bqkUrgXZChH3NUvFP_7ZBpCEYErlmIemPuXM5yEJNAz9cxr0w2Z8qZ3AONttfyVcxC63TqMmOXG')" }} />
 
-                        {/* Soft Tennis */}
-                        <Link href="/shop?category=soft-tennis" className="relative group overflow-hidden rounded-2xl bg-neutral-800 h-[190px] md:flex-1">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfTCVb0NnI2licMGUZh9PR4vNOx2_DWmNwcIEhrEvld5jDE3vu9Ajy9KTutKSyBaxo5EmjGXm2wNfh15_XygfNRGKbwMSgrFF1yXOe7Twv-X9_a18bFpe9XxujHKiRS_icL5JYqwLgFi4MZIhwyqvl_WsNbAUcdIhpKlHMu56wjlKNHVzTERRVpkX9-lURIZ7x7bqkUrgXZChH3NUvFP_7ZBpCEYErlmIemPuXM5yEJNAz9cxr0w2Z8qZ3AONttfyVcxC63TqMmOXG')" }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-6 w-full">
-                                <h3 className="text-xl font-bold text-white">Soft Tennis</h3>
-                                <span className="text-sm text-primary font-medium mt-1 inline-block">View Collection</span>
-                            </div>
-                        </Link>
+                        {/* Gradients */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
 
-                        {/* Customise Your Bat */}
-                        <Link href="/customise" className="relative group overflow-hidden rounded-2xl h-[190px] md:flex-1 bg-gradient-to-br from-amber-900/60 to-slate-900 border border-primary/20 hover:border-primary/60 transition-all">
-                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.15),transparent_70%)]" />
-                            <div className="absolute inset-0 flex flex-col justify-between p-6">
-                                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full w-fit">
-                                    <span className="material-symbols-outlined !text-[12px]">auto_awesome</span>
-                                    Made to Order
-                                </span>
-                                <div>
-                                    <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">Customise Your Bat</h3>
-                                    <p className="text-xs text-slate-400 mt-1 mb-3">Choose willow, size, weight, grip & get your name on it</p>
-                                    <span className="inline-flex items-center gap-1.5 text-sm text-primary font-bold">
-                                        Build Yours <span className="material-symbols-outlined !text-[16px] group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
-                                    </span>
+                        {/* Content */}
+                        <div className="relative z-10 p-4 sm:p-6 md:p-8 w-full transition-transform duration-500 ease-out transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
+                            {/* Title */}
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="w-4 h-1 md:w-6 bg-primary rounded-full origin-left scale-x-100 md:scale-x-0 md:group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+                                <h3 className="text-lg sm:text-[22px] md:text-2xl lg:text-[22px] xl:text-3xl font-black text-primary md:text-white uppercase tracking-tight drop-shadow-lg md:group-hover:text-primary transition-colors duration-500 ml-0 md:-ml-8 md:group-hover:ml-0">
+                                    Soft Tennis
+                                </h3>
+                            </div>
+
+                            {/* Expandable Content */}
+                            <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div className="overflow-hidden items-end flex">
+                                    <div className="pt-1 md:pt-2 w-full">
+                                        <p className="text-slate-300 text-[11px] sm:text-sm md:text-base leading-snug md:leading-relaxed mb-4 md:mb-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-100 line-clamp-3 md:line-clamp-none">
+                                            Lightweight design meant for unmatched control, precision, and swing speed.
+                                        </p>
+
+                                        {/* CTA */}
+                                        <div className="flex items-center justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-200">
+                                            <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-primary after:origin-left after:scale-x-100 md:after:scale-x-0 md:group-hover:after:scale-x-100 after:transition-transform after:duration-500 after:delay-300">
+                                                Explore
+                                            </span>
+                                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary md:bg-primary/20 backdrop-blur-sm border md:border-primary/30 flex items-center justify-center md:group-hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] md:shadow-[0_0_15px_rgba(212,175,55,0)] md:group-hover:shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                                                <span className="material-symbols-outlined !text-[16px] md:!text-[20px] text-black md:text-primary md:group-hover:text-black -rotate-45 md:rotate-0 md:group-hover:-rotate-45 transition-all duration-300">arrow_forward</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
+
+                    {/* Season Bats */}
+                    <Link href="/shop?category=season-leather" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                        {/* Background Image */}
+                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQqA8Q54B86hN1l2B150p7205a2Pz0u11E152HnC4aA31mD9r1A3q2o9Q0KzL1TqWpF5QO7_p9N-z5_929z5xX3mB6L4yv4_E31Q0QZzMhF3d96924hN9qF_L461m_a6tP6A_5L7s4e0uF87x_B1Z1G_5vW_t0V_O_U_C1z7Bv4g9a63M9A3a3z8i_b5zM2Y2Q6r2N703U8aF7_L7a2tB28Xk')]" />
+
+                        {/* Gradients */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
+
+                        {/* Content */}
+                        <div className="relative z-10 p-4 sm:p-6 md:p-8 w-full transition-transform duration-500 ease-out transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
+                            {/* Title */}
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="w-4 h-1 md:w-6 bg-primary rounded-full origin-left scale-x-100 md:scale-x-0 md:group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+                                <h3 className="text-lg sm:text-[22px] md:text-2xl lg:text-[22px] xl:text-3xl font-black text-primary md:text-white uppercase tracking-tight drop-shadow-lg md:group-hover:text-primary transition-colors duration-500 ml-0 md:-ml-8 md:group-hover:ml-0">
+                                    Season Bats
+                                </h3>
+                            </div>
+
+                            {/* Expandable Content */}
+                            <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div className="overflow-hidden items-end flex">
+                                    <div className="pt-1 md:pt-2 w-full">
+                                        <p className="text-slate-300 text-[11px] sm:text-sm md:text-base leading-snug md:leading-relaxed mb-4 md:mb-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-100 line-clamp-3 md:line-clamp-none">
+                                            Masterfully handcrafted from premium selection of English and Kashmir willow.
+                                        </p>
+
+                                        {/* CTA */}
+                                        <div className="flex items-center justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-200">
+                                            <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-primary after:origin-left after:scale-x-100 md:after:scale-x-0 md:group-hover:after:scale-x-100 after:transition-transform after:duration-500 after:delay-300">
+                                                Explore
+                                            </span>
+                                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary md:bg-primary/20 backdrop-blur-sm border md:border-primary/30 flex items-center justify-center md:group-hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] md:shadow-[0_0_15px_rgba(212,175,55,0)] md:group-hover:shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                                                <span className="material-symbols-outlined !text-[16px] md:!text-[20px] text-black md:text-primary md:group-hover:text-black -rotate-45 md:rotate-0 md:group-hover:-rotate-45 transition-all duration-300">arrow_forward</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    {/* Junior Bats */}
+                    <Link href="/shop?category=junior-bats" className="relative group overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-neutral-900 border border-white/5 h-[320px] sm:h-[400px] lg:h-[460px] flex flex-col justify-end transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]">
+                        {/* Background Image */}
+                        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
+                            style={{ backgroundImage: "url('/Wolverine%20Hard%20Tennis%20Bat%20Gold%20Edition.webp')" }} />
+
+                        {/* Gradients */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 md:from-[#050505] md:via-[#050505]/40 to-transparent md:group-hover:from-black md:group-hover:via-black/70 transition-colors duration-500" />
+
+                        {/* Content */}
+                        <div className="relative z-10 p-4 sm:p-6 md:p-8 w-full transition-transform duration-500 ease-out transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
+                            {/* Title */}
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="w-4 h-1 md:w-6 bg-primary rounded-full origin-left scale-x-100 md:scale-x-0 md:group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+                                <h3 className="text-lg sm:text-[22px] md:text-2xl lg:text-[22px] xl:text-3xl font-black text-primary md:text-white uppercase tracking-tight drop-shadow-lg md:group-hover:text-primary transition-colors duration-500 ml-0 md:-ml-8 md:group-hover:ml-0">
+                                    Junior Bats
+                                </h3>
+                            </div>
+
+                            {/* Expandable Content */}
+                            <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                                <div className="overflow-hidden items-end flex">
+                                    <div className="pt-1 md:pt-2 w-full">
+                                        <p className="text-slate-300 text-[11px] sm:text-sm md:text-base leading-snug md:leading-relaxed mb-4 md:mb-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-100 line-clamp-3 md:line-clamp-none">
+                                            The perfect start for the absolute champions of tomorrow and future legends.
+                                        </p>
+
+                                        {/* CTA */}
+                                        <div className="flex items-center justify-between opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 delay-200">
+                                            <span className="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-primary after:origin-left after:scale-x-100 md:after:scale-x-0 md:group-hover:after:scale-x-100 after:transition-transform after:duration-500 after:delay-300">
+                                                Explore
+                                            </span>
+                                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary md:bg-primary/20 backdrop-blur-sm border md:border-primary/30 flex items-center justify-center md:group-hover:bg-primary transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.4)] md:shadow-[0_0_15px_rgba(212,175,55,0)] md:group-hover:shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                                                <span className="material-symbols-outlined !text-[16px] md:!text-[20px] text-black md:text-primary md:group-hover:text-black -rotate-45 md:rotate-0 md:group-hover:-rotate-45 transition-all duration-300">arrow_forward</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                </div>
+
+                {/* Customisable Bat Full-Width Banner */}
+                <div className="mt-8 w-full">
+                    <Link href="/customise" className="relative group block overflow-hidden rounded-2xl md:min-h-[240px] bg-gradient-to-br from-[#1a1c23] via-[#2a221a] to-[#3a2812] border border-white/10 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.2),transparent_60%)] group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] mix-blend-overlay"></div>
+
+                        <div className="relative h-full flex flex-col md:flex-row items-center justify-between p-8 md:p-12 z-10 gap-8 md:gap-12">
+                            <div className="flex-1 max-w-2xl transform group-hover:translate-x-2 transition-transform duration-500">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-widest uppercase mb-4">
+                                    <span className="material-symbols-outlined !text-[14px]">auto_awesome</span>
+                                    <span>Made to Order</span>
+                                </div>
+                                <h3 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight">
+                                    Craft Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-600">Perfect Profile</span>
+                                </h3>
+                                <p className="text-slate-400 text-sm md:text-base mb-8">
+                                    Take full control of your game. Choose your preferred willow grade, weight, handle type, and sweet spot location to get a bat that perfectly matches your playing style. Let our master craftsmen build your dream bat.
+                                </p>
+                                <span className="inline-flex items-center justify-center gap-2 bg-primary text-background-dark px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-primary-light transition-all shadow-lg shadow-primary/20 group-hover:shadow-primary/40">
+                                    Start Customizing Now <span className="material-symbols-outlined !text-[18px] group-hover:rotate-45 transition-transform duration-300">build</span>
+                                </span>
+                            </div>
+
+                            {/* Decorative element on the right side */}
+                            <div className="hidden md:flex flex-1 justify-end opacity-40 group-hover:opacity-100 transition-opacity duration-500 min-w-[200px]">
+                                <span className="material-symbols-outlined !text-[180px] text-white/5 group-hover:text-primary/10 rotate-12 transform group-hover:-rotate-6 transition-all duration-700 ease-out">carpenter</span>
+                            </div>
+                        </div>
+
+                        {/* Shimmer effect */}
+                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:animate-[shimmer_2s_infinite]" />
+                    </Link>
                 </div>
 
             </section>
@@ -146,11 +293,7 @@ export default function Home() {
                         <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                             <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
                                 <div className="absolute top-3 left-3 z-10 bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">NEW</div>
-                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
-                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
-                                    </button>
-                                </div>
+
                                 <Link href="/shop/wolverine-gold-edition" className="block absolute inset-0 z-0">
                                     <Image
                                         fill
@@ -184,11 +327,7 @@ export default function Home() {
                         <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                             <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
                                 <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-20%</div>
-                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
-                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
-                                    </button>
-                                </div>
+
                                 <Link href="/shop/thala-edition-hard-tennis-bat" className="block absolute inset-0 z-0">
                                     <Image
                                         fill
@@ -224,11 +363,7 @@ export default function Home() {
                         {/* Product Card 3 */}
                         <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                             <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
-                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
-                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
-                                    </button>
-                                </div>
+
                                 <Link href="/shop/gorilla-edition-hard-tennis-bat" className="block absolute inset-0 z-0">
                                     <Image
                                         fill
@@ -261,11 +396,7 @@ export default function Home() {
                         {/* Product Card 4 */}
                         <div className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                             <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
-                                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
-                                    <button className="size-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                                        <span className="material-symbols-outlined !text-[16px]">favorite</span>
-                                    </button>
-                                </div>
+
                                 <Link href="/shop/wolverine-hard-tennis" className="block absolute inset-0 z-0">
                                     <Image
                                         fill

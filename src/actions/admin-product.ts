@@ -5,13 +5,16 @@ import { revalidatePath } from "next/cache";
 
 export async function deleteProduct(productId: string) {
     try {
-        await prisma.product.delete({ where: { id: productId } });
+        await prisma.product.update({
+            where: { id: productId },
+            data: { isArchived: true }
+        });
         revalidatePath("/admin/products");
         revalidatePath("/shop");
         return { success: true };
-    } catch (error) {
-        console.error("Failed to delete product:", error);
-        return { success: false, error: "Failed to delete product." };
+    } catch (error: any) {
+        console.error("Failed to archive product:", error);
+        return { success: false, error: "Failed to retire product." };
     }
 }
 

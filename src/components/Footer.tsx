@@ -45,11 +45,12 @@ export default function Footer() {
                     <div>
                         <h3 className="text-white font-bold mb-6">Visit Us</h3>
                         <p className="text-slate-500 text-sm leading-relaxed mb-4">
-                            123 Cricket Avenue,<br />
-                            Srinagar, Jammu &amp; Kashmir<br />
-                            190001, India
+                            Ground floor Busserbugh Alesteng,<br />
+                            Near MAsjid Abu Bakar Peer Mohalla<br />
+                            Ganderbal, Jammu and Kashmir 191201
                         </p>
-                        <a className="text-primary hover:underline text-sm font-medium" href="mailto:hello@stagkashmir.com">hello@stagkashmir.com</a>
+                        <a className="text-primary hover:underline text-sm font-medium block" href="mailto:stagkashmir248@gmail.com">stagkashmir248@gmail.com</a>
+                        <a className="text-primary hover:underline text-sm font-medium mt-1 block" href="tel:+919469886630">+91 94698 86630</a>
                     </div>
                 </div>
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">

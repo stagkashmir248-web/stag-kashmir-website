@@ -27,7 +27,7 @@ export default function CustomisePage() {
     const [handle, setHandle] = useState("");
     const [gripColor, setGripColor] = useState("");
     const [customGrip, setCustomGrip] = useState("");
-    const [nameOnBat, setNameOnBat] = useState("");
+
     const [notes, setNotes] = useState("");
 
     // Contact & Shipping
@@ -62,7 +62,6 @@ export default function CustomisePage() {
             `Weight: ${finalWeight}`,
             `Handle: ${handle}`,
             `Grip: ${finalGrip}`,
-            nameOnBat ? `Name on Bat: ${nameOnBat}` : "",
             notes ? `Notes: ${notes}` : "",
         ].filter(Boolean).join(" | ");
 
@@ -99,7 +98,6 @@ export default function CustomisePage() {
                         {finalWeight && <li><span className="text-slate-500">Weight:</span> <strong className="text-white">{finalWeight}</strong></li>}
                         {handle && <li><span className="text-slate-500">Handle:</span> <strong className="text-white">{handle}</strong></li>}
                         {finalGrip && <li><span className="text-slate-500">Grip:</span> <strong className="text-white">{finalGrip}</strong></li>}
-                        {nameOnBat && <li><span className="text-slate-500">Name on bat:</span> <strong className="text-white">{nameOnBat}</strong></li>}
                     </ul>
                 </div>
                 <Link href="/shop" className="bg-primary hover:bg-amber-400 text-black font-bold py-3.5 px-10 rounded-xl transition-all shadow-lg shadow-primary/20">
@@ -261,14 +259,7 @@ export default function CustomisePage() {
                                     <input type="text" value={customGrip} onChange={e => setCustomGrip(e.target.value)} placeholder="Describe your grip colour" className="mt-3 w-full max-w-xs px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm" />
                                 )}
                             </div>
-                            {/* Name on bat */}
-                            <div>
-                                <p className="text-sm font-semibold text-slate-200 mb-1.5">Name / Text on Bat <span className="text-slate-500 font-normal">(optional)</span></p>
-                                <input type="text" value={nameOnBat} onChange={e => setNameOnBat(e.target.value)}
-                                    placeholder="e.g. MS Dhoni, #7, your name…" maxLength={20}
-                                    className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm" />
-                                <p className="text-xs text-slate-500 mt-1.5">Up to 20 characters, laser engraved on blade</p>
-                            </div>
+
                             {/* Notes */}
                             <div>
                                 <p className="text-sm font-semibold text-slate-200 mb-1.5">Any other requirements? <span className="text-slate-500 font-normal">(optional)</span></p>
@@ -303,7 +294,6 @@ export default function CustomisePage() {
                                     { label: "Weight", val: finalWeight },
                                     { label: "Handle", val: handle || "Standard" },
                                     { label: "Grip", val: finalGrip || "Standard" },
-                                    nameOnBat ? { label: "Name on Bat", val: nameOnBat } : null,
                                 ].filter(Boolean).map(item => (
                                     <div key={item!.label} className="flex flex-col gap-0.5">
                                         <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{item!.label}</span>

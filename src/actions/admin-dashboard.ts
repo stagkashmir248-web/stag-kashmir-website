@@ -23,13 +23,13 @@ export async function getDashboardMetrics() {
 
         // 4. Low Stock Alerts (Products and Variations < 5)
         const lowStockProducts = await prisma.product.findMany({
-            where: { stock: { lt: 5 } },
+            where: { stock: { lt: 5 }, isArchived: false },
             select: { id: true, name: true, stock: true },
             take: 10
         });
 
         const lowStockVariations = await prisma.productVariation.findMany({
-            where: { stock: { lt: 5 } },
+            where: { stock: { lt: 5 }, product: { isArchived: false } },
             include: { product: { select: { name: true } } },
             take: 10
         });
