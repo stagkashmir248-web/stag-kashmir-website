@@ -54,8 +54,15 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-slate-600 text-xs text-center md:text-left">© 2026 Stag Kashmir. All rights reserved.</p>
-                    <div className="flex gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-1 text-slate-600 text-xs text-center md:text-left">
+                        <span>© 2026 Stag Kashmir. All rights reserved.</span>
+                        <span className="hidden md:inline">|</span>
+                        <span className="flex items-center gap-1">
+                            Handcrafted with <span className="material-symbols-outlined text-red-500 animate-pulse !text-[14px] fill-current">favorite</span> by
+                            <a href="https://wa.me/917006604148" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Frixl</a>
+                        </span>
+                    </div>
+                    <div className="flex gap-6 mt-4 md:mt-0">
                         <Link className="text-slate-600 hover:text-slate-400 text-xs" href="/privacy">Privacy Policy</Link>
                         <Link className="text-slate-600 hover:text-slate-400 text-xs" href="/terms">Terms of Service</Link>
                     </div>
