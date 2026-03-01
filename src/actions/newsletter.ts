@@ -29,10 +29,15 @@ export async function subscribeNewsletter(formData: FormData) {
             body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
         });
         const data = await res.json();
-        if (!data.success || (data.score ?? 0) < 0.5) {
+        console.log(`[Newsletter] reCAPTCHA verify: success=${data.success}, score=${data.score}`);
+
+        // 0.3 is generally a safe threshold to block bots but allow humans
+        if (!data.success || (data.score !== undefined && data.score < 0.3)) {
+            console.error("[Newsletter] reCAPTCHA failed:", data);
             return { success: false, error: "Security check failed. Please try again." };
         }
-    } catch {
+    } catch (err) {
+        console.error("[Newsletter] Could not verify security token:", err);
         return { success: false, error: "Could not verify security token. Please try again." };
     }
 
@@ -65,12 +70,20 @@ export async function subscribeNewsletter(formData: FormData) {
             </div>
         `;
 
-        await sendEmail({
+        const emailResult = await sendEmail({
             to: email,
             subject: "Welcome to Stag Kashmir! 🏏",
             text: "Welcome to Stag Kashmir! You are now subscribed to our newsletter.",
             html: welcomeHtml,
         });
+
+        if (!emailResult.success) {
+            console.error("[Newsletter] Failed to send email to", email, emailResult.error);
+            return {
+                success: false,
+                error: "Subscribed successfully, but the welcome email failed to send."
+            };
+        }
 
         return { success: true };
     } catch (err: any) {
