@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { sendEmail } from "@/lib/mail";
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
     try {
@@ -42,6 +43,14 @@ export async function submitInquiry(formData: FormData) {
 
         await prisma.inquiry.create({
             data: { name, email, subject, message },
+        });
+
+        // Fire & Forget
+        sendEmail({
+            to: process.env.SMTP_USER || "support@stagkashmir.com",
+            subject: `New Contact Inquiry: ${subject}`,
+            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            replyTo: email,
         });
 
         revalidatePath("/admin/inquiries");

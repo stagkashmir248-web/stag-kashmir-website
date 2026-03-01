@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import Razorpay from "razorpay";
 import crypto from "crypto";
+import { sendEmail } from "@/lib/mail";
 
 interface CustomerDetails {
     name: string;
@@ -101,6 +102,33 @@ export async function submitOrder(
                     })),
                 },
             },
+        });
+
+        // Fire & Forget Emails (Do not await so checkout isn't delayed for user)
+        sendEmail({
+            to: customer.email,
+            subject: `Order Confirmation - Stag Kashmir #${order.id.slice(-8).toUpperCase()}`,
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #D4AF37;">Thank you for your order, ${customer.name}!</h2>
+                    <p>Your order <strong>#${order.id.slice(-8).toUpperCase()}</strong> has been confirmed.</p>
+                    <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <p style="margin: 5px 0;"><strong>Order Total:</strong> ₹${serverTotal.toLocaleString("en-IN")}</p>
+                        <p style="margin: 5px 0;"><strong>Amount Paid:</strong> ₹${(amountPaid || 0).toLocaleString("en-IN")}</p>
+                        <p style="margin: 5px 0;"><strong>Balance Due:</strong> ₹${Math.max(0, serverTotal - (amountPaid || 0)).toLocaleString("en-IN")}</p>
+                    </div>
+                    <p><strong>Your Tracking Code:</strong> <span style="font-size: 18px; font-weight: bold; padding: 5px 10px; background: #eee;">${trackingCode}</span></p>
+                    <p>You can track your order status anytime here: <br/>
+                    <a href="https://stagkashmir.com/track-order" style="color: #0b57d0;">https://stagkashmir.com/track-order</a></p>
+                    <p style="margin-top: 30px; font-size: 12px; color: #64748b;">If you have any questions, reply to this email or contact us on WhatsApp.</p>
+                </div>
+            `
+        });
+
+        sendEmail({
+            to: process.env.SMTP_USER || "support@stagkashmir.com",
+            subject: `🎉 New Order! ₹${serverTotal} from ${customer.name}`,
+            text: `New order #${order.id.slice(-8).toUpperCase()} received.\n\nCustomer: ${customer.name}\nEmail: ${customer.email}\nPhone: ${customer.phone}\n\nTotal: ₹${serverTotal}\nPaid: ₹${amountPaid || 0}\n\nLog in to Admin Panel to view details.`
         });
 
         revalidatePath("/admin/orders");
