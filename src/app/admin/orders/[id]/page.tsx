@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import OrderStatusDropdown from "../OrderStatusDropdown";
+import PrintShippingLabelButton from "./PrintShippingLabelButton";
 
 export default async function AdminOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -178,6 +179,11 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
                     {/* Quick links */}
                     <div className="bg-slate-900 rounded-2xl border border-slate-700 p-5 space-y-2">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Quick Actions</p>
+
+                        <div className="mb-4 pb-4 border-b border-slate-800">
+                            <PrintShippingLabelButton order={order} />
+                        </div>
+
                         <a href={`https://wa.me/${order.phone?.replace(/\D/g, "")}`} target="_blank"
                             className="flex items-center gap-3 text-sm text-white hover:text-green-300 transition-colors py-2 border-b border-slate-800">
                             <span className="material-symbols-outlined !text-[18px] text-green-400">chat</span>
