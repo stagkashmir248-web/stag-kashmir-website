@@ -180,7 +180,7 @@ export default function About() {
                         <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">From the forest of Kashmir to the boundaries of the world. Own a piece of cricketing history.</p>
                         <div className="flex flex-col md:flex-row justify-center gap-4">
                             <Link href="/shop" className="px-8 py-4 bg-white text-primary rounded-full font-bold hover:bg-slate-100 transition-colors">Browse Collections</Link>
-                            <Link href="/custom-bat" className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold hover:bg-white/10 transition-colors">Custom Bat Order</Link>
+                            <Link href="/customise" className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold hover:bg-white/10 transition-colors">Custom Bat Order</Link>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 
 interface ProductGalleryProps {
     mainImage: string | null;
@@ -36,8 +37,8 @@ export default function ProductGallery({ mainImage, extraImages, productName, ou
 
     const mainPane = (cls = "") => (
         <div className={`relative overflow-hidden rounded-xl bg-white border border-white/10 group aspect-square ${cls}`}>
-            <div className="absolute inset-0 flex items-center justify-center p-4">
-                <img key={activeImg} src={activeImg} alt={productName} className="w-full h-full object-contain transition-all duration-300" />
+            <div className="absolute inset-4 flex items-center justify-center">
+                <Image key={activeImg} src={activeImg} alt={productName} fill className="object-contain transition-all duration-300" sizes="(max-width: 768px) 100vw, 50vw" priority={true} />
             </div>
             {outOfStock && (
                 <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide border border-white/10">Sold Out</div>
@@ -75,9 +76,9 @@ export default function ProductGallery({ mainImage, extraImages, productName, ou
                         </button>
                         {allImages.map((img, i) => (
                             <button key={i} onClick={() => setActiveIndex(i)}
-                                className={`w-16 h-16 lg:w-20 lg:h-20 shrink-0 rounded-lg overflow-hidden bg-white border-2 transition-all duration-200 ${i === activeIndex ? 'border-primary shadow-[0_0_10px_rgba(212,175,55,0.3)]' : 'border-slate-200/20 opacity-55 hover:opacity-90 hover:border-white/30'
+                                className={`relative w-16 h-16 lg:w-20 lg:h-20 shrink-0 rounded-lg overflow-hidden bg-white border-2 transition-all duration-200 ${i === activeIndex ? 'border-primary shadow-[0_0_10px_rgba(212,175,55,0.3)]' : 'border-slate-200/20 opacity-55 hover:opacity-90 hover:border-white/30'
                                     }`}>
-                                <img src={img} alt={`View ${i + 1}`} className="w-full h-full object-contain p-1" />
+                                <Image src={img} alt={`View ${i + 1}`} fill className="object-contain p-1" sizes="80px" />
                             </button>
                         ))}
                         <button onClick={next} className="flex justify-center py-1 text-slate-400 hover:text-white transition-colors">
@@ -95,9 +96,9 @@ export default function ProductGallery({ mainImage, extraImages, productName, ou
                     <div className="flex gap-2 overflow-x-auto pb-1">
                         {allImages.map((img, i) => (
                             <button key={i} onClick={() => setActiveIndex(i)}
-                                className={`shrink-0 size-16 rounded-lg overflow-hidden bg-white border-2 transition-all duration-200 ${i === activeIndex ? 'border-primary' : 'border-transparent opacity-55 hover:opacity-90'
+                                className={`relative shrink-0 size-16 rounded-lg overflow-hidden bg-white border-2 transition-all duration-200 ${i === activeIndex ? 'border-primary' : 'border-transparent opacity-55 hover:opacity-90'
                                     }`}>
-                                <img src={img} alt={`View ${i + 1}`} className="w-full h-full object-contain p-1" />
+                                <Image src={img} alt={`View ${i + 1}`} fill className="object-contain p-1" sizes="64px" />
                             </button>
                         ))}
                     </div>
