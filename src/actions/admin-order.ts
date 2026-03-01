@@ -68,7 +68,7 @@ export async function updateOrderStatus(orderId: string, newStatus: string) {
             const htmlContent = `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden;">
                     <div style="background-color: #fce7f3; text-align: center; padding: 20px;">
-                        <img src="https://stagkashmir.com/Assets/Staglogo.png" alt="Stag Kashmir" style="max-height: 60px;" />
+                        <img src="https://stagkashmir.com/Stag_logo-removebg-preview.png" alt="Stag Kashmir" style="max-height: 60px;" />
                     </div>
                     <div style="padding: 30px; background-color: #ffffff;">
                         <h2 style="margin-top: 0; color: #1f2937;">Order Update: #${updatedOrder.id.slice(-6).toUpperCase()}</h2>

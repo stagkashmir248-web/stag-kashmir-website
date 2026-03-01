@@ -52,7 +52,7 @@ export async function subscribeNewsletter(formData: FormData) {
         const welcomeHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
                 <div style="text-align: center; margin-bottom: 30px;">
-                    <img src="https://stagkashmir.com/Assets/Staglogo.png" alt="Stag Kashmir" style="max-height: 80px;" />
+                    <img src="https://stagkashmir.com/Stag_logo-removebg-preview.png" alt="Stag Kashmir" style="max-height: 80px;" />
                 </div>
                 <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; border-top: 4px solid #C4A15A;">
                     <h1 style="color: #333; font-size: 24px; margin-top: 0;">Welcome to the Family! 🏏</h1>
