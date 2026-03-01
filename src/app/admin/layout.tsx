@@ -37,6 +37,7 @@ export default async function AdminLayout({
                     <NavLink href="/admin/orders" icon="shopping_bag">Order Inquiries</NavLink>
                     <NavLink href="/admin/inquiries" icon="mark_email_unread">Contact Messages</NavLink>
                     <NavLink href="/admin/customers" icon="group">Customers</NavLink>
+                    <NavLink href="/admin/newsletter" icon="mail">Newsletter</NavLink>
 
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 px-3 mt-6">Inventory</div>
                     <NavLink href="/admin/products" icon="inventory_2">Products</NavLink>
@@ -97,11 +98,11 @@ export default async function AdminLayout({
                     <Link href="/admin/reviews" className="p-2 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                         <span className="material-symbols-outlined !text-[20px]">rate_review</span>
                     </Link>
-                    <Link href="/admin/inquiries" className="p-2 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                        <span className="material-symbols-outlined !text-[20px]">mark_email_unread</span>
-                    </Link>
-                    <Link href="/" className="p-2 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <Link href="/admin" className="p-2 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                         <span className="material-symbols-outlined !text-[20px]">public</span>
+                    </Link>
+                    <Link href="/admin/newsletter" className="p-2 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <span className="material-symbols-outlined !text-[20px]">mail</span>
                     </Link>
                 </div>
             </div>
