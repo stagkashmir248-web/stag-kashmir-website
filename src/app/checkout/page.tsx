@@ -2,7 +2,7 @@
 
 import { useCartStore } from "@/store/cart";
 import { submitOrder, createRazorpayOrder, verifyRazorpaySignature } from "@/actions/order";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -25,6 +25,13 @@ export default function CheckoutPage() {
     const [errorMessage, setErrorMessage] = useState("");
     const [paymentMode, setPaymentMode] = useState<"partial" | "full">("partial");
     const [trackingCode, setTrackingCode] = useState("");
+
+    // Scroll to top on success
+    useEffect(() => {
+        if (status === "success") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }, [status]);
 
     // ── Empty cart ──────────────────────────────────────────────────────────
     if (items.length === 0 && status !== "success") {
@@ -165,7 +172,7 @@ export default function CheckoutPage() {
     }
 
     // Shared styles
-    const inp = "w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all text-sm";
+    const inp = "w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all text-base";
     const lbl = "block text-sm font-semibold text-slate-200 mb-1.5";
 
     return (
@@ -232,7 +239,7 @@ export default function CheckoutPage() {
                                     <div>
                                         <label className={lbl}>State <span className="text-primary">*</span></label>
                                         <select name="state" required
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all text-sm">
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all text-base">
                                             <option value="" className="text-slate-400">Select State</option>
                                             {INDIAN_STATES.map(s => <option key={s} value={s}>{s}</option>)}
                                         </select>
