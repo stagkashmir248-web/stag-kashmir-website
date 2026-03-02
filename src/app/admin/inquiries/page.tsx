@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
+import MarkViewedEffect from "@/components/MarkViewedEffect";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,7 @@ export default async function AdminInquiriesPage() {
 
     return (
         <div className="flex flex-col gap-8 w-full max-w-6xl">
+            <MarkViewedEffect type="inquiries" />
             <div className="flex items-end justify-between">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Contact Messages</h1>

@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import DownloadCsvButton from "./DownloadCsvButton";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import MarkViewedEffect from "@/components/MarkViewedEffect";
 
 export const metadata = { title: "Newsletter Subscribers | Admin" };
 
@@ -19,6 +20,7 @@ export default async function AdminNewsletterPage() {
 
     return (
         <div className="max-w-7xl mx-auto p-4 md:p-8">
+            <MarkViewedEffect type="newsletter" />
             <div className="flex flex-col md:flex-row items-start justify-between gap-4 mb-8">
                 <div>
                     <Link href="/admin" className="flex items-center text-sm text-gray-400 hover:text-white mb-4 transition-colors">

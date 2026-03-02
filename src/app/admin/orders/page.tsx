@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import AdminOrdersClient from "./AdminOrdersClient";
+import MarkViewedEffect from "@/components/MarkViewedEffect";
 
 export const dynamic = "force-dynamic";
 
@@ -24,5 +25,10 @@ export default async function AdminOrdersPage() {
         updatedAt: o.updatedAt.toISOString(),
     }));
 
-    return <AdminOrdersClient orders={serialized as any} />;
+    return (
+        <>
+            <MarkViewedEffect type="orders" />
+            <AdminOrdersClient orders={serialized as any} />
+        </>
+    );
 }

@@ -96,6 +96,8 @@ model Order {
   courier      String?
   awb          String?
 
+  adminViewed  Boolean  @default(false)
+
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   
@@ -119,6 +121,7 @@ model Inquiry {
   email       String
   subject     String
   message     String
+  adminViewed Boolean  @default(false)
   createdAt   DateTime @default(now())
 }
 
@@ -176,7 +179,8 @@ model VerificationToken {
 }
 
 model NewsletterSubscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  email       String   @unique
+  adminViewed Boolean  @default(false)
+  createdAt   DateTime @default(now())
 }
