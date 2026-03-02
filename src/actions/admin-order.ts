@@ -14,7 +14,7 @@ async function requireAdmin() {
     }
 }
 
-export async function updateOrderStatus(orderId: string, newStatus: string) {
+export async function updateOrderStatus(orderId: string, newStatus: string, note?: string) {
     try {
         await requireAdmin();
 
@@ -34,7 +34,10 @@ export async function updateOrderStatus(orderId: string, newStatus: string) {
 
         const updatedOrder = await prisma.order.update({
             where: { id: orderId },
-            data: { status: newStatus }
+            data: {
+                status: newStatus,
+                ...(note !== undefined && { adminNote: note })
+            }
         });
 
         // If the status actually changed, send an email to the customer

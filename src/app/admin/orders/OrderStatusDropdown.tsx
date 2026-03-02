@@ -17,10 +17,17 @@ export default function OrderStatusDropdown({ orderId, currentStatus }: OrderSta
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newStatus = e.target.value;
+        const note = window.prompt(`Changing status to ${newStatus}.\n\nEnter an optional note for the customer (e.g. Courier & AWB Tracking Number):`);
+
+        if (note === null) {
+            // User cancelled the prompt, don't change status
+            return;
+        }
+
         setStatus(newStatus);
 
         startTransition(async () => {
-            const result = await updateOrderStatus(orderId, newStatus);
+            const result = await updateOrderStatus(orderId, newStatus, note);
             if (result.success) {
                 toast.success(`Order marked as ${newStatus}`);
             } else {

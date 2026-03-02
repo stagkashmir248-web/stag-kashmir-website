@@ -88,10 +88,10 @@ export default function PrintShippingLabelButton({ order }: PrintShippingLabelBu
                         <div class="sender-section">
                             <div class="sender-info">
                                 <strong>Stag Kashmir</strong><br/>
-                                Premium English Willow<br/>
-                                Anantnag, Jammu & Kashmir<br/>
-                                192101, India<br/>
-                                +91 7006883204
+                                Ground floor Busserbugh Alesteng,<br/>
+                                Near MasjidAbu Bakar Peer Mohalla<br/>
+                                Ganderbal, Jammu and Kashmir 191201<br/>
+                                +91 94698 86630
                             </div>
                             <div style="text-align: right; font-weight: bold; font-size: 24px;">
                                 SHIP TO
