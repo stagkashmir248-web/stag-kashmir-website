@@ -171,6 +171,45 @@ export default function CheckoutPage() {
         }
     }
 
+    const fieldNames: Record<string, string> = {
+        name: "Full Name",
+        email: "Email Address",
+        phone: "WhatsApp / Phone",
+        address: "Street Address",
+        city: "City / Town",
+        state: "State",
+        pincode: "PIN Code",
+    };
+
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        if (!e.currentTarget.checkValidity()) {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const missingFields: string[] = [];
+
+            for (let i = 0; i < form.elements.length; i++) {
+                const el = form.elements[i] as any;
+                if (el.name && el.required && !el.value) {
+                    missingFields.push(fieldNames[el.name] || el.name);
+                }
+            }
+
+            if (missingFields.length > 0) {
+                setStatus("error");
+                setErrorMessage(`Please fill out the missing fields: ${missingFields.join(", ")}`);
+
+                const firstMissing = form.querySelector('[required]:invalid');
+                if (firstMissing) {
+                    firstMissing.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            return;
+        }
+
+        setStatus("idle");
+        setErrorMessage("");
+    }
+
     // Shared styles
     const inp = "w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all text-base";
     const lbl = "block text-sm font-semibold text-slate-200 mb-1.5";
@@ -187,7 +226,7 @@ export default function CheckoutPage() {
 
                 {/* ── Left: Form ── */}
                 <div className="flex-1 min-w-0 flex flex-col gap-6">
-                    <form action={handleCheckout} className="flex flex-col gap-6">
+                    <form action={handleCheckout} onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
 
                         {/* Contact */}
                         <div className="rounded-2xl border border-white/10 bg-slate-900 overflow-hidden">

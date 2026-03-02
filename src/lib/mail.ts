@@ -33,7 +33,7 @@ export async function sendEmail({ to, subject, text, html, replyTo }: SendEmailP
             subject,  // Subject line
             text,     // plain text body
             html,     // html body
-            replyTo,
+            replyTo: replyTo || "stagkashmir248@gmail.com",
         });
 
         console.log("[v] Message sent: %s", info.messageId);
