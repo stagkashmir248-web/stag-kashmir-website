@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import OrderStatusDropdown from "../OrderStatusDropdown";
 import PrintShippingLabelButton from "./PrintShippingLabelButton";
+import OrderTrackingPanel from "./OrderTrackingPanel";
+import SendEmailButton from "./SendEmailButton";
 
 export default async function AdminOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -165,22 +167,15 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
                         </div>
                     </div>
 
-                    {/* Admin Note */}
-                    {(order as any).adminNote && (
-                        <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5">
-                            <div className="flex items-center gap-2 mb-3">
-                                <span className="material-symbols-outlined !text-[18px] text-amber-400">sticky_note_2</span>
-                                <h3 className="font-bold text-amber-300 text-sm">Admin Note</h3>
-                            </div>
-                            <p className="text-amber-200/80 text-sm">{(order as any).adminNote}</p>
-                        </div>
-                    )}
+                    <OrderTrackingPanel order={order} />
 
                     {/* Quick links */}
                     <div className="bg-slate-900 rounded-2xl border border-slate-700 p-5 space-y-2">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Quick Actions</p>
 
-                        <div className="mb-4 pb-4 border-b border-slate-800">
+                        <SendEmailButton orderId={order.id} />
+
+                        <div className="mt-4 mb-4 pb-4 border-b border-t border-slate-800 pt-4">
                             <PrintShippingLabelButton order={order} />
                         </div>
 
