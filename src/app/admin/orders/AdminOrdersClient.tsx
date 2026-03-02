@@ -118,7 +118,7 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
             <div className="flex flex-col gap-4">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-white">Order Inquiries</h1>
+                        <h1 className="text-3xl font-bold text-white">Orders</h1>
                         <p className="text-slate-400 mt-1">
                             {filteredOrders.length} of {orders.length} orders
                         </p>

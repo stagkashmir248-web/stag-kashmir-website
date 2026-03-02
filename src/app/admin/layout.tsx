@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth, signOut } from "@/auth";
+import AdminNotificationPoller from "./AdminNotificationPoller";
 
 export default async function AdminLayout({
     children,
@@ -10,6 +11,8 @@ export default async function AdminLayout({
 
     return (
         <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+            <AdminNotificationPoller />
+
             {/* ── Sidebar ── */}
             {/* On mobile: full-width top bar. On md+: fixed left sidebar */}
             <aside className="
@@ -34,7 +37,7 @@ export default async function AdminLayout({
 
                 <nav className="flex-1 p-4 flex flex-col gap-1">
                     <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 px-3 mt-4">Management</div>
-                    <NavLink href="/admin/orders" icon="shopping_bag">Order Inquiries</NavLink>
+                    <NavLink href="/admin/orders" icon="shopping_bag">Orders</NavLink>
                     <NavLink href="/admin/inquiries" icon="mark_email_unread">Contact Messages</NavLink>
                     <NavLink href="/admin/customers" icon="group">Customers</NavLink>
                     <NavLink href="/admin/newsletter" icon="mail">Newsletter</NavLink>
