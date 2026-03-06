@@ -18,7 +18,9 @@ export async function saveAbandonedCart(email: string, cartJson: string) {
         await (prisma as any).abandonedCart.create({
             data: { email, cartJson }
         });
-    } catch { /* fail silently — non-critical */ }
+    } catch (e) {
+        console.error("Failed to save abandoned cart:", e);
+    }
 }
 
 // ── Admin: Get all unsent abandoned carts ────────────────────────────────────

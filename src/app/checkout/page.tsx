@@ -287,7 +287,7 @@ export default function CheckoutPage() {
                                     </div>
                                     <div>
                                         <label className={lbl}>Email Address <span className="text-primary">*</span></label>
-                                        <input name="email" required type="email" placeholder="aadil@email.com" className={inp} />
+                                        <input name="email" required type="email" placeholder="aadil@email.com" className={inp} onBlur={handleEmailBlur} />
                                     </div>
                                 </div>
                                 <div>
