@@ -334,7 +334,7 @@ export default async function Home() {
                                         <Link href={`/shop/${product.slug}`} className="block absolute inset-0 z-0">
                                             <Image
                                                 fill
-                                                src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.jpg"}
+                                                src={product.imageUrl || (product.images && product.images.length > 0 ? product.images[0] : "/placeholder.jpg")}
                                                 alt={product.name}
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             />
@@ -362,7 +362,7 @@ export default async function Home() {
                                             ) : (
                                                 <span className="text-xl font-bold text-white">₹{product.price}</span>
                                             )}
-                                            <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, imageUrl: product.images?.[0] || "/placeholder.jpg" }} />
+                                            <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, imageUrl: product.imageUrl || product.images?.[0] || "/placeholder.jpg" }} />
                                         </div>
                                     </div>
                                 </div>
