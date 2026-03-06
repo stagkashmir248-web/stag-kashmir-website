@@ -33,7 +33,8 @@ export default function MarkViewedEffect({ type }: { type: NotificationType }) {
         return () => {
             isMounted = false;
         };
-    }, [type, refreshCounts]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [type]); // ← Do NOT include refreshCounts here — it changes on every render and causes an infinite loop
 
     return null; // Invisible component that just triggers the effect
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, useCallback, ReactNode } from "react";
 import { getAdminCounts } from "@/actions/admin-notifications";
 import toast from "react-hot-toast";
 
@@ -30,7 +30,7 @@ export default function AdminNotificationProvider({ children }: { children: Reac
     const [counts, setCounts] = useState<Counts>(defaultCounts);
     const previousCounts = useRef<Counts>(defaultCounts);
 
-    const refreshCounts = async () => {
+    const refreshCounts = useCallback(async () => {
         const result = await getAdminCounts();
         if (!result.success || !result.data) return;
 
@@ -49,7 +49,7 @@ export default function AdminNotificationProvider({ children }: { children: Reac
 
         previousCounts.current = newCounts;
         setCounts(newCounts);
-    };
+    }, []);
 
     useEffect(() => {
         let isMounted = true;
@@ -62,8 +62,8 @@ export default function AdminNotificationProvider({ children }: { children: Reac
         // Check immediately
         checkCounts();
 
-        // Start polling every 15 seconds
-        const interval = setInterval(checkCounts, 15000);
+        // Poll every 60 seconds (was 15s — too aggressive, caused DB overload)
+        const interval = setInterval(checkCounts, 60000);
 
         return () => {
             isMounted = false;
