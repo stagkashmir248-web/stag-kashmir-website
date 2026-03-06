@@ -1,5 +1,19 @@
-
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'About Stag Kashmir — Our Story, Artisans & Craft',
+    description: 'Discover the story behind Stag Kashmir. Learn about our master artisans, the Kashmir willow seasoning process, and our commitment to handcrafting premium cricket bats.',
+    keywords: ['Stag Kashmir about', 'Kashmir willow artisans', 'cricket bat makers Kashmir', 'handcrafted bat story'],
+    alternates: { canonical: 'https://stagkashmir.com/about' },
+    openGraph: {
+        title: 'About Stag Kashmir — Our Story, Artisans & Craft',
+        description: 'Discover the story behind Stag Kashmir and our master artisans who craft premium Kashmir Willow cricket bats.',
+        url: 'https://stagkashmir.com/about',
+        images: [{ url: '/About us.jpeg', width: 1200, height: 630, alt: 'Stag Kashmir Artisans' }],
+    },
+};
+
 
 export default function About() {
     return (

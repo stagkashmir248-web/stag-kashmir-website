@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: 'Cricket Bat Care Guide — Knocking, Oiling & Storage Tips',
+    description: 'Learn how to properly knock-in, oil and store your Kashmir Willow cricket bat to maximise performance and extend its lifespan by up to 40%.',
+    keywords: ['cricket bat care guide', 'how to knock in a cricket bat', 'cricket bat oiling', 'how to maintain cricket bat', 'Kashmir willow care'],
+    alternates: { canonical: 'https://stagkashmir.com/care-guide' },
+    openGraph: {
+        title: 'Cricket Bat Care Guide — Stag Kashmir',
+        description: 'Master your Stag Kashmir bat with our official knocking-in, oiling and storage guide.',
+        url: 'https://stagkashmir.com/care-guide',
+    },
+};
 
 export default function CareGuide() {
     return (

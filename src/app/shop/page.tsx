@@ -3,8 +3,22 @@ import { getProducts } from "@/actions/product";
 import { ShopSidebar } from "@/components/shop/ShopSidebar";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ShopSorter } from "@/components/shop/ShopSorter";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Shop Cricket Bats — Hard Tennis, Soft Tennis & Season Leather',
+    description: 'Browse our full collection of handcrafted Kashmir Willow cricket bats. Shop hard tennis, soft tennis, season leather, and junior bats. Best prices with PAN India delivery.',
+    keywords: ['buy cricket bat online', 'hard tennis bat', 'soft tennis bat', 'season leather bat', 'junior cricket bat', 'Kashmir willow bat shop'],
+    alternates: { canonical: 'https://stagkashmir.com/shop' },
+    openGraph: {
+        title: 'Shop Cricket Bats — Stag Kashmir',
+        description: 'Browse our collection of handcrafted Kashmir Willow cricket bats. Hard tennis, soft tennis, season & junior bats.',
+        url: 'https://stagkashmir.com/shop',
+    },
+};
 
 export const dynamic = "force-dynamic";
+
 
 export default async function Shop({
     searchParams,

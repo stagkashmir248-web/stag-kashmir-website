@@ -7,12 +7,48 @@ import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader';
 
 export const metadata: Metadata = {
-    title: 'Stag Kashmir',
-    description: 'Handcrafted English Willow Cricket Bats',
+    metadataBase: new URL('https://stagkashmir.com'),
+    title: {
+        default: 'Stag Kashmir — Premium Handcrafted Cricket Bats',
+        template: '%s | Stag Kashmir',
+    },
+    description: 'Shop premium handcrafted Kashmir Willow cricket bats. Hard tennis, soft tennis, season leather & junior bats made by master artisans in Kashmir. Pan India delivery.',
+    keywords: [
+        'Kashmir willow cricket bat', 'hard tennis bat', 'soft tennis bat', 'season leather bat',
+        'handcrafted cricket bat', 'Kashmir cricket bat', 'buy cricket bat online India',
+        'junior cricket bat', 'premium willow bat', 'Stag Kashmir', 'cricket bat Kashmir',
+    ],
+    authors: [{ name: 'Stag Kashmir', url: 'https://stagkashmir.com' }],
+    creator: 'Stag Kashmir',
+    publisher: 'Stag Kashmir',
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'en_IN',
+        url: 'https://stagkashmir.com',
+        siteName: 'Stag Kashmir',
+        title: 'Stag Kashmir — Premium Handcrafted Cricket Bats',
+        description: 'Shop premium handcrafted Kashmir Willow cricket bats. Hard tennis, soft tennis, season leather & junior bats made by master artisans in Kashmir.',
+        images: [{ url: '/Stag_logo.png', width: 1200, height: 630, alt: 'Stag Kashmir Cricket Bats' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Stag Kashmir — Premium Handcrafted Cricket Bats',
+        description: 'Shop premium handcrafted Kashmir Willow cricket bats. Pan India delivery.',
+        images: ['/Stag_logo.png'],
+        site: '@stagkashmir',
+    },
     icons: {
         icon: '/siteicon.jpg',
         shortcut: '/siteicon.jpg',
         apple: '/siteicon.jpg',
+    },
+    verification: {
+        // google: 'your-google-site-verification-code', // Add when you connect Google Search Console
     },
 };
 

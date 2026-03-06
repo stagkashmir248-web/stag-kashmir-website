@@ -8,8 +8,49 @@ import ProductReviews from "./ProductReviews";
 import ShareButtons from "./ShareButtons";
 import RelatedProducts from "./RelatedProducts";
 import { auth } from "@/auth";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const product = await getProductBySlug(resolvedParams.slug);
+    if (!product) return { title: 'Product Not Found' };
+
+    const siteUrl = 'https://stagkashmir.com';
+    const productUrl = `${siteUrl}/shop/${product.slug}`;
+    const image = (product as any).imageUrl || (product as any).images?.[0];
+    const description = product.description.length > 155
+        ? product.description.slice(0, 152) + '...'
+        : product.description;
+
+    return {
+        title: `${product.name} — Buy Online`,
+        description,
+        keywords: [
+            product.name,
+            'Kashmir willow cricket bat',
+            'buy cricket bat online',
+            (product as any).category ?? '',
+            (product as any).willowType ?? '',
+        ].filter(Boolean),
+        alternates: { canonical: productUrl },
+        openGraph: {
+            title: `${product.name} | Stag Kashmir`,
+            description,
+            url: productUrl,
+            type: 'website',
+            images: image ? [{ url: image, width: 800, height: 800, alt: product.name }] : [],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${product.name} | Stag Kashmir`,
+            description,
+            images: image ? [image] : [],
+        },
+    };
+}
+
 
 export default async function ProductDetail({ params }: { params: Promise<{ slug: string }> }) {
     const resolvedParams = await params;
