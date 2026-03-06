@@ -30,7 +30,7 @@ export default function About() {
                 ></div>
                 <div className="relative w-full max-w-6xl mx-auto px-6 pb-16 md:pb-24 text-center md:text-left">
                     <span className="inline-block px-4 py-1 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-widest mb-4">
-                        Established 1980
+                        Authentic Kashmir Willow
                     </span>
                     <h1 className="text-white text-5xl md:text-7xl font-bold leading-tight mb-6 text-shadow">The Art of the Willow</h1>
                     <p className="text-slate-200 text-lg md:text-xl max-w-2xl leading-relaxed">
@@ -150,8 +150,8 @@ export default function About() {
                             />
                         </div>
                         <div className="absolute -bottom-6 -right-6 bg-primary p-8 rounded-2xl text-white hidden md:block">
-                            <span className="text-4xl font-black italic">40+</span>
-                            <p className="text-sm font-bold opacity-80 uppercase tracking-widest">Generations of Knowledge</p>
+                            <span className="text-4xl font-black italic">Crafted</span>
+                            <p className="text-sm font-bold opacity-80 uppercase tracking-widest">With Passion</p>
                         </div>
                     </div>
                     <div className="order-1 md:order-2 space-y-6">

@@ -11,7 +11,7 @@ export default function Footer() {
                             <h2 className="text-lg font-bold uppercase tracking-wider">Stag Kashmir</h2>
                         </div>
                         <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                            Crafting the finest willow since 1970. We are dedicated to providing cricketers with equipment that enhances their performance and style.
+                            Crafting premium authentic Kashmir willow bats. We are dedicated to providing cricketers with equipment that enhances their performance and style.
                         </p>
                         <div className="flex gap-4">
                             <a className="text-slate-400 hover:text-white transition-colors" href="#">
@@ -48,7 +48,7 @@ export default function Footer() {
                             Near MAsjid Abu Bakar Peer Mohalla<br />
                             Ganderbal, Jammu and Kashmir 191201
                         </p>
-                        <a className="text-primary hover:underline text-sm font-medium block" href="mailto:stagkashmir248@gmail.com">stagkashmir248@gmail.com</a>
+                        <a className="text-primary hover:underline text-sm font-medium block" href="mailto:support@stagkashmir.com">support@stagkashmir.com</a>
                         <a className="text-primary hover:underline text-sm font-medium mt-1 block" href="tel:+919469886630">+91 94698 86630</a>
                     </div>
                 </div>
