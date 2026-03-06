@@ -11,7 +11,7 @@ export default function ShareButtons({ productName, productUrl }: ShareButtonsPr
     const [copied, setCopied] = useState(false);
 
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`Check out this ${productName} 🏏\n${productUrl}`)}`;
-    const instagramUrl = `https://www.instagram.com/`;
+    const instagramUrl = `https://www.instagram.com/stag.kashmir`;
 
     const copyLink = async () => {
         try {
