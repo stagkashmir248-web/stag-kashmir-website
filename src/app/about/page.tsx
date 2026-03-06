@@ -66,8 +66,8 @@ export default function About() {
                         <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
                             <img
                                 className="w-full h-full object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjZBfidC_4LEfRLTfCs4fqwOa4YZXqy6OogXfJ6b0NLvYMZCtEOywLRzpd2ILx1vaTkRX1qMdlSKlowVQ8D0dVXa40pMsw9td0XPPiASYfbsbzGrpuxsRaoPdLIGqamMBPZIhb8lpe0-W2vGlV4ihAnRLQd9sSki_GRJcvoQJ6m9XjXn5zjegz2-U8d2HC5HF28dPWJl8WYMoTSOhuznDe_2fRtW_DYehAFSzR3UwYyCd8l05jSambR7Den0zP8_PStORPaEIyFB9J"
-                                alt="Misty Himalayan peaks bordering a willow plantation"
+                                src="/About us.jpeg"
+                                alt="The Source: Salix Alba Caerulea"
                             />
                         </div>
                     </div>
@@ -140,8 +140,8 @@ export default function About() {
                         <div className="grid grid-cols-2 gap-4">
                             <img
                                 className="rounded-xl aspect-square object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgL7UPF8UUnv4DNeZUxZ7WDjMAMxdvUiF9kh5gKD_sopJnKDZeXI3Owo6Zx-Sw_s5rv2LpwNUhZ9IRmWrtE6ryMfAGQcgMd_GuqfmAo2CG0HCQ4jDOU2Ezr9KdhJTqKAXTyCUnKHDKjqKdAUQwtmR4gGd6180m2ecNmsVYO5Eaf-PUt3rQIqjZw3vlPaCcw6-ad-q0afPI75rG7tmg7x0sLnZ9rU9z692pmOi3ML01Me3o9Q-cUicS_ZUwJnvrXgKatTDK7YPSyZOg"
-                                alt="Elderly craftsman smiling in his workshop"
+                                src="/About Us _ meet the artisians.jpeg"
+                                alt="Craftsman in his workshop"
                             />
                             <img
                                 className="rounded-xl aspect-square object-cover mt-8"

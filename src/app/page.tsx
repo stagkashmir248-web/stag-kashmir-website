@@ -14,7 +14,7 @@ export default async function Home() {
             <section className="relative h-[85vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
                 {/* Background Image */}
                 <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuACJJkjBQqoshz-ycCQC5nQFp0w02RxHUt743T_P9goHxCGF_objQa9-kIyWnP81FYto3Y3V0rhLMtARjDWHSFOtL2g3fc4rocrTRrTatEeqbcVbY3E36JaJiZT6DLaruTKITZObygSI0wJQOuUiMPnXLl4iMAtuOaNkNNxE3LvLvHlSPSDNQ77XVL97rXeCeDs81A2p0YNlqket9Wqw2p4v1PT2VNSoGD85EuYAA4KoTrXGYFrGTHBzrgYx1b_SQzrxPJyCVFydoSI"
+                    src="/Herosection.jpeg"
                     alt="Stag Kashmir Hero"
                     fill
                     priority
