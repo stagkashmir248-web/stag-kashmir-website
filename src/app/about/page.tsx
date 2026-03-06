@@ -88,8 +88,8 @@ export default function About() {
                         <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 aspect-video mb-6">
                             <img
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ4arinF7_qOOQ9TEIuaVNK-HNVDsV15odB0OAnDEN-Y9Msjc8cx17Dit0r29yDBBBjn9Q1502AfhlCEFiJtW936ivxpgsZM_KC_FtVB8IQgI7mOJHhcn3vtTxbeOLfSJ_ewea-mUS5e6lLDLgvZ3JrTFE09mcbjlc48niQryITy8HHMYl80U5F9BywUP1w7ToGKRvibRYMl56PXFIlBCRe2eCC752XNbtB3gMITidXnU3qA2G88TU_Vo75PgskwKicND1L_APgDNM"
-                                alt="Stacked raw willow clefts in a sunlit warehouse"
+                                src="https://images.unsplash.com/photo-1542173167-ee0dc28509ce?q=80&w=1200&auto=format&fit=crop"
+                                alt="Stacked raw willow clefts seasoning naturally"
                             />
                             <div className="absolute top-4 left-4 bg-primary text-white size-10 rounded-full flex items-center justify-center font-bold">01</div>
                         </div>
@@ -145,8 +145,8 @@ export default function About() {
                             />
                             <img
                                 className="rounded-xl aspect-square object-cover mt-8"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9bNjvNeXAjY_Leff-KclIAFQNihNUVbjuWRSU9Oc2AMbdtTINENHl8BfmLjCjR2mlhyyZnaSgexjzlBEFETzmLmbWD68H-dKv-3pcpme9pxpRMKlYrTkyryD1I4bWxOwrM1wG2xLSS-93drAuWXBfPlGkGCvdAYw8zHLb4YelFEaR_BIvXX96Hpp34fAubwApOq4kQWy-l3W0-6DyU_-lJ88IO-r_h3YtMz0dfdM9i56aN1slWCNmp87ew1c2uWu7iMHboPQhCOr1"
-                                alt="Hands working on detailed wood engraving"
+                                src="https://images.unsplash.com/photo-1611077544837-7756f74aeca2?q=80&w=1200&auto=format&fit=crop"
+                                alt="Hands working on detailed wood shaping"
                             />
                         </div>
                         <div className="absolute -bottom-6 -right-6 bg-primary p-8 rounded-2xl text-white hidden md:block">
