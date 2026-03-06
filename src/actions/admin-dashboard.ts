@@ -77,3 +77,74 @@ export async function getDashboardMetrics() {
         return { success: false, error: "Failed to load dashboard data" };
     }
 }
+
+export async function getAnalyticsData(days = 30) {
+    try {
+        const since = new Date();
+        since.setDate(since.getDate() - days);
+
+        // All non-cancelled orders in period
+        const orders = await prisma.order.findMany({
+            where: { createdAt: { gte: since }, status: { not: "CANCELLED" } },
+            include: { items: { include: { product: { select: { name: true } } } } },
+            orderBy: { createdAt: "asc" }
+        });
+
+        // Revenue by day
+        const revenueByDay: Record<string, number> = {};
+        for (let i = 0; i < days; i++) {
+            const d = new Date(since);
+            d.setDate(d.getDate() + i);
+            const key = d.toISOString().slice(0, 10);
+            revenueByDay[key] = 0;
+        }
+        orders.forEach(o => {
+            const key = o.createdAt.toISOString().slice(0, 10);
+            if (key in revenueByDay) revenueByDay[key] += o.total;
+        });
+        const revenueChart = Object.entries(revenueByDay).map(([date, revenue]) => ({
+            date,
+            revenue: Math.round(revenue),
+        }));
+
+        // Orders by status
+        const allOrders = await prisma.order.findMany({ select: { status: true } });
+        const statusCounts: Record<string, number> = {};
+        allOrders.forEach(o => { statusCounts[o.status] = (statusCounts[o.status] || 0) + 1; });
+        const ordersByStatus = Object.entries(statusCounts).map(([status, count]) => ({ status, count }));
+
+        // Top selling products
+        const orderItems = await prisma.orderItem.findMany({
+            include: { product: { select: { id: true, name: true, slug: true } } }
+        });
+        const productSales: Record<string, { name: string; slug: string; quantity: number; revenue: number }> = {};
+        orderItems.forEach(item => {
+            const key = item.productId;
+            if (!productSales[key]) {
+                productSales[key] = { name: item.product.name, slug: item.product.slug, quantity: 0, revenue: 0 };
+            }
+            productSales[key].quantity += item.quantity;
+            productSales[key].revenue += item.price * item.quantity;
+        });
+        const topProducts = Object.values(productSales)
+            .sort((a, b) => b.revenue - a.revenue)
+            .slice(0, 10);
+
+        // Summary stats
+        const totalRevenue = orders.reduce((s, o) => s + o.total, 0);
+        const totalOrders = orders.length;
+        const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+
+        return {
+            revenueChart,
+            ordersByStatus,
+            topProducts,
+            totalRevenue,
+            totalOrders,
+            avgOrderValue,
+        };
+    } catch (error) {
+        console.error("Failed to fetch analytics:", error);
+        return null;
+    }
+}

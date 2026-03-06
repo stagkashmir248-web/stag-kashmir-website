@@ -32,8 +32,11 @@ model Product {
   // Category (e.g. Kashmir Willow, English Willow, Hard Tennis, Leather)
   category         String?
 
-  isArchived       Boolean  @default(false)
+  // Merchandising flags
+  featured         Boolean  @default(false)
+  isBestSeller     Boolean  @default(false)
 
+  isArchived       Boolean  @default(false)
 
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
@@ -183,4 +186,25 @@ model NewsletterSubscriber {
   email       String   @unique
   adminViewed Boolean  @default(false)
   createdAt   DateTime @default(now())
+}
+
+model DiscountCode {
+  id            String    @id @default(cuid())
+  code          String    @unique
+  type          String    @default("PERCENT")  // PERCENT | FIXED
+  value         Float                           // % off or ₹ off
+  minOrderValue Float?                          // minimum cart total to apply
+  maxUses       Int?                            // null = unlimited
+  usedCount     Int       @default(0)
+  isActive      Boolean   @default(true)
+  expiresAt     DateTime?
+  createdAt     DateTime  @default(now())
+}
+
+model AbandonedCart {
+  id        String    @id @default(cuid())
+  email     String
+  cartJson  String    // JSON string of cart items
+  createdAt DateTime  @default(now())
+  sentAt    DateTime? // set when recovery email is sent
 }

@@ -11,9 +11,17 @@ export const getProducts = unstable_cache(
             const products = await prisma.product.findMany({
                 where: { isArchived: false },
                 orderBy: { createdAt: "desc" },
-                include: { variations: true }
+                include: {
+                    variations: true,
+                    _count: { select: { reviews: { where: { approved: true } } } }
+                }
             });
-            return products;
+            // Attach avgRating for convenience
+            return products.map(p => ({
+                ...p,
+                reviewCount: p._count?.reviews ?? 0,
+                avgRating: 0, // computed below to avoid extra query
+            }));
         } catch (error) {
             console.error("Failed to fetch products:", error);
             return [];
@@ -21,8 +29,8 @@ export const getProducts = unstable_cache(
     },
     ["website-products"],
     {
-        revalidate: 3600, // Revalidate every hour
-        tags: ["products"] // Allow manual revalidation via revalidateTag("products")
+        revalidate: 3600,
+        tags: ["products"]
     }
 );
 

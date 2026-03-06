@@ -1,11 +1,9 @@
 import NextAuth from "next-auth"
 import authConfig from "./auth.config"
 import { NextResponse } from "next/server"
+import { ADMIN_EMAIL } from "@/lib/constants"
 
 const { auth } = NextAuth(authConfig)
-
-// The specific email explicitly allowed to access the admin dashbord
-const ADMIN_EMAIL = "stagkashmir248@gmail.com";
 
 export default auth((req) => {
     const isLoggedIn = !!req.auth;

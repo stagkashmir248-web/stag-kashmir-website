@@ -60,6 +60,16 @@ export async function submitOrder(
                 return { success: false, error: `Product not found: ${item.productId}` };
             }
 
+            // ── Stock availability check ──────────────────────────────────────
+            if (product.stock < item.quantity) {
+                return {
+                    success: false,
+                    error: product.stock <= 0
+                        ? `Sorry, this product is currently out of stock.`
+                        : `Only ${product.stock} unit(s) left in stock for this product.`,
+                };
+            }
+
             const serverPrice = Number(product.price);
             serverTotal += serverPrice * item.quantity;
             verifiedItems.push({ productId: item.productId, quantity: item.quantity, price: serverPrice });
@@ -79,29 +89,43 @@ export async function submitOrder(
             ? (customer.paymentType === "FULL" ? "PAID" : "PAID_PARTIAL")
             : "PENDING";
 
-        const order = await (prisma.order as any).create({
-            data: {
-                customer: customer.name,
-                email: customer.email,
-                phone: customer.phone,
-                address: customer.address,
-                city: customer.city,
-                state: customer.state,
-                pincode: customer.pincode,
-                landmark: customer.landmark || null,
-                paymentType: customer.paymentType,
-                amountPaid: amountPaid ?? null,
-                trackingCode,
-                total: serverTotal,   // always use server-verified total
-                status: orderStatus,
-                items: {
-                    create: verifiedItems.map((item) => ({
-                        quantity: item.quantity,
-                        price: item.price,
-                        product: { connect: { id: item.productId } },
-                    })),
+        // ── Run in a transaction: create order + decrement stock atomically ──
+        const order = await (prisma as any).$transaction(async (tx: any) => {
+            // Re-check and decrement stock for each item inside the transaction
+            for (const item of verifiedItems) {
+                const updated = await tx.product.updateMany({
+                    where: { id: item.productId, stock: { gte: item.quantity } },
+                    data: { stock: { decrement: item.quantity } },
+                });
+                if (updated.count === 0) {
+                    throw new Error(`STOCK_RACE:${item.productId}`);
+                }
+            }
+
+            return tx.order.create({
+                data: {
+                    customer: customer.name,
+                    email: customer.email,
+                    phone: customer.phone,
+                    address: customer.address,
+                    city: customer.city,
+                    state: customer.state,
+                    pincode: customer.pincode,
+                    landmark: customer.landmark || null,
+                    paymentType: customer.paymentType,
+                    amountPaid: amountPaid ?? null,
+                    trackingCode,
+                    total: serverTotal,
+                    status: orderStatus,
+                    items: {
+                        create: verifiedItems.map((item) => ({
+                            quantity: item.quantity,
+                            price: item.price,
+                            product: { connect: { id: item.productId } },
+                        })),
+                    },
                 },
-            },
+            });
         });
 
         // Fire & Forget Emails (Do not await so checkout isn't delayed for user)

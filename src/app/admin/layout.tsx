@@ -122,10 +122,15 @@ function SidebarNavLinks() {
             <NavLink href="/admin/inquiries" icon="mark_email_unread" badgeCount={counts.inquiries}>Contact Messages</NavLink>
             <NavLink href="/admin/customers" icon="group">Customers</NavLink>
             <NavLink href="/admin/newsletter" icon="mail" badgeCount={counts.newsletter}>Newsletter</NavLink>
+            <NavLink href="/admin/coupons" icon="local_offer">Coupons</NavLink>
+            <NavLink href="/admin/abandoned-carts" icon="shopping_cart">Abandoned Carts</NavLink>
 
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 px-3 mt-6">Inventory</div>
             <NavLink href="/admin/products" icon="inventory_2">Products</NavLink>
             <NavLink href="/admin/reviews" icon="rate_review">Reviews</NavLink>
+
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 px-3 mt-6">Analytics</div>
+            <NavLink href="/admin/analytics" icon="bar_chart">Analytics</NavLink>
         </>
     );
 }

@@ -196,7 +196,11 @@ export default function HeaderClient({ isLoggedIn }: HeaderClientProps) {
                     <div className="flex gap-2 sm:gap-3 shrink-0">
                         <Link href="/cart" className="flex items-center justify-center rounded-full size-10 bg-white/5 hover:bg-primary hover:text-background-dark text-white transition-all relative">
                             <span className="material-symbols-outlined !text-[20px]">shopping_bag</span>
-                            {cartCount > 0 && <span className="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>}
+                            {cartCount > 0 && (
+                                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] bg-primary text-black text-[10px] font-black flex items-center justify-center rounded-full px-1 leading-none">
+                                    {cartCount > 99 ? '99+' : cartCount}
+                                </span>
+                            )}
                         </Link>
                         {/* User icon -> dashboard if logged in, signin if not */}
                         <Link

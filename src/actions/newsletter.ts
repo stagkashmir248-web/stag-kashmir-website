@@ -3,8 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { sendEmail } from "@/lib/mail";
-
-const ADMIN_EMAIL = "stagkashmir248@gmail.com";
+import { ADMIN_EMAIL } from "@/lib/constants";
 
 async function requireAdmin() {
     const session = await auth();
@@ -42,11 +41,13 @@ export async function subscribeNewsletter(formData: FormData) {
     }
 
     try {
-        await prisma.newsletterSubscriber.upsert({
-            where: { email },
-            update: {},
-            create: { email }
-        });
+        // Check if already subscribed — don't re-send welcome email
+        const existing = await prisma.newsletterSubscriber.findUnique({ where: { email } });
+        if (existing) {
+            return { success: true, alreadySubscribed: true };
+        }
+
+        await prisma.newsletterSubscriber.create({ data: { email } });
 
         // Send the Welcome Email
         const welcomeHtml = `

@@ -2,11 +2,14 @@
 
 import { useCartStore } from "@/store/cart";
 import { submitOrder, createRazorpayOrder, verifyRazorpaySignature } from "@/actions/order";
-import { useState, useEffect } from "react";
+import { validateCoupon, incrementCouponUsage } from "@/actions/coupon";
+import { saveAbandonedCart } from "@/actions/abandoned-cart";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Script from "next/script";
+import { PARTIAL_BOOKING_AMOUNT } from "@/lib/constants";
 
-const PARTIAL_AMOUNT = 300;
+const PARTIAL_AMOUNT = PARTIAL_BOOKING_AMOUNT;
 const RZP_KEY = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 
 const INDIAN_STATES = [
@@ -25,6 +28,45 @@ export default function CheckoutPage() {
     const [errorMessage, setErrorMessage] = useState("");
     const [paymentMode, setPaymentMode] = useState<"partial" | "full">("partial");
     const [trackingCode, setTrackingCode] = useState("");
+
+    // Coupon state
+    const [couponCode, setCouponCode] = useState("");
+    const [couponError, setCouponError] = useState("");
+    const [couponApplied, setCouponApplied] = useState<{
+        couponId: string; discountAmount: number; description: string; code: string;
+    } | null>(null);
+    const [couponLoading, setCouponLoading] = useState(false);
+    const emailRef = useRef<HTMLInputElement>(null);
+
+    const discountedTotal = couponApplied ? Math.max(0, total - couponApplied.discountAmount) : total;
+    const amountToCharge = paymentMode === "full" ? discountedTotal : PARTIAL_AMOUNT;
+
+    async function handleApplyCoupon() {
+        if (!couponCode.trim()) return;
+        setCouponLoading(true);
+        setCouponError("");
+        const result = await validateCoupon(couponCode, total);
+        setCouponLoading(false);
+        if (result.valid) {
+            setCouponApplied({ couponId: result.couponId!, discountAmount: result.discountAmount!, description: result.description!, code: result.code! });
+        } else {
+            setCouponError(result.error || "Invalid coupon");
+            setCouponApplied(null);
+        }
+    }
+
+    function handleRemoveCoupon() {
+        setCouponApplied(null);
+        setCouponCode("");
+        setCouponError("");
+    }
+
+    async function handleEmailBlur(e: React.FocusEvent<HTMLInputElement>) {
+        const email = e.target.value;
+        if (email && email.includes("@") && items.length > 0) {
+            await saveAbandonedCart(email, JSON.stringify(items));
+        }
+    }
 
     // Scroll to top on success
     useEffect(() => {
@@ -308,7 +350,49 @@ export default function CheckoutPage() {
                             </div>
                             <div className="p-6 flex flex-col gap-3">
 
+                                {/* Coupon Code */}
+                                <div className="rounded-xl border border-slate-600 bg-slate-800 overflow-hidden mb-2">
+                                    <div className="px-4 py-3 border-b border-slate-700 flex items-center gap-2">
+                                        <span className="material-symbols-outlined !text-[16px] text-primary">local_offer</span>
+                                        <span className="text-sm font-semibold text-white">Have a coupon?</span>
+                                    </div>
+                                    <div className="p-4">
+                                        {couponApplied ? (
+                                            <div className="flex items-center justify-between bg-green-500/10 border border-green-500/20 rounded-lg p-3">
+                                                <div>
+                                                    <p className="font-bold text-green-400 font-mono text-sm">{couponApplied.code}</p>
+                                                    <p className="text-xs text-green-300">{couponApplied.description} — saves ₹{couponApplied.discountAmount.toLocaleString("en-IN")}</p>
+                                                </div>
+                                                <button onClick={handleRemoveCoupon} className="text-slate-400 hover:text-red-400 transition-colors">
+                                                    <span className="material-symbols-outlined !text-[18px]">close</span>
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="flex gap-2">
+                                                <input
+                                                    type="text"
+                                                    value={couponCode}
+                                                    onChange={e => setCouponCode(e.target.value.toUpperCase())}
+                                                    onKeyDown={e => e.key === "Enter" && (e.preventDefault(), handleApplyCoupon())}
+                                                    placeholder="COUPON CODE"
+                                                    className="flex-1 px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm font-mono uppercase"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={handleApplyCoupon}
+                                                    disabled={couponLoading || !couponCode.trim()}
+                                                    className="px-4 py-2 bg-primary/10 text-primary border border-primary/30 rounded-lg hover:bg-primary hover:text-black font-bold text-sm transition-all disabled:opacity-50"
+                                                >
+                                                    {couponLoading ? "..." : "Apply"}
+                                                </button>
+                                            </div>
+                                        )}
+                                        {couponError && <p className="text-red-400 text-xs mt-2">{couponError}</p>}
+                                    </div>
+                                </div>
+
                                 {/* Partial booking */}
+
                                 <label className={`flex items-start gap-4 p-5 rounded-xl border cursor-pointer transition-all ${paymentMode === "partial" ? "border-primary bg-primary/8" : "border-slate-700 bg-slate-800/50 hover:border-slate-600"}`}>
                                     <input type="radio" name="paymentMode" value="partial" checked={paymentMode === "partial"} onChange={() => setPaymentMode("partial")} className="mt-1 accent-primary" />
                                     <div className="flex-1">

@@ -4,8 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 import { sendEmail } from "@/lib/mail";
-
-const ADMIN_EMAIL = "stagkashmir248@gmail.com";
+import { ADMIN_EMAIL } from "@/lib/constants";
 
 async function requireAdmin() {
     const session = await auth();

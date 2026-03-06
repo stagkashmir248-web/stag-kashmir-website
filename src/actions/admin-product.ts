@@ -131,3 +131,27 @@ export async function updateProduct(id: string, data: {
         return { success: false, error: "Failed to update product." };
     }
 }
+
+export async function toggleProductFeatured(id: string, featured: boolean) {
+    try {
+        await (prisma.product as any).update({ where: { id }, data: { featured } });
+        revalidatePath("/admin/products");
+        revalidatePath("/shop");
+        revalidatePath("/");
+        return { success: true };
+    } catch {
+        return { success: false, error: "Failed to update featured status." };
+    }
+}
+
+export async function toggleProductBestSeller(id: string, isBestSeller: boolean) {
+    try {
+        await (prisma.product as any).update({ where: { id }, data: { isBestSeller } });
+        revalidatePath("/admin/products");
+        revalidatePath("/shop");
+        revalidatePath("/");
+        return { success: true };
+    } catch {
+        return { success: false, error: "Failed to update best seller status." };
+    }
+}

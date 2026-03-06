@@ -15,6 +15,7 @@ export default async function Shop({
     const sp = await searchParams;
     const currentCategory = typeof sp.category === 'string' ? sp.category : "all";
     const maxPrice = typeof sp.maxPrice === 'string' ? parseInt(sp.maxPrice) : 20000;
+    const searchQuery = typeof sp.query === 'string' ? sp.query.trim() : "";
 
     let sortBy = 'popular';
     if (typeof sp.sort === 'string') {
@@ -33,16 +34,27 @@ export default async function Shop({
             if (currentCategory === "hard-tennis") return cat.includes("hard") && cat.includes("tennis");
             if (currentCategory === "soft-tennis") return cat.includes("soft") && cat.includes("tennis");
             if (currentCategory === "season-leather") return cat.includes("season") || cat.includes("leather");
-            if (currentCategory === "junior") return cat.includes("junior") || cat.includes("kid");
+            // Fix: "junior-bats" slug maps to category containing "junior" or "kid"
+            if (currentCategory === "junior" || currentCategory === "junior-bats") return cat.includes("junior") || cat.includes("kid");
 
             // Fallback exact match
             return cat === currentCategory;
         });
 
-    // 2. Filter by max price
+    // 2. Filter by search query (name or category)
+    if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filteredProducts = filteredProducts.filter(p =>
+            p.name.toLowerCase().includes(q) ||
+            (p.category || "").toLowerCase().includes(q) ||
+            (p.description || "").toLowerCase().includes(q)
+        );
+    }
+
+    // 3. Filter by max price
     filteredProducts = filteredProducts.filter(p => p.price <= maxPrice);
 
-    // 3. Sort
+    // 4. Sort
     if (sortBy === 'newest') {
         filteredProducts = [...filteredProducts].sort((a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
