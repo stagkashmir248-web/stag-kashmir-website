@@ -144,18 +144,6 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                                     </div>
                                 </div>
 
-                                {/* Trust badges */}
-                                <div className="flex flex-col gap-2 text-slate-400 text-sm">
-                                    <div className="flex items-center gap-2">
-                                        <span className="material-symbols-outlined !text-lg text-primary">local_shipping</span>
-                                        <span>Free Expedited Shipping</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <span className="material-symbols-outlined !text-lg text-primary">verified_user</span>
-                                        <span>1 Year Professional Warranty</span>
-                                    </div>
-                                </div>
-
                                 {/* Share buttons */}
                                 <ShareButtons productName={product.name} productUrl={productUrl} />
                             </div>
