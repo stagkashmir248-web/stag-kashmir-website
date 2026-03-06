@@ -88,7 +88,7 @@ export default function About() {
                         <div className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 aspect-video mb-6">
                             <img
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                src="https://images.unsplash.com/photo-1542173167-ee0dc28509ce?q=80&w=1200&auto=format&fit=crop"
+                                src="/Stcked raw willow clefts seasoning naturally.jpeg"
                                 alt="Stacked raw willow clefts seasoning naturally"
                             />
                             <div className="absolute top-4 left-4 bg-primary text-white size-10 rounded-full flex items-center justify-center font-bold">01</div>
@@ -145,7 +145,7 @@ export default function About() {
                             />
                             <img
                                 className="rounded-xl aspect-square object-cover mt-8"
-                                src="https://images.unsplash.com/photo-1611077544837-7756f74aeca2?q=80&w=1200&auto=format&fit=crop"
+                                src="/Hands working on detailed.jpeg"
                                 alt="Hands working on detailed wood shaping"
                             />
                         </div>
