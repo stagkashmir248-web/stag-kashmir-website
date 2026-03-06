@@ -121,7 +121,7 @@ export default function CheckoutPage() {
     }
 
 
-    const remainingOnDelivery = total - PARTIAL_AMOUNT;
+    const remainingOnDelivery = discountedTotal - PARTIAL_AMOUNT;
 
     async function handleCheckout(formData: FormData) {
         setStatus("submitting");
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
             paymentType: paymentMode === "full" ? "FULL" : "PARTIAL" as any,
         };
 
-        const amountToPay = paymentMode === "partial" ? PARTIAL_AMOUNT : total;
+        const amountToPay = paymentMode === "partial" ? PARTIAL_AMOUNT : discountedTotal;
 
         try {
             // 1. Create order on server
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
 
                         if (isAuthentic) {
                             // 4. Save order to database
-                            const result = await submitOrder(customer, items, total, amountToPay);
+                            const result = await submitOrder(customer, items, discountedTotal, amountToPay);
                             if (result.success) {
                                 if (result.trackingCode) setTrackingCode(result.trackingCode);
                                 setStatus("success");
@@ -411,7 +411,7 @@ export default function CheckoutPage() {
                                     <input type="radio" name="paymentMode" value="full" checked={paymentMode === "full"} onChange={() => setPaymentMode("full")} className="mt-1 accent-primary" />
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 flex-wrap">
-                                            <span className="font-bold text-white">Pay Full Amount — ₹{total.toLocaleString("en-IN")}</span>
+                                            <span className="font-bold text-white">Pay Full Amount — ₹{discountedTotal.toLocaleString("en-IN")}</span>
                                             <span className="text-[10px] bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-wide">Instant Confirm</span>
                                         </div>
                                         <p className="text-sm text-slate-400 mt-1">Pay the full amount now via Razorpay. Order confirmed immediately after payment.</p>
@@ -435,7 +435,7 @@ export default function CheckoutPage() {
                             ) : paymentMode === "partial" ? (
                                 <><span className="material-symbols-outlined !text-[20px]">lock</span>Confirm Booking — Pay ₹{PARTIAL_AMOUNT}</>
                             ) : (
-                                <><span className="material-symbols-outlined !text-[20px]">lock</span>Pay ₹{total.toLocaleString("en-IN")} Now</>
+                                <><span className="material-symbols-outlined !text-[20px]">lock</span>Pay ₹{discountedTotal.toLocaleString("en-IN")} Now</>
                             )}
                         </button>
 
@@ -483,6 +483,14 @@ export default function CheckoutPage() {
                                 </div>
                             </div>
 
+                            {/* Discount row */}
+                            {couponApplied && (
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-green-400">Discount ({couponApplied.code})</span>
+                                    <span className="text-green-400 font-bold">−₹{couponApplied.discountAmount.toLocaleString("en-IN")}</span>
+                                </div>
+                            )}
+
                             {/* Amount due — dynamic */}
                             <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
                                 {paymentMode === "partial" ? (
@@ -502,7 +510,7 @@ export default function CheckoutPage() {
                                 ) : (
                                     <div className="flex justify-between items-center">
                                         <span className="text-slate-300 font-semibold">Total Due Now</span>
-                                        <span className="text-2xl font-black text-primary">₹{total.toLocaleString("en-IN")}</span>
+                                        <span className="text-2xl font-black text-primary">₹{discountedTotal.toLocaleString("en-IN")}</span>
                                     </div>
                                 )}
                             </div>
