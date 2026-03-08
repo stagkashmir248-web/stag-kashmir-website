@@ -23,7 +23,7 @@ export default function CareGuide() {
                         <a className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#knocking">Knocking-in</a>
                         <a className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#oiling">Oiling</a>
                         <a className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#storage">Storage</a>
-                        <a className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">FAQ</a>
+
                     </nav>
                 </div>
 
@@ -200,8 +200,8 @@ export default function CareGuide() {
                         <p className="text-slate-500 text-sm">Our master bat-makers are here to help you get the best from your equipment.</p>
                     </div>
                     <div className="flex gap-4">
-                        <button className="px-6 py-3 rounded-lg border border-primary/20 font-bold hover:bg-primary/5 transition-colors">Download PDF Guide</button>
-                        <button className="px-6 py-3 rounded-lg bg-primary text-white font-bold hover:shadow-lg hover:shadow-primary/30 transition-all">Chat with an Expert</button>
+                        <a href="/shop" className="px-6 py-3 rounded-lg border border-primary/20 font-bold hover:bg-primary/5 transition-colors text-center inline-flex justify-center items-center">Shop Stag Bats</a>
+                        <a href="https://wa.me/919469886630" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-lg bg-primary text-white font-bold hover:shadow-lg hover:shadow-primary/30 transition-all text-center inline-flex justify-center items-center">Chat with an Expert</a>
                     </div>
                 </div>
             </div>
