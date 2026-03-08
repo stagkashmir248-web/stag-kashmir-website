@@ -11,7 +11,7 @@ cmds = [
   "mkdir -p .next/standalone/.next/static",
   "cp -r .next/static/* .next/standalone/.next/static/ || true"
 ]
-cacheDirectories = []
+cacheDirectories = [".next/cache"]
 
 [start]
 cmd = "node .next/standalone/server.js"
