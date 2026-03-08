@@ -1,4 +1,4 @@
-"use server";
+// Server-only data fetching utilities (no "use server" — these are not Server Actions)
 
 import { prisma } from "@/lib/prisma";
 
@@ -28,6 +28,40 @@ export const getProducts = unstable_cache(
         }
     },
     ["website-products"],
+    {
+        revalidate: 3600,
+        tags: ["products"]
+    }
+);
+
+// Lightweight fetch for homepage featured section — avoids the 2MB cache limit
+// Only selects the fields actually rendered in the product cards
+export const getFeaturedProducts = unstable_cache(
+    async (limit = 4) => {
+        try {
+            const products = await prisma.product.findMany({
+                where: { isArchived: false },
+                orderBy: { createdAt: "desc" },
+                take: limit,
+                select: {
+                    id: true,
+                    name: true,
+                    slug: true,
+                    price: true,
+                    compareAtPrice: true,
+                    imageUrl: true,
+                    images: true,
+                    stock: true,
+                    createdAt: true,
+                },
+            });
+            return products;
+        } catch (error) {
+            console.error("Failed to fetch featured products:", error);
+            return [];
+        }
+    },
+    ["website-featured-products"],
     {
         revalidate: 3600,
         tags: ["products"]
