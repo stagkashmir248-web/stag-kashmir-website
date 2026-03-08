@@ -44,9 +44,16 @@ export default async function ReviewsAdminPage() {
 
     return (
         <div className="p-6 max-w-4xl mx-auto flex flex-col gap-10">
-            <div>
-                <h1 className="text-2xl font-bold text-white mb-1">Customer Reviews</h1>
-                <p className="text-slate-400 text-sm">Approve reviews before they appear on the storefront.</p>
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+                <div>
+                    <h1 className="text-2xl font-bold text-white mb-1">Customer Reviews</h1>
+                    <p className="text-slate-400 text-sm">Approve reviews before they appear on the storefront, or add manual ones.</p>
+                </div>
+                <Link href="/admin/reviews/new"
+                    className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-amber-400 text-black font-bold rounded-xl text-sm transition-all shadow-lg shadow-primary/20">
+                    <span className="material-symbols-outlined !text-[18px]">add</span>
+                    Add Manual Review
+                </Link>
             </div>
 
             {/* Pending */}
