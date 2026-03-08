@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function deleteProduct(productId: string) {
     try {
@@ -11,6 +11,7 @@ export async function deleteProduct(productId: string) {
         });
         revalidatePath("/admin/products");
         revalidatePath("/shop");
+        revalidateTag("products");
         return { success: true };
     } catch (error: any) {
         console.error("Failed to archive product:", error);
@@ -66,6 +67,7 @@ export async function createProduct(data: {
         });
         revalidatePath("/admin/products");
         revalidatePath("/shop");
+        revalidateTag("products");
         return { success: true, product };
     } catch (error) {
         console.error("Failed to create product:", error);
@@ -125,6 +127,7 @@ export async function updateProduct(id: string, data: {
         revalidatePath("/admin/products");
         revalidatePath("/shop");
         revalidatePath(`/shop/${product.slug}`);
+        revalidateTag("products");
         return { success: true, product };
     } catch (error) {
         console.error("Failed to update product:", error);
@@ -141,6 +144,7 @@ export async function toggleProductFeatured(id: string, featured: boolean) {
         revalidatePath("/admin/products");
         revalidatePath("/shop");
         revalidatePath("/");
+        revalidateTag("products");
         return { success: true };
     } catch {
         return { success: false, error: "Failed to update featured status." };
@@ -153,6 +157,7 @@ export async function toggleProductBestSeller(id: string, isBestSeller: boolean)
         revalidatePath("/admin/products");
         revalidatePath("/shop");
         revalidatePath("/");
+        revalidateTag("products");
         return { success: true };
     } catch {
         return { success: false, error: "Failed to update best seller status." };
