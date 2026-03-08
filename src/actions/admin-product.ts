@@ -26,6 +26,7 @@ type ProductSpecsInput = {
     warranty?: string;
     features?: string[];
     category?: string;
+    customSpecs?: { icon: string; label: string; value: string }[];
 };
 
 export async function createProduct(data: {
@@ -58,9 +59,10 @@ export async function createProduct(data: {
                 ballType: data.ballType || null,
                 warranty: data.warranty || null,
                 features: data.features || [],
+                customSpecs: data.customSpecs || [],
                 category: data.category || null,
                 variations: { create: data.variations || [] }
-            },
+            } as any,
         });
         revalidatePath("/admin/products");
         revalidatePath("/shop");
@@ -107,6 +109,7 @@ export async function updateProduct(id: string, data: {
                 ballType: data.ballType || null,
                 warranty: data.warranty || null,
                 features: data.features || [],
+                customSpecs: data.customSpecs || [],
                 category: data.category || null,
                 variations: {
                     create: data.variations?.map(v => ({
@@ -116,7 +119,7 @@ export async function updateProduct(id: string, data: {
                         stock: v.stock
                     })) || []
                 }
-            },
+            } as any,
         });
 
         revalidatePath("/admin/products");

@@ -28,6 +28,8 @@ model Product {
   ballType         String?
   warranty         String?
   features         String[] @default([])
+  customSpecs      Json     @default("[]")   // [{icon:string, label:string, value:string}]
+
 
   // Category (e.g. Kashmir Willow, English Willow, Hard Tennis, Leather)
   category         String?

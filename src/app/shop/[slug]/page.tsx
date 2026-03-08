@@ -225,7 +225,11 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                                         { icon: "sports_cricket", label: "Ball Type", value: p.ballType },
                                         { icon: "verified", label: "Warranty", value: p.warranty },
                                     ].filter(r => r.value);
-                                    if (specRows.length === 0) return null;
+                                    const customRows = Array.isArray(p.customSpecs)
+                                        ? p.customSpecs.filter((r: any) => r.label && r.value)
+                                        : [];
+                                    const allRows = [...specRows, ...customRows];
+                                    if (allRows.length === 0) return null;
                                     return (
                                         <div className="lg:col-span-2 flex flex-col gap-4">
                                             <div className="flex items-center gap-3">
@@ -233,7 +237,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                                                 <h2 className="text-xl font-bold text-white tracking-tight">Technical Specs</h2>
                                             </div>
                                             <div className="bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden divide-y divide-white/5">
-                                                {specRows.map(({ icon, label, value }) => (
+                                                {allRows.map(({ icon, label, value }: { icon: string; label: string; value: string }) => (
                                                     <div key={label} className="flex items-center justify-between px-5 py-3.5 hover:bg-white/[0.03] transition-colors group">
                                                         <div className="flex items-center gap-3">
                                                             <span className="material-symbols-outlined !text-[18px] text-primary/70 group-hover:text-primary transition-colors">{icon}</span>

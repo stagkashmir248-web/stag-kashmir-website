@@ -23,6 +23,50 @@ const COMMON_SIZES = ["34 inches", "34.5 inches", "35 inches", "35.5 inches"];
 const COMMON_WEIGHTS = ["950-1050 grams", "1050-1100 grams", "1100-1150 grams"];
 const COMMON_EXTRAS = ["English Willow", "Kashmir Willow", "Premium Grade 1", "Standard"];
 
+type CustomSpec = { icon: string; label: string; value: string };
+const SPEC_ICONS: { icon: string; label: string }[] = [
+    { icon: 'sports_cricket', label: 'Cricket' },
+    { icon: 'nature', label: 'Nature / Willow' },
+    { icon: 'workspace_premium', label: 'Grade / Premium' },
+    { icon: 'straighten', label: 'Blade / Size' },
+    { icon: 'scale', label: 'Weight' },
+    { icon: 'verified', label: 'Verified' },
+    { icon: 'shield', label: 'Shield / Protection' },
+    { icon: 'military_tech', label: 'Excellence' },
+    { icon: 'star', label: 'Star / Quality' },
+    { icon: 'bolt', label: 'Power / Speed' },
+    { icon: 'speed', label: 'Performance' },
+    { icon: 'build', label: 'Build / Craft' },
+    { icon: 'handyman', label: 'Handmade' },
+    { icon: 'carpenter', label: 'Carpentry' },
+    { icon: 'recycling', label: 'Eco / Recycled' },
+    { icon: 'eco', label: 'Natural / Green' },
+    { icon: 'timer', label: 'Duration / Warranty' },
+    { icon: 'height', label: 'Height / Length' },
+    { icon: 'inventory_2', label: 'Inventory' },
+    { icon: 'category', label: 'Category' },
+    { icon: 'info', label: 'Info' },
+    { icon: 'check_circle', label: 'Check / Approved' },
+    { icon: 'new_releases', label: 'New Release' },
+    { icon: 'gpp_good', label: 'Safety' },
+    { icon: 'diamond', label: 'Diamond / Luxury' },
+    { icon: 'electric_bolt', label: 'Electric / Power' },
+    { icon: 'water_drop', label: 'Water / Quality' },
+    { icon: 'local_fire_department', label: 'Hot / Popular' },
+    { icon: 'emoji_events', label: 'Trophy / Award' },
+    { icon: 'format_size', label: 'Format / Size' },
+    { icon: 'tune', label: 'Tune / Settings' },
+    { icon: 'label', label: 'Label / Tag' },
+    { icon: 'security', label: 'Security' },
+    { icon: 'thumb_up', label: 'Approved / Like' },
+    { icon: 'percent', label: 'Percentage' },
+    { icon: 'sports_score', label: 'Performance Score' },
+    { icon: 'colorize', label: 'Colour / Finish' },
+    { icon: 'compress', label: 'Compression' },
+    { icon: 'touch_app', label: 'Grip / Handle' },
+    { icon: 'layers', label: 'Layers / Grains' },
+];
+
 // ─── Reusable primitives ──────────────────────────────────────────────────────
 const inp = "w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-sm";
 const sel = "w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-sm";
@@ -73,6 +117,13 @@ export default function NewProductPage() {
     const [newFeature, setNewFeature] = useState("");
     const addFeature = () => { if (newFeature.trim()) { setFeatures(f => [...f, newFeature.trim()]); setNewFeature(""); } };
     const removeFeature = (i: number) => setFeatures(f => f.filter((_, idx) => idx !== i));
+
+    const [customSpecs, setCustomSpecs] = useState<CustomSpec[]>([]);
+    const addCustomSpec = () => setCustomSpecs(s => [...s, { icon: 'sports_cricket', label: '', value: '' }]);
+    const updateCustomSpec = (i: number, field: keyof CustomSpec, val: string) => {
+        setCustomSpecs(s => { const n = [...s]; n[i] = { ...n[i], [field]: val }; return n; });
+    };
+    const removeCustomSpec = (i: number) => setCustomSpecs(s => s.filter((_, idx) => idx !== i));
 
     // Generator state
     const [showGen, setShowGen] = useState(false);
@@ -158,6 +209,7 @@ export default function NewProductPage() {
                 imageUrl: base64Image, images: extraImages, videoUrl: videoUrl || undefined,
                 willowType: willowType || undefined, grade: grade || undefined, blade: blade || undefined,
                 ballType: ballType || undefined, warranty: warranty || undefined, features,
+                customSpecs,
                 category: category || undefined,
                 variations: variations.map(v => { const parts = [v.size, v.weight, v.extra].filter(p => p.trim()); return { name: parts.join(" | "), price: Number(v.price), compareAtPrice: v.compareAtPrice ? Number(v.compareAtPrice) : undefined, stock: Number(v.stock) }; })
             });
@@ -469,6 +521,41 @@ export default function NewProductPage() {
                                     Add
                                 </button>
                             </div>
+                        </div>
+
+                        {/* ── Custom Technical Specs ── */}
+                        <div className="border-t border-slate-700/50 pt-5">
+                            <div className="flex items-center justify-between mb-3">
+                                <Label>Custom Technical Specs <span className="text-slate-600 font-normal normal-case">— extra rows in the specs table on the product page</span></Label>
+                                <button type="button" onClick={addCustomSpec}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-lg text-xs font-bold hover:bg-primary/20 transition-colors">
+                                    <span className="material-symbols-outlined !text-[15px]">add</span>Add Spec
+                                </button>
+                            </div>
+                            {customSpecs.length === 0 ? (
+                                <div className="text-xs text-slate-500 italic py-4 text-center border-2 border-dashed border-slate-700 rounded-xl">
+                                    No custom specs yet — click "Add Spec" to add rows like <em>Handle Type: Round</em>.
+                                </div>
+                            ) : (
+                                <div className="flex flex-col gap-2">
+                                    {customSpecs.map((spec, i) => (
+                                        <div key={i} className="flex items-center gap-2 bg-white/[0.03] border border-white/8 px-3 py-3 rounded-xl">
+                                            <span className="material-symbols-outlined !text-[22px] text-primary/70 shrink-0 w-7 text-center" style={{ fontVariationSettings: "'FILL' 1" }}>{spec.icon || 'info'}</span>
+                                            <select value={spec.icon} onChange={e => updateCustomSpec(i, 'icon', e.target.value)} className={`${sel} w-auto max-w-[180px] shrink-0`}>
+                                                {SPEC_ICONS.map(ic => <option key={ic.icon} value={ic.icon}>{ic.label}</option>)}
+                                            </select>
+                                            <input type="text" placeholder="Label (e.g. Handle Type)" value={spec.label}
+                                                onChange={e => updateCustomSpec(i, 'label', e.target.value)} className={`${inp} flex-1`} />
+                                            <input type="text" placeholder="Value (e.g. Round)" value={spec.value}
+                                                onChange={e => updateCustomSpec(i, 'value', e.target.value)} className={`${inp} flex-1`} />
+                                            <button type="button" onClick={() => removeCustomSpec(i)}
+                                                className="size-9 flex items-center justify-center text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors shrink-0">
+                                                <span className="material-symbols-outlined !text-[18px]">delete</span>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </SectionCard>
