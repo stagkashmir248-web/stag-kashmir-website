@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import Razorpay from "razorpay";
 import crypto from "crypto";
 import { sendEmail } from "@/lib/mail";
+import { auth } from "@/auth";
 
 interface CustomerDetails {
     name: string;
@@ -127,6 +128,35 @@ export async function submitOrder(
                 },
             });
         });
+
+        // Auto-save address for logged-in users (fire & forget)
+        auth().then(session => {
+            const userId = (session?.user as any)?.id;
+            if (userId && customer.address && customer.city && customer.state && customer.pincode) {
+                // Save if this exact address+pincode combo doesn't already exist
+                (prisma as any).address.findFirst({
+                    where: { userId, address: customer.address, pincode: customer.pincode }
+                }).then((existing: any) => {
+                    if (!existing) {
+                        return (prisma as any).address.count({ where: { userId } }).then((count: number) =>
+                            (prisma as any).address.create({
+                                data: {
+                                    userId,
+                                    name: customer.name,
+                                    phone: customer.phone,
+                                    address: customer.address,
+                                    city: customer.city,
+                                    state: customer.state,
+                                    pincode: customer.pincode,
+                                    landmark: customer.landmark || null,
+                                    isDefault: count === 0,
+                                }
+                            })
+                        );
+                    }
+                }).catch(() => { });
+            }
+        }).catch(() => { });
 
         // Fire & Forget Emails (Do not await so checkout isn't delayed for user)
         sendEmail({
