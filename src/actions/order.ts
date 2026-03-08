@@ -150,7 +150,7 @@ export async function submitOrder(
         });
 
         sendEmail({
-            to: process.env.SMTP_USER || "support@stagkashmir.com",
+            to: process.env.SMTP_USER || "info@stagkashmir.com",
             subject: `🎉 New Order! ₹${serverTotal} from ${customer.name}`,
             text: `New order #${order.id.slice(-8).toUpperCase()} received.\n\nCustomer: ${customer.name}\nEmail: ${customer.email}\nPhone: ${customer.phone}\n\nTotal: ₹${serverTotal}\nPaid: ₹${amountPaid || 0}\n\nLog in to Admin Panel to view details.`
         });

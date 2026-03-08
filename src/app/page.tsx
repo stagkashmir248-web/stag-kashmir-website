@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 import NewsletterForm from "@/components/NewsletterForm";
-import { getProducts } from "@/actions/product";
+import { getFeaturedProducts } from "@/actions/product";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ const organizationSchema = {
             "logo": { "@type": "ImageObject", "url": "https://stagkashmir.com/Stag_logo.png" },
             "sameAs": ["https://www.instagram.com/stag.kashmir"],
             "description": "Premium handcrafted Kashmir Willow cricket bats made by master artisans in the Kashmir valley.",
-            "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "support@stagkashmir.com" },
+            "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "info@stagkashmir.com" },
             "areaServed": "IN",
         },
         {
@@ -49,8 +49,7 @@ const organizationSchema = {
 
 
 export default async function Home() {
-    const products = await getProducts();
-    const featuredProducts = products.slice(0, 4);
+    const featuredProducts = await getFeaturedProducts(4);
 
     return (
         <>

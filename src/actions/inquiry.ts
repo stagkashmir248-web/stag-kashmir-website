@@ -47,7 +47,7 @@ export async function submitInquiry(formData: FormData) {
 
         // Fire & Forget
         sendEmail({
-            to: process.env.SMTP_USER || "support@stagkashmir.com",
+            to: process.env.SMTP_USER || "info@stagkashmir.com",
             subject: `New Contact Inquiry: ${subject}`,
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
             replyTo: email,
