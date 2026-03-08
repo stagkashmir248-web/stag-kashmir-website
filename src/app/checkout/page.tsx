@@ -4,6 +4,7 @@ import { useCartStore } from "@/store/cart";
 import { submitOrder, createRazorpayOrder, verifyRazorpaySignature } from "@/actions/order";
 import { validateCoupon, incrementCouponUsage } from "@/actions/coupon";
 import { saveAbandonedCart } from "@/actions/abandoned-cart";
+import { getDefaultAddress } from "@/actions/address";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Script from "next/script";
@@ -37,6 +38,32 @@ export default function CheckoutPage() {
     } | null>(null);
     const [couponLoading, setCouponLoading] = useState(false);
     const emailRef = useRef<HTMLInputElement>(null);
+
+    // Saved address state for auto-fill
+    const [addrFilled, setAddrFilled] = useState(false);
+    const [addrName, setAddrName] = useState("");
+    const [addrPhone, setAddrPhone] = useState("");
+    const [addrStreet, setAddrStreet] = useState("");
+    const [addrCity, setAddrCity] = useState("");
+    const [addrState, setAddrState] = useState("");
+    const [addrPincode, setAddrPincode] = useState("");
+    const [addrLandmark, setAddrLandmark] = useState("");
+
+    // Fetch default address on mount
+    useEffect(() => {
+        getDefaultAddress().then(addr => {
+            if (addr) {
+                setAddrName(addr.name);
+                setAddrPhone(addr.phone);
+                setAddrStreet(addr.address);
+                setAddrCity(addr.city);
+                setAddrState(addr.state);
+                setAddrPincode(addr.pincode);
+                setAddrLandmark(addr.landmark ?? "");
+                setAddrFilled(true);
+            }
+        }).catch(() => { });
+    }, []);
 
     const discountedTotal = couponApplied ? Math.max(0, total - couponApplied.discountAmount) : total;
     const amountToCharge = paymentMode === "full" ? discountedTotal : PARTIAL_AMOUNT;
@@ -283,7 +310,7 @@ export default function CheckoutPage() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div>
                                         <label className={lbl}>Full Name <span className="text-primary">*</span></label>
-                                        <input name="name" required type="text" placeholder="Aadil Khan" className={inp} />
+                                        <input name="name" required type="text" placeholder="Aadil Khan" className={inp} value={addrName} onChange={e => setAddrName(e.target.value)} />
                                     </div>
                                     <div>
                                         <label className={lbl}>Email Address <span className="text-primary">*</span></label>
@@ -292,7 +319,7 @@ export default function CheckoutPage() {
                                 </div>
                                 <div>
                                     <label className={lbl}>WhatsApp / Phone <span className="text-primary">*</span></label>
-                                    <input name="phone" required type="tel" placeholder="+91 98765 43210" className={inp} />
+                                    <input name="phone" required type="tel" placeholder="+91 98765 43210" className={inp} value={addrPhone} onChange={e => setAddrPhone(e.target.value)} />
                                     <p className="text-xs text-slate-400 mt-2">We'll send order confirmation and payment link on WhatsApp</p>
                                 </div>
                             </div>
@@ -300,26 +327,35 @@ export default function CheckoutPage() {
 
                         {/* Shipping Address */}
                         <div className="rounded-2xl border border-white/10 bg-slate-900 overflow-hidden">
-                            <div className="flex items-center gap-3 px-6 py-4 border-b border-white/10 bg-white/[0.02]">
-                                <span className="material-symbols-outlined !text-[20px] text-primary">local_shipping</span>
-                                <div>
-                                    <h2 className="font-bold text-white">Shipping Address</h2>
-                                    <p className="text-xs text-slate-400">Enter the exact delivery location</p>
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02]">
+                                <div className="flex items-center gap-3">
+                                    <span className="material-symbols-outlined !text-[20px] text-primary">local_shipping</span>
+                                    <div>
+                                        <h2 className="font-bold text-white">Shipping Address</h2>
+                                        <p className="text-xs text-slate-400">Enter the exact delivery location</p>
+                                    </div>
                                 </div>
                             </div>
+                            {addrFilled && (
+                                <div className="mx-6 mt-4 flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-xl px-4 py-2.5 text-xs text-primary">
+                                    <span className="material-symbols-outlined !text-[15px]">check_circle</span>
+                                    <span className="flex-1">Pre-filled from your saved address</span>
+                                    <Link href="/dashboard?tab=addresses" className="text-slate-400 hover:text-white transition-colors">Change</Link>
+                                </div>
+                            )}
                             <div className="p-6 flex flex-col gap-5">
                                 <div>
                                     <label className={lbl}>Street Address / House No. <span className="text-primary">*</span></label>
-                                    <input name="address" required type="text" placeholder="House No. 12, Main Bazar, Near Clock Tower" className={inp} />
+                                    <input name="address" required type="text" placeholder="House No. 12, Main Bazar, Near Clock Tower" className={inp} value={addrStreet} onChange={e => setAddrStreet(e.target.value)} />
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div>
                                         <label className={lbl}>City / Town <span className="text-primary">*</span></label>
-                                        <input name="city" required type="text" placeholder="Srinagar" className={inp} />
+                                        <input name="city" required type="text" placeholder="Srinagar" className={inp} value={addrCity} onChange={e => setAddrCity(e.target.value)} />
                                     </div>
                                     <div>
                                         <label className={lbl}>State <span className="text-primary">*</span></label>
-                                        <select name="state" required
+                                        <select name="state" required value={addrState} onChange={e => setAddrState(e.target.value)}
                                             className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all text-base">
                                             <option value="" className="text-slate-400">Select State</option>
                                             {INDIAN_STATES.map(s => <option key={s} value={s}>{s}</option>)}
@@ -329,11 +365,11 @@ export default function CheckoutPage() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div>
                                         <label className={lbl}>PIN Code <span className="text-primary">*</span></label>
-                                        <input name="pincode" required type="text" maxLength={6} pattern="\d{6}" placeholder="190001" className={inp} />
+                                        <input name="pincode" required type="text" maxLength={6} pattern="\d{6}" placeholder="190001" className={inp} value={addrPincode} onChange={e => setAddrPincode(e.target.value)} />
                                     </div>
                                     <div>
                                         <label className={lbl}>Landmark <span className="text-slate-500 font-normal">(optional)</span></label>
-                                        <input name="landmark" type="text" placeholder="Near mosque, school, etc." className={inp} />
+                                        <input name="landmark" type="text" placeholder="Near mosque, school, etc." className={inp} value={addrLandmark} onChange={e => setAddrLandmark(e.target.value)} />
                                     </div>
                                 </div>
                             </div>

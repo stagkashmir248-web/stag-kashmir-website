@@ -11,6 +11,16 @@ export async function getUserAddresses(userId: string) {
     });
 }
 
+export async function getDefaultAddress() {
+    const session = await auth();
+    const userId = (session?.user as any)?.id;
+    if (!userId) return null;
+    return (prisma as any).address.findFirst({
+        where: { userId, isDefault: true },
+    }) as Promise<{ name: string; phone: string; address: string; city: string; state: string; pincode: string; landmark?: string | null } | null>;
+}
+
+
 export async function saveAddress(data: {
     name: string;
     phone: string;
