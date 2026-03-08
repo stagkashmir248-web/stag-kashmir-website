@@ -55,6 +55,8 @@ export const getFeaturedProducts = unstable_cache(
                     images: true,
                     stock: true,
                     createdAt: true,
+                    category: true,
+                    willowType: true,
                     _count: { select: { reviews: { where: { approved: true } } } },
                     reviews: { where: { approved: true }, select: { rating: true } },
                 },

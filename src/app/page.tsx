@@ -403,7 +403,13 @@ export default async function Home() {
                                             <Link href={`/shop/${product.slug}`}>
                                                 <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">{product.name}</h3>
                                             </Link>
-                                            <p className="text-slate-400 text-sm mb-4">Premium Kashmir Willow</p>
+                                            <p className="text-slate-400 text-sm mb-4">
+                                                {(product as any).willowType
+                                                    ? `${(product as any).willowType}`
+                                                    : (product as any).category
+                                                        ? (product as any).category.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())
+                                                        : 'Premium Kashmir Willow'}
+                                            </p>
                                             <div className="flex items-center justify-between">
                                                 {product.compareAtPrice && product.compareAtPrice > product.price ? (
                                                     <div className="flex flex-col">
