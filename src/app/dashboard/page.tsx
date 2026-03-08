@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "@/auth";
+import AddressesClient from "@/components/AddressesClient";
+import { getUserAddresses } from "@/actions/address";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function StatusBadge({ status }: { status: string }) {
@@ -190,33 +192,6 @@ function ProfileTab({ user }: { user: any }) {
     );
 }
 
-function AddressesTab() {
-    return (
-        <div className="flex flex-col gap-5">
-            <div className="rounded-2xl border border-slate-700 bg-slate-900 overflow-hidden">
-                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700 bg-slate-800/50">
-                    <div className="flex items-center gap-3">
-                        <span className="material-symbols-outlined !text-[20px] text-primary">location_on</span>
-                        <h2 className="font-bold text-white">Saved Addresses</h2>
-                    </div>
-                </div>
-                <div className="p-10 flex flex-col items-center text-center gap-4">
-                    <span className="material-symbols-outlined !text-5xl text-slate-700">home_pin</span>
-                    <h3 className="text-lg font-bold text-white">No saved addresses yet</h3>
-                    <p className="text-slate-400 text-sm max-w-sm">Your shipping addresses will be saved here after you place an order. Next time, checkout will be faster.</p>
-                    <Link href="/shop" className="mt-2 bg-primary hover:bg-amber-400 text-black font-bold py-2.5 px-8 rounded-xl transition-all text-sm">
-                        Shop Now
-                    </Link>
-                </div>
-            </div>
-
-            <div className="flex items-start gap-3 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs text-slate-400">
-                <span className="material-symbols-outlined !text-[16px] text-amber-400 shrink-0 mt-0.5">lightbulb</span>
-                <span>Address management (save, edit, delete) is coming soon. For now, your address is saved with each order and shown in Order History.</span>
-            </div>
-        </div>
-    );
-}
 
 // ── Main page ────────────────────────────────────────────────────────────────
 export default async function DashboardPage(props: {
@@ -235,6 +210,10 @@ export default async function DashboardPage(props: {
             orderBy: { createdAt: "desc" },
             include: { items: { include: { product: { select: { name: true, imageUrl: true, slug: true } } } } },
         })
+        : [];
+
+    const addresses = tab === "addresses" && (session.user as any).id
+        ? await getUserAddresses((session.user as any).id)
         : [];
 
     const navItems = [
@@ -314,7 +293,7 @@ export default async function DashboardPage(props: {
                     </div>
                     {tab === "orders" && <OrdersTab orders={orders} />}
                     {tab === "profile" && <ProfileTab user={user} />}
-                    {tab === "addresses" && <AddressesTab />}
+                    {tab === "addresses" && <AddressesClient addresses={addresses as any} userId={(session.user as any).id ?? ""} />}
                 </div>
             </div>
         </div>
