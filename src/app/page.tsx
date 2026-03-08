@@ -391,12 +391,14 @@ export default async function Home() {
                                         </div>
                                         <div className="p-5">
                                             <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                                                <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                                <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                                <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                                <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                                <span className="material-symbols-outlined !text-[14px] fill-current">star</span>
-                                                <span className="text-xs text-slate-500 ml-1">(0)</span>
+                                                {[1, 2, 3, 4, 5].map(i => (
+                                                    <span key={i} className={`material-symbols-outlined !text-[14px] ${Math.round((product as any).avgRating ?? 0) >= i ? 'text-yellow-500' : 'text-slate-600'}`} style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                                                ))}
+                                                {(product as any).reviewCount > 0 ? (
+                                                    <span className="text-xs text-slate-500 ml-1">({(product as any).reviewCount})</span>
+                                                ) : (
+                                                    <span className="text-xs text-slate-600 ml-1 italic">No reviews yet</span>
+                                                )}
                                             </div>
                                             <Link href={`/shop/${product.slug}`}>
                                                 <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">{product.name}</h3>
