@@ -13,14 +13,16 @@ export const getProducts = unstable_cache(
                 orderBy: { createdAt: "desc" },
                 include: {
                     variations: true,
+                    reviews: { where: { approved: true }, select: { rating: true } },
                     _count: { select: { reviews: { where: { approved: true } } } }
                 }
             });
-            // Attach avgRating for convenience
             return products.map(p => ({
                 ...p,
                 reviewCount: p._count?.reviews ?? 0,
-                avgRating: 0, // computed below to avoid extra query
+                avgRating: p.reviews.length > 0
+                    ? p.reviews.reduce((s: number, r: { rating: number }) => s + r.rating, 0) / p.reviews.length
+                    : 0,
             }));
         } catch (error) {
             console.error("Failed to fetch products:", error);
@@ -53,9 +55,17 @@ export const getFeaturedProducts = unstable_cache(
                     images: true,
                     stock: true,
                     createdAt: true,
+                    _count: { select: { reviews: { where: { approved: true } } } },
+                    reviews: { where: { approved: true }, select: { rating: true } },
                 },
             });
-            return products;
+            return products.map(p => ({
+                ...p,
+                reviewCount: p._count?.reviews ?? 0,
+                avgRating: (p as any).reviews?.length > 0
+                    ? (p as any).reviews.reduce((s: number, r: { rating: number }) => s + r.rating, 0) / (p as any).reviews.length
+                    : 0,
+            }));
         } catch (error) {
             console.error("Failed to fetch featured products:", error);
             return [];
@@ -95,20 +105,14 @@ export const getRelatedProducts = unstable_cache(
         try {
             const where: any = { id: { not: currentProductId }, isArchived: false };
             if (category) where.category = category;
+            const sharedSelect = {
+                id: true, slug: true, name: true, price: true, compareAtPrice: true,
+                imageUrl: true, stock: true, category: true,
+                _count: { select: { reviews: { where: { approved: true } } } },
+                reviews: { where: { approved: true }, select: { rating: true } },
+            };
             const products = await (prisma.product as any).findMany({
-                where,
-                take: limit,
-                orderBy: { createdAt: "desc" },
-                select: {
-                    id: true,
-                    slug: true,
-                    name: true,
-                    price: true,
-                    compareAtPrice: true,
-                    imageUrl: true,
-                    stock: true,
-                    category: true,
-                }
+                where, take: limit, orderBy: { createdAt: "desc" }, select: sharedSelect
             });
             // If same-category doesn't fill limit, backfill with random products
             if (products.length < limit) {
@@ -116,11 +120,19 @@ export const getRelatedProducts = unstable_cache(
                     where: { isArchived: false, id: { not: currentProductId }, ...(products.length > 0 ? { NOT: { id: { in: products.map((p: any) => p.id) } } } : {}) },
                     take: limit - products.length,
                     orderBy: { createdAt: "desc" },
-                    select: { id: true, slug: true, name: true, price: true, compareAtPrice: true, imageUrl: true, stock: true, category: true }
+                    select: sharedSelect
                 });
-                return [...products, ...extras] as any[];
+                return [...products, ...extras].map((p: any) => ({
+                    ...p,
+                    reviewCount: p._count?.reviews ?? 0,
+                    avgRating: p.reviews?.length > 0 ? p.reviews.reduce((s: number, r: { rating: number }) => s + r.rating, 0) / p.reviews.length : 0,
+                }));
             }
-            return products as any[];
+            return products.map((p: any) => ({
+                ...p,
+                reviewCount: p._count?.reviews ?? 0,
+                avgRating: p.reviews?.length > 0 ? p.reviews.reduce((s: number, r: { rating: number }) => s + r.rating, 0) / p.reviews.length : 0,
+            }));
         } catch (error) {
             console.error("Failed to fetch related products:", error);
             return [];
