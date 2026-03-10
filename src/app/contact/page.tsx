@@ -189,18 +189,6 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    {/* Social Presence */}
-                    <div className="flex justify-center gap-4">
-                        <a className="size-10 rounded-full bg-primary/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-primary border border-primary/10" href="https://www.facebook.com/stag.kashmir" target="_blank" rel="noopener noreferrer" title="Facebook">
-                            <span className="material-symbols-outlined">social_leaderboard</span>
-                        </a>
-                        <a className="size-10 rounded-full bg-primary/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-primary border border-primary/10" href="https://www.instagram.com/stag.kashmir" target="_blank" rel="noopener noreferrer" title="Instagram">
-                            <span className="material-symbols-outlined">photo_camera</span>
-                        </a>
-                        <a className="size-10 rounded-full bg-primary/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-primary border border-primary/10" href="https://www.youtube.com/@stag.kashmir" target="_blank" rel="noopener noreferrer" title="YouTube">
-                            <span className="material-symbols-outlined">play_circle</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </main>
