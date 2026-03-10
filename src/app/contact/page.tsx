@@ -94,8 +94,10 @@ export default function Contact() {
                                 This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="text-primary hover:underline">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer" className="text-primary hover:underline">Terms of Service</a> apply.
                             </div>
 
-                            <button disabled={status === "submitting"} className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed" type="submit">
-                                <span className="material-symbols-outlined">{status === "submitting" ? "hourglass_empty" : "send"}</span>
+                            <button disabled={status === "submitting"} className="w-full bg-primary hover:bg-primary/90 active:scale-[0.98] text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100" type="submit">
+                                <span className={status === "submitting" ? "material-symbols-outlined animate-spin" : "material-symbols-outlined"}>
+                                    {status === "submitting" ? "progress_activity" : "send"}
+                                </span>
                                 {status === "submitting" ? "Sending..." : "Send Message"}
                             </button>
                         </form>
@@ -171,7 +173,7 @@ export default function Contact() {
                             <h4 className="font-bold text-lg mb-2">Our Workshop</h4>
                             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                                 Ground floor Busserbugh Alesteng<br />
-                                Near MAsjid Abu Bakar Peer Mohalla<br />
+                                Near Masjid Abu Bakar Peer Mohalla<br />
                                 Ganderbal, Jammu and Kashmir 191201
                             </p>
                             <div className="flex flex-col gap-3">

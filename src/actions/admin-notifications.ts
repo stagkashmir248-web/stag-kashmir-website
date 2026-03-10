@@ -2,8 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-
-const ADMIN_EMAIL = "stagkashmir248@gmail.com";
+import { ADMIN_EMAIL } from "@/lib/constants";
 
 export async function getAdminCounts() {
     try {

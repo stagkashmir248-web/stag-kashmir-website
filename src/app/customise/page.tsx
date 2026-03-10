@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { submitCustomBatInquiry } from "@/actions/customization";
 
 const BAT_TYPES = ["Hard Tennis Bat", "Soft Tennis Bat", "Season Bat (Leather)"];
 const SIZES = ["34 inches", "34.5 inches", "35 inches", "35.5 inches", "Custom"];
@@ -67,13 +68,10 @@ export default function CustomisePage() {
 
         // Submit as an order inquiry (re-use inquiry server action)
         try {
-            const res = await fetch("/api/custom-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, phone, specs }),
+            await submitCustomBatInquiry({
+                name, email, phone, address, city, state, pincode, landmark, specs
             });
-            // Even if no API yet, we show success
-        } catch { /* no-op */ }
+        } catch (e) { console.error("Failed to submit custom bat inquiry", e); }
 
         setSubmitting(false);
         setSubmitted(true);

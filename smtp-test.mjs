@@ -1,34 +1,33 @@
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
+import nodemailer from "nodemailer";
 
-async function testMail() {
+async function testEmail() {
+    console.log("Testing Resend SMTP Connection...");
+
     const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || "smtp.hostinger.com",
-        port: Number(process.env.SMTP_PORT) || 465,
+        host: "smtp.resend.com",
+        port: 465,
         secure: true,
         auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASSWORD,
+            user: "resend",
+            pass: "re_X3mbddyt_5ynu2CCpbohMh29UEavcnDUM",
         },
     });
 
     try {
-        console.log("Verifying...");
         await transporter.verify();
-        console.log("Verified. Sending...");
+        console.log("✅ Credentials verified! Connection to Resend successful.");
 
         const info = await transporter.sendMail({
-            from: `"Stag Kashmir Test" <${process.env.SMTP_USER}>`,
-            to: "sofisuhail007@gmail.com",
-            subject: "Test Welcome Email",
-            text: "This is a test to check if SMTP works.",
+            from: '"Stag Kashmir Testing" <info@stagkashmir.com>',
+            to: "stagkashmir248@gmail.com",
+            subject: "✅ Resend SMTP is Working!",
+            text: "If you are reading this email, your Resend API Key works perfectly and the website is ready to use Resend.",
         });
 
-        console.log("Success! Message ID:", info.messageId);
-    } catch (e) {
-        console.error("Error:", e);
+        console.log("✅ Test email sent successfully! Message ID:", info.messageId);
+    } catch (error) {
+        console.error("❌ Failed to send email via Resend:", error);
     }
 }
 
-testMail();
+testEmail();

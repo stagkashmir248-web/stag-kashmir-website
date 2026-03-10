@@ -1,8 +1,18 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
+import { ADMIN_EMAIL } from "@/lib/constants";
+
+async function requireAdmin() {
+    const session = await auth();
+    if (session?.user?.email !== ADMIN_EMAIL) {
+        throw new Error("Unauthorized");
+    }
+}
 
 export async function getDashboardMetrics() {
+    await requireAdmin();
     try {
         const now = new Date();
         const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -79,6 +89,7 @@ export async function getDashboardMetrics() {
 }
 
 export async function getAnalyticsData(days = 30) {
+    await requireAdmin();
     try {
         const since = new Date();
         since.setDate(since.getDate() - days);
