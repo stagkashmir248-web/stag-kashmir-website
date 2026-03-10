@@ -4,10 +4,28 @@ import { prisma } from "@/lib/prisma";
 import { sendEmail } from "@/lib/mail";
 import { ADMIN_EMAIL } from "@/lib/constants";
 
+async function verifyRecaptcha(token: string): Promise<boolean> {
+    try {
+        const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+        });
+        const data = await res.json();
+        return data.success === true && (data.score ?? 0) >= 0.5;
+    } catch {
+        return false;
+    }
+}
+
 export async function submitCustomBatInquiry(data: {
-    name: string; email: string; phone: string; address: string; city: string; state: string; pincode: string; landmark: string; specs: string;
+    name: string; email: string; phone: string; address: string; city: string; state: string; pincode: string; landmark: string; specs: string; recaptchaToken: string;
 }) {
-    const { name, email, phone, address, city, state, pincode, landmark, specs } = data;
+    const { name, email, phone, address, city, state, pincode, landmark, specs, recaptchaToken } = data;
+
+    if (!recaptchaToken || !(await verifyRecaptcha(recaptchaToken))) {
+        return { success: false, error: "Security check failed. Please try again." };
+    }
 
     // We will save this in the Inquiry table, but prefix the subject so it's clear it's a Custom Bat Order.
     const fullMessage = `

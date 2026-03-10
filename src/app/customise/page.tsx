@@ -1,8 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { submitCustomBatInquiry } from "@/actions/customization";
+
+const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
+
+const INDIAN_STATES = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat",
+    "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh",
+    "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
+    "West Bengal", "Jammu & Kashmir", "Ladakh", "Delhi", "Chandigarh", "Puducherry",
+    "Andaman & Nicobar Islands", "Dadra & Nagar Haveli", "Daman & Diu", "Lakshadweep",
+];
 
 const BAT_TYPES = ["Hard Tennis Bat", "Soft Tennis Bat", "Season Bat (Leather)"];
 const SIZES = ["34 inches", "34.5 inches", "35 inches", "35.5 inches", "Custom"];
@@ -17,6 +28,16 @@ export default function CustomisePage() {
     const [step, setStep] = useState<Step>(1);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const [statusError, setStatusError] = useState("");
+
+    // Load reCAPTCHA v3 script
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
+        script.async = true;
+        document.head.appendChild(script);
+        return () => { document.head.removeChild(script); };
+    }, []);
 
     // Bat specs
     const [batType, setBatType] = useState("");
@@ -55,26 +76,46 @@ export default function CustomisePage() {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         setSubmitting(true);
+        setStatusError("");
+
+        let recaptchaToken = "";
+        try {
+            recaptchaToken = await (window as any).grecaptcha.execute(SITE_KEY, { action: "custombat" });
+        } catch {
+            setSubmitting(false);
+            setStatusError("Security check failed. Please refresh the page and try again.");
+            return;
+        }
+
         // Build summary message
         const specs = [
             `Bat Type: ${batType}`,
             `Willow: ${willow}`,
             `Size: ${finalSize}`,
             `Weight: ${finalWeight}`,
-            `Handle: ${handle}`,
-            `Grip: ${finalGrip}`,
+            `Handle: ${handle || "Standard"}`,
+            `Grip: ${finalGrip || "Standard"}`,
             notes ? `Notes: ${notes}` : "",
         ].filter(Boolean).join(" | ");
 
         // Submit as an order inquiry (re-use inquiry server action)
         try {
-            await submitCustomBatInquiry({
-                name, email, phone, address, city, state, pincode, landmark, specs
+            const result = await submitCustomBatInquiry({
+                name, email, phone, address, city, state, pincode, landmark, specs, recaptchaToken
             });
-        } catch (e) { console.error("Failed to submit custom bat inquiry", e); }
 
-        setSubmitting(false);
-        setSubmitted(true);
+            if (result.success) {
+                setSubmitting(false);
+                setSubmitted(true);
+            } else {
+                setSubmitting(false);
+                setStatusError(result.error || "Failed to submit. Please try again.");
+            }
+        } catch (e) {
+            console.error("Failed to submit custom bat inquiry", e);
+            setSubmitting(false);
+            setStatusError("Failed to submit. Please try again.");
+        }
     }
 
     if (submitted) {
@@ -344,7 +385,10 @@ export default function CustomisePage() {
                                             </div>
                                             <div>
                                                 <label className="block text-sm font-semibold text-slate-200 mb-1.5">State <span className="text-primary">*</span></label>
-                                                <input required type="text" value={state} onChange={e => setState(e.target.value)} placeholder="Jammu & Kashmir" className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm" />
+                                                <select required value={state} onChange={e => setState(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-primary text-sm appearance-none cursor-pointer">
+                                                    <option value="" className="text-slate-400">Select State</option>
+                                                    {INDIAN_STATES.map(s => <option key={s} value={s}>{s}</option>)}
+                                                </select>
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -360,6 +404,12 @@ export default function CustomisePage() {
                                     </div>
                                 </div>
                             </div>
+
+                            {statusError && (
+                                <div className="mx-6 mb-5 p-4 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-sm font-medium">
+                                    {statusError}
+                                </div>
+                            )}
 
                             {/* Payment note */}
                             <div className="mx-6 mb-5 flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-xl px-4 py-3">
@@ -382,6 +432,9 @@ export default function CustomisePage() {
                             </div>
                         </div>
 
+                        <div className="text-center text-xs text-slate-500 mt-2">
+                            This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="text-primary hover:underline">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer" className="text-primary hover:underline">Terms of Service</a> apply.
+                        </div>
                         <p className="text-center text-xs text-slate-600">🔒 Your information is secure. Production begins only after payment is confirmed.</p>
                     </div>
                 )}
