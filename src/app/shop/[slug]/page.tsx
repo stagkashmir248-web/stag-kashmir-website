@@ -7,10 +7,7 @@ import ProductGallery from "./ProductGallery";
 import ProductReviews from "./ProductReviews";
 import ShareButtons from "./ShareButtons";
 import RelatedProducts from "./RelatedProducts";
-import { auth } from "@/auth";
 import type { Metadata } from "next";
-
-export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const resolvedParams = await params;
@@ -58,9 +55,8 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
 
     if (!product) notFound();
 
-    const [reviews, session, relatedProducts] = await Promise.all([
+    const [reviews, relatedProducts] = await Promise.all([
         getReviewsForProduct(product.id),
-        auth(),
         getRelatedProducts(product.id, (product as any).category ?? null),
     ]);
     const avgRating = reviews.length > 0 ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
@@ -258,7 +254,6 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                             productId={product.id}
                             productSlug={product.slug}
                             reviews={reviews}
-                            user={session?.user ?? null}
                         />
 
                         {/* Related Products */}

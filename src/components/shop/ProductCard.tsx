@@ -65,7 +65,8 @@ export function ProductCard({ product }: ProductCardProps) {
     return (
         <Link
             href={`/shop/${product.slug}`}
-            className="group flex flex-col relative w-full block transition-all duration-300 hover:-translate-y-1 will-change-transform"
+            prefetch={true}
+            className="group flex flex-col relative w-full block transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] active:opacity-80 will-change-transform"
         >
             {/* Badges Overlay */}
             <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">

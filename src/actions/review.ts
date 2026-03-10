@@ -2,7 +2,8 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { unstable_cache } from "next/cache";
 import { ADMIN_EMAIL } from "@/lib/constants";
 
 async function requireAdmin() {
@@ -65,6 +66,7 @@ export async function addManualReview(data: {
         });
         revalidatePath(`/shop/${data.productSlug}`);
         revalidatePath("/admin/reviews");
+        revalidateTag("reviews");
         return { success: true };
     } catch (error) {
         console.error("Failed to add manual review:", error);
@@ -72,17 +74,21 @@ export async function addManualReview(data: {
     }
 }
 
-export async function getReviewsForProduct(productId: string) {
-    try {
-        const reviews = await (prisma as any).review.findMany({
-            where: { productId, approved: true },
-            orderBy: { createdAt: "desc" },
-        });
-        return reviews as { id: string; authorName: string; rating: number; comment: string; createdAt: Date }[];
-    } catch {
-        return [];
-    }
-}
+export const getReviewsForProduct = unstable_cache(
+    async (productId: string) => {
+        try {
+            const reviews = await (prisma as any).review.findMany({
+                where: { productId, approved: true },
+                orderBy: { createdAt: "desc" },
+            });
+            return reviews as { id: string; authorName: string; rating: number; comment: string; createdAt: Date }[];
+        } catch {
+            return [];
+        }
+    },
+    ["product-reviews"],
+    { revalidate: 3600, tags: ["reviews"] }
+);
 
 export async function getAllReviews() {
     await requireAdmin();
@@ -102,6 +108,7 @@ export async function approveReview(id: string) {
     try {
         await (prisma as any).review.update({ where: { id }, data: { approved: true } });
         revalidatePath("/admin/reviews");
+        revalidateTag("reviews");
         return { success: true };
     } catch {
         return { success: false };
@@ -113,6 +120,7 @@ export async function deleteReview(id: string) {
     try {
         await (prisma as any).review.delete({ where: { id } });
         revalidatePath("/admin/reviews");
+        revalidateTag("reviews");
         return { success: true };
     } catch {
         return { success: false };

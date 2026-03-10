@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { submitReview } from "@/actions/review";
 
 interface Review {
@@ -16,7 +16,6 @@ interface Props {
     productId: string;
     productSlug: string;
     reviews: Review[];
-    user: { name?: string | null; email?: string | null; image?: string | null } | null;
 }
 
 function Stars({ rating, interactive = false, size = 18, onSelect }: {
@@ -76,7 +75,9 @@ function ReviewCard({ review }: { review: Review }) {
     );
 }
 
-export default function ProductReviews({ productId, productSlug, reviews, user }: Props) {
+export default function ProductReviews({ productId, productSlug, reviews }: Props) {
+    const { data: session } = useSession();
+    const user = session?.user ?? null;
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const [submitted, setSubmitted] = useState(false);
