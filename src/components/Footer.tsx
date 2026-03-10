@@ -51,7 +51,7 @@ export default function Footer() {
                         <h3 className="text-white font-bold mb-6">Visit Us</h3>
                         <p className="text-slate-500 text-sm leading-relaxed mb-4">
                             Ground floor Busserbugh Alesteng,<br />
-                            Near MAsjid Abu Bakar Peer Mohalla<br />
+                            Near Masjid Abu Bakar Peer Mohalla<br />
                             Ganderbal, Jammu and Kashmir 191201
                         </p>
                         <a className="text-primary hover:underline text-sm font-medium block" href="mailto:info@stagkashmir.com">info@stagkashmir.com</a>
