@@ -28,7 +28,7 @@ export async function sendEmail({ to, subject, text, html, replyTo }: SendEmailP
         await transporter.verify();
 
         const info = await transporter.sendMail({
-            from: `"Stag Kashmir" <${process.env.SMTP_USER}>`, // sender address
+            from: `"Stag Kashmir" <info@stagkashmir.com>`, // Must be an email on the verified domain
             to,       // list of receivers
             subject,  // Subject line
             text,     // plain text body
