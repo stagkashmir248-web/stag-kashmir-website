@@ -89,7 +89,7 @@ export default function PrintShippingLabelButton({ order }: PrintShippingLabelBu
                             <div class="sender-info">
                                 <strong>Stag Kashmir</strong><br/>
                                 Ground floor Busserbugh Alesteng,<br/>
-                                Near MasjidAbu Bakar Peer Mohalla<br/>
+                                Near Masjid Abu Bakar Peer Mohalla<br/>
                                 Ganderbal, Jammu and Kashmir 191201<br/>
                                 +91 94698 86630
                             </div>
