@@ -69,15 +69,16 @@ export default function HeaderClient({ isLoggedIn }: HeaderClientProps) {
                     >
                         <span className="material-symbols-outlined !text-[28px]">{isMobileMenuOpen ? "close" : "menu"}</span>
                     </button>
-                    <Link href="/" className="relative flex items-center justify-center gap-2 hover:opacity-80 transition-opacity cursor-pointer group shrink-0">
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/40 to-white/30 blur-xl rounded-full opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <Link href="/" className="relative flex items-center justify-center gap-2 transition-all cursor-pointer group shrink-0">
+                        {/* Soft ambient glow behind the logo */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/20 to-primary/10 blur-2xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
                         <Image
                             src="/Stag_logo-removebg-preview.png"
                             alt="Stag Kashmir"
-                            width={140}
-                            height={50}
+                            width={160}
+                            height={60}
                             priority
-                            className="relative z-10 w-[120px] md:w-[140px] h-auto object-contain drop-shadow-sm"
+                            className="relative z-10 w-[120px] md:w-[150px] h-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
                         />
                     </Link>
                 </div>

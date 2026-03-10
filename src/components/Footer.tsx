@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -6,10 +7,17 @@ export default function Footer() {
             <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="md:col-span-1">
-                        <div className="flex items-center gap-2 text-white mb-6">
-                            <span className="material-symbols-outlined !text-[28px]">sports_cricket</span>
-                            <h2 className="text-lg font-bold uppercase tracking-wider">Stag Kashmir</h2>
-                        </div>
+                        <Link href="/" className="relative flex items-center justify-start gap-2 transition-all cursor-pointer group mb-6 w-fit">
+                            {/* Soft ambient glow behind the logo */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/20 to-primary/10 blur-2xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
+                            <Image
+                                src="/Stag_logo-removebg-preview.png"
+                                alt="Stag Kashmir"
+                                width={160}
+                                height={60}
+                                className="relative z-10 w-[140px] h-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+                            />
+                        </Link>
                         <p className="text-slate-500 text-sm leading-relaxed mb-6">
                             Crafting premium authentic Kashmir willow bats. We are dedicated to providing cricketers with equipment that enhances their performance and style.
                         </p>
