@@ -15,7 +15,7 @@ interface SendEmailParams {
 export async function sendEmail({ to, subject, text, html, replyTo }: SendEmailParams) {
     try {
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST || "smtp.hostinger.com",
+            host: process.env.SMTP_HOST || "smtp.zoho.in",
             port: Number(process.env.SMTP_PORT) || 465,
             secure: true, // true for 465, false for other ports
             auth: {
