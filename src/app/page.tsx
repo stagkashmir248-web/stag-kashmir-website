@@ -98,20 +98,20 @@ export default async function Home() {
                 <div className="w-full bg-card-dark border-y border-white/5 py-8">
                     <div className="container mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
                         <div className="flex flex-col items-center gap-1">
-                            <span className="text-3xl font-bold text-white">Hand-Crafted</span>
-                            <span className="text-sm text-slate-400 uppercase tracking-wider">In Kashmir</span>
+                            <span className="text-3xl md:text-3xl font-bold text-white text-center">Mastercrafted</span>
+                            <span className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider text-center">By Kashmiri Artisans</span>
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            <span className="text-3xl font-bold text-white">100%</span>
-                            <span className="text-sm text-slate-400 uppercase tracking-wider">Kashmir Willow</span>
+                            <span className="text-3xl md:text-3xl font-bold text-white text-center">100% Authentic</span>
+                            <span className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider text-center">Premium Willow</span>
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            <span className="text-3xl font-bold text-white">15k+</span>
-                            <span className="text-sm text-slate-400 uppercase tracking-wider">Happy Cricketers</span>
+                            <span className="text-3xl md:text-3xl font-bold text-white text-center">15,000+</span>
+                            <span className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider text-center">Trusted By Players</span>
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            <span className="text-3xl font-bold text-white">PAN India</span>
-                            <span className="text-sm text-slate-400 uppercase tracking-wider">Delivery</span>
+                            <span className="text-3xl md:text-3xl font-bold text-white text-center">Fast & Secure</span>
+                            <span className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider text-center">Nationwide Shipping</span>
                         </div>
                     </div>
                 </div>

@@ -65,14 +65,8 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
         )
         : orders;
 
-    // --- Group by day ---
-    const grouped: Record<string, Order[]> = {};
-    filteredOrders.forEach(o => {
-        const day = o.createdAt.slice(0, 10); // "2026-02-27"
-        if (!grouped[day]) grouped[day] = [];
-        grouped[day].push(o);
-    });
-    const sortedDays = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+    // --- Unified Sorting ---
+    const sortedOrders = [...filteredOrders].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     // --- Excel Export ---
     function handleExport() {
@@ -163,8 +157,8 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                 </div>
             </div>
 
-            {/* Day-wise order groups */}
-            {sortedDays.length === 0 ? (
+            {/* Single Order Table */}
+            {sortedOrders.length === 0 ? (
                 <div className="bg-slate-900 rounded-xl border border-slate-800 py-16 text-center text-slate-500">
                     <span className="material-symbols-outlined !text-5xl text-slate-700 block mb-3">
                         {search ? "search_off" : "receipt_long"}
@@ -181,109 +175,91 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                         <p>No orders yet.</p>
                     )}
                 </div>
-            ) : sortedDays.map(day => {
-                const dayOrders = grouped[day];
-                const dayTotal = dayOrders.reduce((sum, o) => sum + o.total, 0);
-                const dayPaid = dayOrders.reduce((sum, o) => sum + (o.amountPaid ?? (o.status === "PAID" ? o.total : 0)), 0);
-                const dayBalance = dayTotal - dayPaid;
-                const dayLabel = format(parseISO(day), "EEEE, dd MMMM yyyy");
+            ) : (
+                <div className="rounded-xl border border-slate-700 overflow-hidden bg-slate-900 shadow-sm">
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="border-b border-slate-800 bg-slate-800/80">
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 whitespace-nowrap">Date</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 whitespace-nowrap">Order ID</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 min-w-[200px]">Customer</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 min-w-[250px]">Items</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Total</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Paid</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Balance</th>
+                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-center whitespace-nowrap">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-800">
+                                {sortedOrders.map((order) => {
+                                    const paid = order.amountPaid ?? (order.status === "PAID" ? order.total : 0);
+                                    const balance = Math.max(0, order.total - paid);
+                                    const dateStr = format(new Date(order.createdAt), "dd MMM yyyy");
+                                    const timeStr = format(new Date(order.createdAt), "hh:mm a");
 
-                return (
-                    <div key={day} className="flex flex-col gap-0 rounded-xl border border-slate-700 overflow-hidden">
-                        {/* Day header */}
-                        <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-3 bg-slate-800 border-b border-slate-700">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined !text-[18px] text-primary">calendar_today</span>
-                                <span className="font-bold text-white">{dayLabel}</span>
-                                <span className="text-xs bg-slate-700 text-slate-300 px-2.5 py-1 rounded-full font-bold">
-                                    {dayOrders.length} order{dayOrders.length !== 1 ? "s" : ""}
-                                </span>
-                            </div>
-                            <div className="flex items-center gap-6 text-sm">
-                                <span className="text-slate-400">Total: <strong className="text-white">₹{dayTotal.toLocaleString("en-IN")}</strong></span>
-                                <span className="text-slate-400">Collected: <strong className="text-green-300">₹{dayPaid.toLocaleString("en-IN")}</strong></span>
-                                {dayBalance > 0 && <span className="text-slate-400">Balance: <strong className="text-amber-300">₹{dayBalance.toLocaleString("en-IN")}</strong></span>}
-                            </div>
-                        </div>
-
-                        {/* Table */}
-                        <div className="overflow-x-auto bg-slate-900">
-                            <table className="w-full text-left border-collapse">
-                                <thead>
-                                    <tr className="border-b border-slate-800 bg-slate-900/50">
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500">Order ID</th>
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500">Customer</th>
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500">Items</th>
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500 text-right">Order Total</th>
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500 text-right">Paid</th>
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500 text-right">Balance Due</th>
-                                        <th className="py-3 px-6 font-bold text-[11px] uppercase tracking-wider text-slate-500 text-center">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-slate-800">
-                                    {dayOrders.map(order => {
-                                        const paid = order.amountPaid ?? (order.status === "PAID" ? order.total : 0);
-                                        const balance = Math.max(0, order.total - paid);
-                                        const time = format(new Date(order.createdAt), "hh:mm a");
-
-                                        return (
-                                            <tr key={order.id} className="hover:bg-slate-800/50 transition-colors">
-                                                <td className="py-4 px-6">
-                                                    <Link href={`/admin/orders/${order.id}`} className="font-mono text-sm font-bold text-primary hover:underline block">
-                                                        #{order.id.slice(-8).toUpperCase()}
-                                                    </Link>
-                                                    <span className="text-xs text-slate-500">{time}</span>
-                                                </td>
-                                                <td className="py-4 px-6">
-                                                    <p className="text-white text-sm font-semibold">{order.customer}</p>
-                                                    <p className="text-xs text-slate-400">{order.email}</p>
-                                                    {order.phone && <p className="text-xs text-slate-400">{order.phone}</p>}
-                                                </td>
-                                                <td className="py-4 px-6">
-                                                    <div className="flex flex-col gap-1.5">
-                                                        {order.items.map(item => (
-                                                            <div key={item.id} className="flex items-center gap-2">
-                                                                {item.product?.imageUrl && (
-                                                                    <img src={item.product.imageUrl} alt="" className="size-7 rounded object-cover border border-slate-700" />
-                                                                )}
-                                                                <div>
-                                                                    <p className="text-xs font-medium text-white line-clamp-1">{item.product?.name ?? "?"}</p>
-                                                                    <p className="text-[11px] text-slate-500">Qty: {item.quantity} × ₹{item.price.toLocaleString("en-IN")}</p>
-                                                                </div>
+                                    return (
+                                        <tr key={order.id} className="hover:bg-slate-800/40 transition-colors">
+                                            <td className="py-4 px-5 whitespace-nowrap">
+                                                <p className="font-semibold text-white text-sm">{dateStr}</p>
+                                                <p className="text-xs text-slate-500 mt-0.5">{timeStr}</p>
+                                            </td>
+                                            <td className="py-4 px-5">
+                                                <Link href={`/admin/orders/${order.id}`} className="font-mono text-sm font-bold text-primary hover:underline block">
+                                                    #{order.id.slice(-8).toUpperCase()}
+                                                </Link>
+                                            </td>
+                                            <td className="py-4 px-5">
+                                                <p className="text-white text-sm font-semibold mb-0.5">{order.customer}</p>
+                                                <p className="text-xs text-slate-400 truncate max-w-[180px]" title={order.email}>{order.email}</p>
+                                                {order.phone && <p className="text-xs text-slate-500 mt-0.5">{order.phone}</p>}
+                                            </td>
+                                            <td className="py-4 px-5">
+                                                <div className="flex flex-col gap-2">
+                                                    {order.items.map(item => (
+                                                        <div key={item.id} className="flex items-center gap-2.5">
+                                                            {item.product?.imageUrl && (
+                                                                <img src={item.product.imageUrl} alt="" className="w-8 h-8 rounded-md object-cover border border-slate-700 bg-slate-800 shrink-0" />
+                                                            )}
+                                                            <div className="flex-1 min-w-0">
+                                                                <p className="text-xs font-semibold text-white truncate" title={item.product?.name ?? "?"}>
+                                                                    {item.product?.name ?? "Custom Request"}
+                                                                </p>
+                                                                <p className="text-[11px] text-slate-500 mt-0.5">Qty: {item.quantity} × ₹{item.price.toLocaleString("en-IN")}</p>
                                                             </div>
-                                                        ))}
-                                                    </div>
-                                                </td>
-                                                <td className="py-4 px-6 text-right">
-                                                    <span className="font-bold text-white">₹{order.total.toLocaleString("en-IN")}</span>
-                                                </td>
-                                                <td className="py-4 px-6 text-right">
-                                                    <span className={`font-semibold ${paid > 0 ? "text-green-300" : "text-slate-500"}`}>
-                                                        ₹{paid.toLocaleString("en-IN")}
-                                                    </span>
-                                                    {order.paymentType === "PARTIAL" && (
-                                                        <p className="text-[10px] text-amber-400 mt-0.5">Booking</p>
-                                                    )}
-                                                </td>
-                                                <td className="py-4 px-6 text-right">
-                                                    {balance > 0 ? (
-                                                        <span className="font-bold text-amber-300">₹{balance.toLocaleString("en-IN")}</span>
-                                                    ) : (
-                                                        <span className="text-green-400 font-bold text-xs">CLEARED</span>
-                                                    )}
-                                                </td>
-                                                <td className="py-4 px-6 text-center">
-                                                    <OrderStatusDropdown orderId={order.id} currentStatus={order.status} />
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </td>
+                                            <td className="py-4 px-5 text-right whitespace-nowrap">
+                                                <span className="font-bold text-white tracking-wide">₹{order.total.toLocaleString("en-IN")}</span>
+                                            </td>
+                                            <td className="py-4 px-5 text-right whitespace-nowrap">
+                                                <span className={`font-semibold ${paid > 0 ? "text-green-300" : "text-slate-500"}`}>
+                                                    ₹{paid.toLocaleString("en-IN")}
+                                                </span>
+                                                {order.paymentType === "PARTIAL" && (
+                                                    <p className="text-[10px] text-amber-400/90 mt-1 uppercase tracking-wider font-bold">Booking</p>
+                                                )}
+                                            </td>
+                                            <td className="py-4 px-5 text-right whitespace-nowrap">
+                                                {balance > 0 ? (
+                                                    <span className="font-bold text-amber-300 tracking-wide">₹{balance.toLocaleString("en-IN")}</span>
+                                                ) : (
+                                                    <span className="text-green-400/90 font-bold text-[11px] uppercase tracking-wider bg-green-500/10 px-2 py-1 rounded-full border border-green-500/20 inline-block">Cleared</span>
+                                                )}
+                                            </td>
+                                            <td className="py-4 px-5 text-center">
+                                                <OrderStatusDropdown orderId={order.id} currentStatus={order.status} />
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
                     </div>
-                );
-            })}
+                </div>
+            )}
         </div>
     );
 }
