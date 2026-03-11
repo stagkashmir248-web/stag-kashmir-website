@@ -67,6 +67,7 @@ export default function SidebarNavLinks() {
             <NavSection title="Content & Inventory" icon="inventory_2" defaultOpen={true}>
                 <NavLink href="/admin/products" icon="sports_cricket" isActive={pathname.startsWith("/admin/products")}>Products</NavLink>
                 <NavLink href="/admin/inquiries" icon="inbox" badgeCount={counts.inquiries} isActive={pathname.startsWith("/admin/inquiries")}>Contact Messages</NavLink>
+                <NavLink href="/admin/whatsapp-leads" icon="forum" badgeCount={counts.whatsapp} isActive={pathname.startsWith("/admin/whatsapp-leads")}>WhatsApp Leads</NavLink>
                 <NavLink href="/admin/reviews" icon="star" isActive={pathname.startsWith("/admin/reviews")}>Reviews</NavLink>
                 <NavLink href="/admin/newsletter" icon="mail" badgeCount={counts.newsletter} isActive={pathname.startsWith("/admin/newsletter")}>Newsletter</NavLink>
             </NavSection>

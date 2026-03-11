@@ -8,6 +8,7 @@ type Counts = {
     orders: number;
     inquiries: number;
     newsletter: number;
+    whatsapp: number;
 };
 
 type AdminNotificationContextType = {
@@ -15,7 +16,7 @@ type AdminNotificationContextType = {
     refreshCounts: () => Promise<void>;
 };
 
-const defaultCounts: Counts = { orders: 0, inquiries: 0, newsletter: 0 };
+const defaultCounts: Counts = { orders: 0, inquiries: 0, newsletter: 0, whatsapp: 0 };
 
 const AdminNotificationContext = createContext<AdminNotificationContextType>({
     counts: defaultCounts,
@@ -45,6 +46,9 @@ export default function AdminNotificationProvider({ children }: { children: Reac
         }
         if (newCounts.newsletter > previousCounts.current.newsletter) {
             toast.success("New Newsletter Subscriber!", { icon: "✨", duration: 5000 });
+        }
+        if (newCounts.whatsapp > previousCounts.current.whatsapp) {
+            toast.success("New WhatsApp Lead!", { icon: "💬", duration: 5000 });
         }
 
         previousCounts.current = newCounts;

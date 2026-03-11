@@ -11,10 +11,11 @@ export async function getAdminCounts() {
             return { success: false, error: "Unauthorized" };
         }
 
-        const [ordersCount, inquiriesCount, newsletterCount] = await Promise.all([
+        const [ordersCount, inquiriesCount, newsletterCount, whatsappCount] = await Promise.all([
             prisma.order.count({ where: { adminViewed: false } }),
             prisma.inquiry.count({ where: { adminViewed: false } }),
-            prisma.newsletterSubscriber.count({ where: { adminViewed: false } })
+            prisma.newsletterSubscriber.count({ where: { adminViewed: false } }),
+            prisma.whatsAppLead.count({ where: { adminViewed: false } })
         ]);
 
         return {
@@ -22,7 +23,8 @@ export async function getAdminCounts() {
             data: {
                 orders: ordersCount,
                 inquiries: inquiriesCount,
-                newsletter: newsletterCount
+                newsletter: newsletterCount,
+                whatsapp: whatsappCount
             }
         };
     } catch (error) {
@@ -75,6 +77,22 @@ export async function markNewsletterAsViewed() {
         return { success: true };
     } catch (error) {
         console.error("Failed to mark newsletter as viewed:", error);
+        return { success: false };
+    }
+}
+
+export async function markWhatsAppLeadsAsViewed() {
+    try {
+        const session = await auth();
+        if (session?.user?.email !== ADMIN_EMAIL) return { success: false };
+
+        await prisma.whatsAppLead.updateMany({
+            where: { adminViewed: false },
+            data: { adminViewed: true }
+        });
+        return { success: true };
+    } catch (error) {
+        console.error("Failed to mark whatsapp leads as viewed:", error);
         return { success: false };
     }
 }
