@@ -227,3 +227,11 @@ model AbandonedCart {
   createdAt DateTime  @default(now())
   sentAt    DateTime? // set when recovery email is sent
 }
+
+model WhatsAppLead {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  adminViewed Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
