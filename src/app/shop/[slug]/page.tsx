@@ -196,9 +196,82 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                                         <span className="w-1 h-6 bg-primary rounded-full inline-block"></span>
                                         <h2 className="text-xl font-bold text-white tracking-tight">About this Bat</h2>
                                     </div>
-                                    <p className="text-slate-300 leading-relaxed text-base font-light border-l-2 border-primary/30 pl-5">
-                                        {product.description}
-                                    </p>
+                                    <div className="text-slate-300 leading-relaxed text-base font-light border-l-2 border-primary/30 pl-5 flex flex-col gap-4">
+                                        {(() => {
+                                            let text = product.description;
+                                            // Handle cases where newlines were stripped by pasting into simple fields
+                                            if (!text.includes('\n') && text.includes(' • ')) {
+                                                text = text.replace(/ • /g, '\n• ');
+                                                text = text.replace(/Key Features/g, '\nKey Features');
+                                                text = text.replace(/Best Suited For/g, '\nBest Suited For');
+                                                text = text.replace(/ warranty\./g, ' warranty.\n'); // Add newline before new paragraphs
+                                            }
+                                            
+                                            // Some text may just have actual line breaks
+                                            return text.split('\n').map((line, i) => {
+                                                const trimmed = line.trim();
+                                                if (!trimmed) return null;
+
+                                                // Bullet points
+                                                if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('*')) {
+                                                    let content = trimmed.substring(1).trim();
+                                                    if (content.startsWith('*')) content = content.substring(1).trim(); // Handle "**"
+
+                                                    const parts = content.split(/(\*\*.*?\*\*)/g);
+
+                                                    return (
+                                                        <div key={i} className="flex gap-3 items-start mt-1 bg-white/[0.02] p-4 rounded-xl border border-white/[0.05] shadow-sm hover:border-primary/20 transition-colors group">
+                                                            <span className="material-symbols-outlined !text-[20px] text-primary/70 group-hover:text-primary transition-colors mt-0.5 shrink-0">check_circle</span>
+                                                            <p className="text-[15px] leading-relaxed text-slate-300">
+                                                                {parts.length > 1 ? parts.map((part, index) => {
+                                                                    if (part.startsWith('**') && part.endsWith('**')) {
+                                                                        return <strong key={index} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
+                                                                    }
+                                                                    return <span key={index}>{part}</span>;
+                                                                }) : (
+                                                                    <>
+                                                                        {(() => {
+                                                                            // Highlight section before colon
+                                                                            const colonIdx = content.indexOf(':');
+                                                                            if (colonIdx > 0 && colonIdx < 50) {
+                                                                                return (
+                                                                                    <>
+                                                                                        <strong className="text-white font-semibold">{content.substring(0, colonIdx + 1)}</strong>
+                                                                                        {content.substring(colonIdx + 1)}
+                                                                                    </>
+                                                                                );
+                                                                            }
+                                                                            return content;
+                                                                        })()}
+                                                                    </>
+                                                                )}
+                                                            </p>
+                                                        </div>
+                                                    );
+                                                }
+
+                                                // Section Headings
+                                                if (trimmed.endsWith(':') || (trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.length < 80)) {
+                                                    let clean = trimmed;
+                                                    if (clean.startsWith('**')) clean = clean.slice(2, -2);
+                                                    return <h3 key={i} className="text-white font-bold text-lg mt-6 mb-2 tracking-tight">{clean}</h3>;
+                                                }
+
+                                                // Normal text block
+                                                const parts = trimmed.split(/(\*\*.*?\*\*)/g);
+                                                return (
+                                                    <p key={i} className="text-[15px] leading-relaxed">
+                                                        {parts.map((part, index) => {
+                                                            if (part.startsWith('**') && part.endsWith('**')) {
+                                                                return <strong key={index} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
+                                                            }
+                                                            return <span key={index}>{part}</span>;
+                                                        })}
+                                                    </p>
+                                                );
+                                            });
+                                        })()}
+                                    </div>
                                     {(product as any).features?.length > 0 && (
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {(product as any).features.map((f: string) => (
