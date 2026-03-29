@@ -100,6 +100,7 @@ export default function EditProductForm({ product }: { product: ProductWithVaria
     const [price, setPrice] = useState(product.price.toString());
     const [compareAtPrice, setCompareAtPrice] = useState((product as any).compareAtPrice?.toString() || "");
     const [stock, setStock] = useState(product.stock.toString());
+    const [isActive, setIsActive] = useState((product as any).isActive ?? true);
     const [imagePreview, setImagePreview] = useState<string | null>(product.imageUrl);
     const [base64Image, setBase64Image] = useState<string | undefined>(undefined);
     const [videoUrl, setVideoUrl] = useState(product.videoUrl || "");
@@ -212,7 +213,7 @@ export default function EditProductForm({ product }: { product: ProductWithVaria
                 imageUrl: base64Image, images: extraImages, videoUrl: videoUrl || undefined,
                 willowType: willowType || undefined, grade: grade || undefined, blade: blade || undefined,
                 ballType: ballType || undefined, warranty: warranty || undefined, features,
-                customSpecs,
+                customSpecs, isActive,
                 category: category || undefined,
                 variations: variations.map(v => { const parts = [v.size, v.weight, v.extra].filter(p => p.trim()); return { id: v.id, name: parts.join(" | "), price: Number(v.price), compareAtPrice: v.compareAtPrice ? Number(v.compareAtPrice) : undefined, stock: Number(v.stock) }; })
             });
@@ -263,6 +264,16 @@ export default function EditProductForm({ product }: { product: ProductWithVaria
                         <Label>Description</Label>
                         <textarea required rows={4} value={description} onChange={e => setDescription(e.target.value)}
                             className={`${inp} resize-y`} placeholder="Describe the product…" />
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-slate-800 rounded-xl border border-slate-700">
+                        <div>
+                            <p className="font-bold text-white text-sm">Product Visibility</p>
+                            <p className="text-xs text-slate-400 mt-0.5">When disabled, this product is saved as a hidden Draft.</p>
+                        </div>
+                        <label className="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked={isActive} onChange={e => setIsActive(e.target.checked)} className="sr-only peer" />
+                            <div className="w-11 h-6 bg-slate-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
                     </div>
                 </div>
             </SectionCard>

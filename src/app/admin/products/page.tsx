@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import DeleteProductButton from "./DeleteProductButton";
+import ProductVisibilityToggle from "./ProductVisibilityToggle";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,7 @@ export default async function AdminProductsPage() {
                             <th className="py-4 px-6 font-bold text-xs uppercase tracking-wider text-slate-500">Product</th>
                             <th className="py-4 px-6 font-bold text-xs uppercase tracking-wider text-slate-500">Added</th>
                             <th className="py-4 px-6 font-bold text-xs uppercase tracking-wider text-slate-500">Stock</th>
+                            <th className="py-4 px-6 font-bold text-xs uppercase tracking-wider text-slate-500">Status</th>
                             <th className="py-4 px-6 font-bold text-xs uppercase tracking-wider text-slate-500 text-right">Price</th>
                             <th className="py-4 px-6 font-bold text-xs uppercase tracking-wider text-slate-500 text-right">Actions</th>
                         </tr>
@@ -67,6 +69,9 @@ export default async function AdminProductsPage() {
                                         }`}>
                                         {product.stock} units
                                     </span>
+                                </td>
+                                <td className="py-4 px-6 align-middle">
+                                    <ProductVisibilityToggle productId={product.id} isActive={(product as any).isActive ?? true} />
                                 </td>
                                 <td className="py-4 px-6 align-middle text-right">
                                     <span className="font-bold text-slate-900 dark:text-white">₹{product.price.toLocaleString()}</span>

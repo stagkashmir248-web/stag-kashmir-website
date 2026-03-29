@@ -108,10 +108,10 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
 
             {/* Image Container */}
-            <div className={`relative aspect-square w-full bg-slate-100 dark:bg-slate-800/50 rounded-2xl overflow-hidden mb-4 border border-slate-100 dark:border-slate-800/80 group-hover:shadow-lg group-hover:shadow-primary/5 transition-all ${isSoldOut ? 'opacity-75' : ''}`}>
+            <div className={`relative aspect-square w-full bg-slate-100 dark:bg-slate-800/50 rounded-xl sm:rounded-2xl overflow-hidden mb-3 md:mb-4 border border-slate-100 dark:border-slate-800/80 group-hover:shadow-lg group-hover:shadow-primary/5 transition-all ${isSoldOut ? 'opacity-75' : ''}`}>
                 <Image
                     alt={product.name}
-                    className={`object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isSoldOut ? '' : 'group-hover:scale-105'}`}
+                    className={`object-contain p-2 sm:p-0 object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isSoldOut ? '' : 'group-hover:scale-105'}`}
                     src={displayImage}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -139,7 +139,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
             {/* Info Cluster */}
             <div className="flex flex-col gap-1 px-1">
-                <h3 className="text-[17px] font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">
+                <h3 className="text-[13px] sm:text-[17px] font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2 sm:line-clamp-1 leading-tight sm:leading-normal">
                     {product.name}
                 </h3>
 
@@ -165,12 +165,12 @@ export function ProductCard({ product }: ProductCardProps) {
                     </div>
                 )}
 
-                <div className="flex items-baseline gap-2 mt-0.5">
-                    <span className="text-base font-semibold text-slate-800 dark:text-slate-200">
+                <div className="flex items-baseline gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
+                    <span className="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-200">
                         ₹{product.price.toLocaleString("en-IN")}
                     </span>
                     {hasDiscount && (
-                        <span className="text-sm font-medium text-slate-400 line-through">
+                        <span className="text-[11px] sm:text-sm font-medium text-slate-400 line-through">
                             ₹{product.compareAtPrice?.toLocaleString("en-IN")}
                         </span>
                     )}

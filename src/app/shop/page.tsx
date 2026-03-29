@@ -160,7 +160,7 @@ export default async function Shop({
                                 </Link>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
                                 {filteredProducts.map((product) => (
                                     <ProductCard key={product.id} product={product as any} />
                                 ))}

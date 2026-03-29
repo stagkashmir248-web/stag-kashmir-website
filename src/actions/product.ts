@@ -9,7 +9,7 @@ export const getProducts = unstable_cache(
     async () => {
         try {
             const products = await prisma.product.findMany({
-                where: { isArchived: false },
+                where: { isArchived: false, isActive: true },
                 orderBy: { createdAt: "desc" },
                 include: {
                     variations: true,
@@ -42,7 +42,7 @@ export const getFeaturedProducts = unstable_cache(
     async (limit = 4) => {
         try {
             const products = await prisma.product.findMany({
-                where: { isArchived: false },
+                where: { isArchived: false, isActive: true },
                 orderBy: { createdAt: "desc" },
                 take: limit,
                 select: {
@@ -85,7 +85,7 @@ export const getProductBySlug = unstable_cache(
     async (slug: string) => {
         try {
             const product = await prisma.product.findFirst({
-                where: { slug, isArchived: false },
+                where: { slug, isArchived: false, isActive: true },
                 include: { variations: true }
             });
             return product;
@@ -105,7 +105,7 @@ export const getProductBySlug = unstable_cache(
 export const getRelatedProducts = unstable_cache(
     async (currentProductId: string, category: string | null, limit = 4) => {
         try {
-            const where: any = { id: { not: currentProductId }, isArchived: false };
+            const where: any = { id: { not: currentProductId }, isArchived: false, isActive: true };
             if (category) where.category = category;
             const sharedSelect = {
                 id: true, slug: true, name: true, price: true, compareAtPrice: true,
@@ -119,7 +119,7 @@ export const getRelatedProducts = unstable_cache(
             // If same-category doesn't fill limit, backfill with random products
             if (products.length < limit) {
                 const extras = await (prisma.product as any).findMany({
-                    where: { isArchived: false, id: { not: currentProductId }, ...(products.length > 0 ? { NOT: { id: { in: products.map((p: any) => p.id) } } } : {}) },
+                    where: { isArchived: false, isActive: true, id: { not: currentProductId }, ...(products.length > 0 ? { NOT: { id: { in: products.map((p: any) => p.id) } } } : {}) },
                     take: limit - products.length,
                     orderBy: { createdAt: "desc" },
                     select: sharedSelect
@@ -154,6 +154,7 @@ export const searchProducts = async (query: string, limit = 5) => {
         const products = await prisma.product.findMany({
             where: {
                 isArchived: false,
+                isActive: true,
                 OR: [
                     { name: { contains: query, mode: "insensitive" } },
                     { category: { contains: query, mode: "insensitive" } }

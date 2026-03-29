@@ -40,6 +40,7 @@ export async function createProduct(data: {
     imageUrl?: string;
     images?: string[];
     videoUrl?: string;
+    isActive?: boolean;
     variations?: { name: string; price: number; compareAtPrice?: number; stock: number }[];
 } & ProductSpecsInput) {
     try {
@@ -62,6 +63,7 @@ export async function createProduct(data: {
                 features: data.features || [],
                 customSpecs: data.customSpecs || [],
                 category: data.category || null,
+                isActive: data.isActive ?? true,
                 variations: { create: data.variations || [] }
             } as any,
         });
@@ -88,6 +90,7 @@ export async function updateProduct(id: string, data: {
     imageUrl?: string;
     images?: string[];
     videoUrl?: string;
+    isActive?: boolean;
     variations?: { id?: string; name: string; price: number; compareAtPrice?: number; stock: number }[];
 } & ProductSpecsInput) {
     try {
@@ -113,6 +116,7 @@ export async function updateProduct(id: string, data: {
                 features: data.features || [],
                 customSpecs: data.customSpecs || [],
                 category: data.category || null,
+                isActive: data.isActive ?? true,
                 variations: {
                     create: data.variations?.map(v => ({
                         name: v.name,
@@ -161,5 +165,18 @@ export async function toggleProductBestSeller(id: string, isBestSeller: boolean)
         return { success: true };
     } catch {
         return { success: false, error: "Failed to update best seller status." };
+    }
+}
+
+export async function toggleProductActive(id: string, isActive: boolean) {
+    try {
+        await (prisma.product as any).update({ where: { id }, data: { isActive } });
+        revalidatePath("/admin/products");
+        revalidatePath("/shop");
+        revalidatePath("/");
+        revalidateTag("products");
+        return { success: true };
+    } catch {
+        return { success: false, error: "Failed to update active status." };
     }
 }
