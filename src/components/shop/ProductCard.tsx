@@ -33,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
     const hasDiscount = product.compareAtPrice && product.compareAtPrice > product.price;
     const reviewCount = product.reviewCount ?? 0;
     const avgRating = product.avgRating ?? 0;
-    const displayImage = product.images?.[0] || product.imageUrl || "/placeholder.jpg";
+    const displayImage = product.imageUrl || product.images?.[0] || "/placeholder.jpg";
     const isNew = product.createdAt
         ? new Date(product.createdAt).getTime() > Date.now() - 30 * 24 * 60 * 60 * 1000
         : false;
