@@ -24,8 +24,8 @@ export default {
         "border-dark": "#ffffff1a"
       },
       fontFamily: {
-        display: ["Space Grotesk", "sans-serif"],
-        body: ["Space Grotesk", "sans-serif"]
+        display: ["var(--font-space-grotesk)", "sans-serif"],
+        body: ["var(--font-space-grotesk)", "sans-serif"]
       },
       backgroundImage: {
         'hero-pattern': "linear-gradient(rgba(17, 19, 24, 0.7), rgba(17, 19, 24, 0.9))",

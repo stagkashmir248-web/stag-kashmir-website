@@ -114,7 +114,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     className={`object-contain p-2 sm:p-0 object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isSoldOut ? '' : 'group-hover:scale-105'}`}
                     src={displayImage}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
                 {/* OOS Overlay */}
                 {isSoldOut && (

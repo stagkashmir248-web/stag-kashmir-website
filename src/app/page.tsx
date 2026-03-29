@@ -383,6 +383,7 @@ export default async function Home() {
                                             <Link href={`/shop/${product.slug}`} className="block absolute inset-0 z-0">
                                                 <Image
                                                     fill
+                                                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                                                     src={product.imageUrl || (product.images && product.images.length > 0 ? product.images[0] : "/placeholder.jpg")}
                                                     alt={product.name}
                                                     className="object-contain p-2 sm:p-0 transition-transform duration-500 group-hover:scale-105"

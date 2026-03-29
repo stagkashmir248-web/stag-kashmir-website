@@ -6,6 +6,13 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader';
 import Providers from '@/components/Providers';
+import { Space_Grotesk } from 'next/font/google';
+
+const spaceGrotesk = Space_Grotesk({
+    subsets: ['latin'],
+    variable: '--font-space-grotesk',
+    display: 'swap',
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://stagkashmir.com'),
@@ -61,10 +68,9 @@ export default function RootLayout({
     return (
         <html lang="en" className="dark">
             <head>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             </head>
-            <body className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden">
+            <body className={`${spaceGrotesk.variable} bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden`}>
                 <Providers>
                     <NextTopLoader color="#F97316" showSpinner={false} height={3} />
                     <WhatsAppButton />
