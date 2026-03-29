@@ -365,17 +365,17 @@ export default async function Home() {
                             <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                             {featuredProducts.length > 0 ? (
                                 featuredProducts.map((product) => (
-                                    <div key={product.id} className="group bg-background-dark rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                                        <div className="aspect-[4/5] w-full relative bg-neutral-800 overflow-hidden">
+                                    <div key={product.id} className="group bg-background-dark flex flex-col rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                                        <div className="aspect-square w-full relative bg-neutral-800/50 overflow-hidden">
                                             {/* Tag Logic */}
                                             {(new Date(product.createdAt).getTime() > Date.now() - 30 * 24 * 60 * 60 * 1000) && (
                                                 <div className="absolute top-3 left-3 z-10 bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">NEW</div>
                                             )}
                                             {product.compareAtPrice && product.compareAtPrice > product.price && (
-                                                <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                                <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded">
                                                     -{Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}%
                                                 </div>
                                             )}
@@ -385,41 +385,45 @@ export default async function Home() {
                                                     fill
                                                     src={product.imageUrl || (product.images && product.images.length > 0 ? product.images[0] : "/placeholder.jpg")}
                                                     alt={product.name}
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    className="object-contain p-2 sm:p-0 transition-transform duration-500 group-hover:scale-105"
                                                 />
                                             </Link>
                                         </div>
-                                        <div className="p-5">
-                                            <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                                                {[1, 2, 3, 4, 5].map(i => (
-                                                    <span key={i} className={`material-symbols-outlined !text-[14px] ${Math.round((product as any).avgRating ?? 0) >= i ? 'text-yellow-500' : 'text-slate-600'}`} style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                                                ))}
+                                        <div className="p-3 sm:p-5 flex flex-col flex-1">
+                                            <div className="flex flex-wrap items-center gap-1 text-yellow-500 mb-1 sm:mb-2">
+                                                <div className="flex items-center">
+                                                    {[1, 2, 3, 4, 5].map(i => (
+                                                        <span key={i} className={`material-symbols-outlined !text-[12px] sm:!text-[14px] ${Math.round((product as any).avgRating ?? 0) >= i ? 'text-yellow-500' : 'text-slate-600'}`} style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                                                    ))}
+                                                </div>
                                                 {(product as any).reviewCount > 0 ? (
-                                                    <span className="text-xs text-slate-500 ml-1">({(product as any).reviewCount})</span>
+                                                    <span className="text-[10px] sm:text-xs text-slate-500 ml-0.5">({(product as any).reviewCount})</span>
                                                 ) : (
-                                                    <span className="text-xs text-slate-600 ml-1 italic">No reviews yet</span>
+                                                    <span className="text-[10px] sm:text-xs text-slate-600 ml-0.5 italic">No reviews yet</span>
                                                 )}
                                             </div>
                                             <Link href={`/shop/${product.slug}`}>
-                                                <h3 className="text-lg font-bold text-white mb-1 hover:text-primary transition-colors">{product.name}</h3>
+                                                <h3 className="text-[13px] sm:text-lg font-bold text-white mb-1 hover:text-primary transition-colors line-clamp-2 sm:line-clamp-none leading-tight sm:leading-normal">{product.name}</h3>
                                             </Link>
-                                            <p className="text-slate-400 text-sm mb-4">
+                                            <p className="text-slate-400 text-[11px] sm:text-sm mb-3 sm:mb-4 line-clamp-1">
                                                 {(product as any).willowType
                                                     ? `${(product as any).willowType}`
                                                     : (product as any).category
                                                         ? (product as any).category.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())
                                                         : 'Premium Kashmir Willow'}
                                             </p>
-                                            <div className="flex items-center justify-between">
+                                            <div className="flex items-center justify-between mt-auto pt-1">
                                                 {product.compareAtPrice && product.compareAtPrice > product.price ? (
                                                     <div className="flex flex-col">
-                                                        <span className="text-sm text-slate-500 line-through">₹{product.compareAtPrice}</span>
-                                                        <span className="text-xl font-bold text-white">₹{product.price}</span>
+                                                        <span className="text-[10px] sm:text-sm text-slate-500 line-through">₹{product.compareAtPrice}</span>
+                                                        <span className="text-sm sm:text-xl font-bold text-white">₹{product.price}</span>
                                                     </div>
                                                 ) : (
-                                                    <span className="text-xl font-bold text-white">₹{product.price}</span>
+                                                    <span className="text-sm sm:text-xl font-bold text-white">₹{product.price}</span>
                                                 )}
-                                                <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, imageUrl: product.imageUrl || product.images?.[0] || "/placeholder.jpg" }} />
+                                                <div className="scale-75 origin-right sm:scale-100">
+                                                    <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, imageUrl: product.imageUrl || product.images?.[0] || "/placeholder.jpg" }} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
