@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { sendEmail } from "@/lib/mail";
 import { ADMIN_EMAIL } from "@/lib/constants";
 
@@ -35,6 +35,7 @@ export async function updateOrderStatus(orderId: string, newStatus: string) {
             data: { status: newStatus }
         });
 
+        revalidateTag("admin-orders");
         revalidatePath("/admin/orders");
         revalidatePath("/admin");
         return { success: true };
@@ -51,6 +52,7 @@ export async function updateTrackingDetails(orderId: string, courier: string, aw
             where: { id: orderId },
             data: { courier, awb, adminNote }
         });
+        revalidateTag("admin-orders");
         revalidatePath("/admin/orders");
         revalidatePath("/admin");
         return { success: true };
