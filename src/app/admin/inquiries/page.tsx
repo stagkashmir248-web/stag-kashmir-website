@@ -1,13 +1,18 @@
 import { prisma } from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
 import { formatDistanceToNow } from "date-fns";
 import MarkViewedEffect from "@/components/MarkViewedEffect";
 
 export const dynamic = "force-dynamic";
 
+const getCachedInquiries = unstable_cache(
+    async () => prisma.inquiry.findMany({ orderBy: { createdAt: "desc" } }),
+    ["admin-inquiries"],
+    { revalidate: 30, tags: ["admin-inquiries"] }
+);
+
 export default async function AdminInquiriesPage() {
-    const inquiries = await prisma.inquiry.findMany({
-        orderBy: { createdAt: "desc" },
-    });
+    const inquiries = await getCachedInquiries();
 
     return (
         <div className="flex flex-col gap-8 w-full max-w-6xl">

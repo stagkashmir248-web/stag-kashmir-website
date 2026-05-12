@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
 import { auth } from "@/auth";
 import { format } from "date-fns";
 import DownloadCsvButton from "./DownloadCsvButton";
@@ -8,15 +9,19 @@ import MarkViewedEffect from "@/components/MarkViewedEffect";
 
 export const metadata = { title: "Newsletter Subscribers | Admin" };
 
+const getCachedSubscribers = unstable_cache(
+    async () => prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
+    ["admin-newsletter"],
+    { revalidate: 60, tags: ["admin-newsletter"] }
+);
+
 export default async function AdminNewsletterPage() {
     const session = await auth();
     if (session?.user?.email !== "stagkashmir248@gmail.com") {
         return <div className="p-8 text-center text-red-500">Access Denied</div>;
     }
 
-    const subscribers = await prisma.newsletterSubscriber.findMany({
-        orderBy: { createdAt: "desc" },
-    });
+    const subscribers = await getCachedSubscribers();
 
     return (
         <div className="max-w-7xl mx-auto p-4 md:p-8">

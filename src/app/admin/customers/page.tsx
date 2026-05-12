@@ -1,16 +1,28 @@
 import { prisma } from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
 import { format } from "date-fns";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminCustomersPage() {
-    const users = await prisma.user.findMany({
+const getCachedCustomers = unstable_cache(
+    async () => prisma.user.findMany({
         orderBy: { createdAt: "desc" },
-        include: {
-            accounts: true,
-            sessions: true
-        }
-    });
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            image: true,
+            createdAt: true,
+            accounts: { select: { id: true, provider: true } },
+            sessions: { select: { id: true } },
+        },
+    }),
+    ["admin-customers"],
+    { revalidate: 120, tags: ["admin-customers"] }
+);
+
+export default async function AdminCustomersPage() {
+    const users = await getCachedCustomers();
 
     return (
         <div className="flex flex-col gap-8 w-full max-w-6xl animate-in fade-in slide-in-from-bottom-4 duration-500">
