@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import * as XLSX from "xlsx";
 import Link from "next/link";
 import OrderStatusDropdown from "./OrderStatusDropdown";
-import { format, parseISO, startOfDay } from "date-fns";
+import { format } from "date-fns";
+
+const PAGE_SIZE = 20;
 
 interface OrderItem {
     id: string;
@@ -41,38 +43,45 @@ const STATUS_MAP: Record<string, { label: string; cls: string }> = {
     CANCELLED: { label: "Cancelled", cls: "bg-red-500/20 text-red-400" },
 };
 
-function StatusBadge({ status }: { status: string }) {
-    const s = STATUS_MAP[status] ?? { label: status, cls: "bg-slate-700 text-slate-400" };
-    return <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-bold ${s.cls}`}>{s.label}</span>;
-}
-
 export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
     const [search, setSearch] = useState("");
+    const [page, setPage] = useState(1);
     const today = format(new Date(), "yyyy-MM-dd");
     const [fromDate, setFromDate] = useState(today);
     const [toDate, setToDate] = useState(today);
 
-    // --- Search filter ---
-    const searchLower = search.toLowerCase().trim();
-    const filteredOrders = searchLower
-        ? orders.filter(o =>
-            o.customer.toLowerCase().includes(searchLower) ||
-            o.email.toLowerCase().includes(searchLower) ||
-            (o.phone ?? "").toLowerCase().includes(searchLower) ||
-            o.id.slice(-8).toUpperCase().includes(search.toUpperCase()) ||
-            String(o.total).includes(searchLower) ||
-            (o.amountPaid != null && String(o.amountPaid).includes(searchLower))
-        )
-        : orders;
+    // --- Filter + sort (memoised so it only recalculates when inputs change) ---
+    const sortedOrders = useMemo(() => {
+        const q = search.toLowerCase().trim();
+        const base = q
+            ? orders.filter(o =>
+                o.customer.toLowerCase().includes(q) ||
+                o.email.toLowerCase().includes(q) ||
+                (o.phone ?? "").toLowerCase().includes(q) ||
+                o.id.slice(-8).toUpperCase().includes(search.toUpperCase()) ||
+                String(o.total).includes(q) ||
+                (o.amountPaid != null && String(o.amountPaid).includes(q))
+            )
+            : orders;
+        return [...base].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    }, [search, orders]);
 
-    // --- Unified Sorting ---
-    const sortedOrders = [...filteredOrders].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const totalPages = Math.max(1, Math.ceil(sortedOrders.length / PAGE_SIZE));
+
+    // When search changes, jump back to page 1
+    function handleSearch(val: string) {
+        setSearch(val);
+        setPage(1);
+    }
+
+    // Slice for current page
+    const pageOrders = sortedOrders.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
     // --- Excel Export ---
     function handleExport() {
         const from = new Date(fromDate);
         const to = new Date(toDate);
-        to.setHours(23, 59, 59, 999); // include all of the end day
+        to.setHours(23, 59, 59, 999);
 
         const filtered = orders.filter(o => {
             const d = new Date(o.createdAt);
@@ -114,7 +123,9 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                     <div>
                         <h1 className="text-3xl font-bold text-white">Orders</h1>
                         <p className="text-slate-400 mt-1">
-                            {filteredOrders.length} of {orders.length} orders
+                            {search
+                                ? `${sortedOrders.length} of ${orders.length} orders`
+                                : `${orders.length} total orders`}
                         </p>
                     </div>
 
@@ -144,12 +155,12 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                     <input
                         type="text"
                         value={search}
-                        onChange={e => setSearch(e.target.value)}
+                        onChange={e => handleSearch(e.target.value)}
                         placeholder="Search by name, phone, email, order ID or amount…"
                         className="w-full pl-12 pr-12 py-3.5 bg-slate-800 border border-slate-700 focus:border-primary text-white rounded-xl text-sm outline-none placeholder-slate-500 transition-colors"
                     />
                     {search && (
-                        <button onClick={() => setSearch("")}
+                        <button onClick={() => handleSearch("")}
                             className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors">
                             <span className="material-symbols-outlined !text-[20px]">close</span>
                         </button>
@@ -157,7 +168,7 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                 </div>
             </div>
 
-            {/* Single Order Table */}
+            {/* Orders table */}
             {sortedOrders.length === 0 ? (
                 <div className="bg-slate-900 rounded-xl border border-slate-800 py-16 text-center text-slate-500">
                     <span className="material-symbols-outlined !text-5xl text-slate-700 block mb-3">
@@ -165,9 +176,9 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                     </span>
                     {search ? (
                         <>
-                            <p className="text-white font-semibold mb-1">No orders found for "{search}"</p>
+                            <p className="text-white font-semibold mb-1">No orders found for &quot;{search}&quot;</p>
                             <p className="text-sm">Try searching by a different name, phone, or order ID</p>
-                            <button onClick={() => setSearch("")} className="mt-4 text-primary hover:underline text-sm font-bold">
+                            <button onClick={() => handleSearch("")} className="mt-4 text-primary hover:underline text-sm font-bold">
                                 Clear search
                             </button>
                         </>
@@ -176,89 +187,191 @@ export default function AdminOrdersClient({ orders }: { orders: Order[] }) {
                     )}
                 </div>
             ) : (
-                <div className="rounded-xl border border-slate-700 overflow-hidden bg-slate-900 shadow-sm">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
-                            <thead>
-                                <tr className="border-b border-slate-800 bg-slate-800/80">
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 whitespace-nowrap">Date</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 whitespace-nowrap">Order ID</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 min-w-[200px]">Customer</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 min-w-[250px]">Items</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Total</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Paid</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Balance</th>
-                                    <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-center whitespace-nowrap">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-800">
-                                {sortedOrders.map((order) => {
-                                    const paid = order.amountPaid ?? (order.status === "PAID" ? order.total : 0);
-                                    const balance = Math.max(0, order.total - paid);
-                                    const dateStr = format(new Date(order.createdAt), "dd MMM yyyy");
-                                    const timeStr = format(new Date(order.createdAt), "hh:mm a");
+                <>
+                    <div className="rounded-xl border border-slate-700 overflow-hidden bg-slate-900 shadow-sm">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="border-b border-slate-800 bg-slate-800/80">
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 whitespace-nowrap">Date</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 whitespace-nowrap">Order ID</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 min-w-[200px]">Customer</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 min-w-[250px]">Items</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Total</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Paid</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-right whitespace-nowrap">Balance</th>
+                                        <th className="py-4 px-5 font-bold text-xs uppercase tracking-wider text-slate-400 text-center whitespace-nowrap">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-slate-800">
+                                    {pageOrders.map((order, idx) => {
+                                        const paid = order.amountPaid ?? (order.status === "PAID" ? order.total : 0);
+                                        const balance = Math.max(0, order.total - paid);
+                                        const dateLabel = format(new Date(order.createdAt), "dd MMM yyyy");
+                                        const timeStr = format(new Date(order.createdAt), "hh:mm a");
 
-                                    return (
-                                        <tr key={order.id} className="hover:bg-slate-800/40 transition-colors">
-                                            <td className="py-4 px-5 whitespace-nowrap">
-                                                <p className="font-semibold text-white text-sm">{dateStr}</p>
-                                                <p className="text-xs text-slate-500 mt-0.5">{timeStr}</p>
-                                            </td>
-                                            <td className="py-4 px-5">
-                                                <Link href={`/admin/orders/${order.id}`} className="font-mono text-sm font-bold text-primary hover:underline block">
-                                                    #{order.id.slice(-8).toUpperCase()}
-                                                </Link>
-                                            </td>
-                                            <td className="py-4 px-5">
-                                                <p className="text-white text-sm font-semibold mb-0.5">{order.customer}</p>
-                                                <p className="text-xs text-slate-400 truncate max-w-[180px]" title={order.email}>{order.email}</p>
-                                                {order.phone && <p className="text-xs text-slate-500 mt-0.5">{order.phone}</p>}
-                                            </td>
-                                            <td className="py-4 px-5">
-                                                <div className="flex flex-col gap-2">
-                                                    {order.items.map(item => (
-                                                        <div key={item.id} className="flex items-center gap-2.5">
-                                                            {item.product?.imageUrl && (
-                                                                <img src={item.product.imageUrl} alt="" className="w-8 h-8 rounded-md object-cover border border-slate-700 bg-slate-800 shrink-0" />
-                                                            )}
-                                                            <div className="flex-1 min-w-0">
-                                                                <p className="text-xs font-semibold text-white truncate" title={item.product?.name ?? "?"}>
-                                                                    {item.product?.name ?? "Custom Request"}
-                                                                </p>
-                                                                <p className="text-[11px] text-slate-500 mt-0.5">Qty: {item.quantity} × ₹{item.price.toLocaleString("en-IN")}</p>
+                                        // Date group separator: show when the calendar day changes
+                                        const prevOrder = pageOrders[idx - 1];
+                                        const prevLabel = prevOrder
+                                            ? format(new Date(prevOrder.createdAt), "dd MMM yyyy")
+                                            : null;
+                                        const showDateSeparator = dateLabel !== prevLabel;
+
+                                        return (
+                                            <>
+                                                {showDateSeparator && (
+                                                    <tr key={`sep-${dateLabel}-${idx}`} className="bg-slate-800/60 border-t border-slate-700/60">
+                                                        <td colSpan={8} className="py-2 px-5">
+                                                            <div className="flex items-center gap-3">
+                                                                <span className="material-symbols-outlined !text-[14px] text-primary">calendar_today</span>
+                                                                <span className="text-xs font-bold text-primary uppercase tracking-widest">{dateLabel}</span>
+                                                                <div className="flex-1 h-px bg-slate-700/60" />
                                                             </div>
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                                <tr key={order.id} className="hover:bg-slate-800/40 transition-colors">
+                                                    <td className="py-4 px-5 whitespace-nowrap">
+                                                        <p className="font-semibold text-white text-sm">{dateLabel}</p>
+                                                        <p className="text-xs text-slate-500 mt-0.5">{timeStr}</p>
+                                                    </td>
+                                                    <td className="py-4 px-5">
+                                                        <Link href={`/admin/orders/${order.id}`} className="font-mono text-sm font-bold text-primary hover:underline block">
+                                                            #{order.id.slice(-8).toUpperCase()}
+                                                        </Link>
+                                                    </td>
+                                                    <td className="py-4 px-5">
+                                                        <p className="text-white text-sm font-semibold mb-0.5">{order.customer}</p>
+                                                        <p className="text-xs text-slate-400 truncate max-w-[180px]" title={order.email}>{order.email}</p>
+                                                        {order.phone && <p className="text-xs text-slate-500 mt-0.5">{order.phone}</p>}
+                                                    </td>
+                                                    <td className="py-4 px-5">
+                                                        <div className="flex flex-col gap-2">
+                                                            {order.items.map(item => (
+                                                                <div key={item.id} className="flex items-center gap-2.5">
+                                                                    {item.product?.imageUrl && (
+                                                                        // lazy loading — browser only fetches when row scrolls into view
+                                                                        <img
+                                                                            src={item.product.imageUrl}
+                                                                            alt=""
+                                                                            loading="lazy"
+                                                                            decoding="async"
+                                                                            className="w-8 h-8 rounded-md object-cover border border-slate-700 bg-slate-800 shrink-0"
+                                                                        />
+                                                                    )}
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <p className="text-xs font-semibold text-white truncate" title={item.product?.name ?? "?"}>
+                                                                            {item.product?.name ?? "Custom Request"}
+                                                                        </p>
+                                                                        <p className="text-[11px] text-slate-500 mt-0.5">Qty: {item.quantity} × ₹{item.price.toLocaleString("en-IN")}</p>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
                                                         </div>
-                                                    ))}
-                                                </div>
-                                            </td>
-                                            <td className="py-4 px-5 text-right whitespace-nowrap">
-                                                <span className="font-bold text-white tracking-wide">₹{order.total.toLocaleString("en-IN")}</span>
-                                            </td>
-                                            <td className="py-4 px-5 text-right whitespace-nowrap">
-                                                <span className={`font-semibold ${paid > 0 ? "text-green-300" : "text-slate-500"}`}>
-                                                    ₹{paid.toLocaleString("en-IN")}
-                                                </span>
-                                                {order.paymentType === "PARTIAL" && (
-                                                    <p className="text-[10px] text-amber-400/90 mt-1 uppercase tracking-wider font-bold">Booking</p>
-                                                )}
-                                            </td>
-                                            <td className="py-4 px-5 text-right whitespace-nowrap">
-                                                {balance > 0 ? (
-                                                    <span className="font-bold text-amber-300 tracking-wide">₹{balance.toLocaleString("en-IN")}</span>
-                                                ) : (
-                                                    <span className="text-green-400/90 font-bold text-[11px] uppercase tracking-wider bg-green-500/10 px-2 py-1 rounded-full border border-green-500/20 inline-block">Cleared</span>
-                                                )}
-                                            </td>
-                                            <td className="py-4 px-5 text-center">
-                                                <OrderStatusDropdown orderId={order.id} currentStatus={order.status} />
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
+                                                    </td>
+                                                    <td className="py-4 px-5 text-right whitespace-nowrap">
+                                                        <span className="font-bold text-white tracking-wide">₹{order.total.toLocaleString("en-IN")}</span>
+                                                    </td>
+                                                    <td className="py-4 px-5 text-right whitespace-nowrap">
+                                                        <span className={`font-semibold ${paid > 0 ? "text-green-300" : "text-slate-500"}`}>
+                                                            ₹{paid.toLocaleString("en-IN")}
+                                                        </span>
+                                                        {order.paymentType === "PARTIAL" && (
+                                                            <p className="text-[10px] text-amber-400/90 mt-1 uppercase tracking-wider font-bold">Booking</p>
+                                                        )}
+                                                    </td>
+                                                    <td className="py-4 px-5 text-right whitespace-nowrap">
+                                                        {balance > 0 ? (
+                                                            <span className="font-bold text-amber-300 tracking-wide">₹{balance.toLocaleString("en-IN")}</span>
+                                                        ) : (
+                                                            <span className="text-green-400/90 font-bold text-[11px] uppercase tracking-wider bg-green-500/10 px-2 py-1 rounded-full border border-green-500/20 inline-block">Cleared</span>
+                                                        )}
+                                                    </td>
+                                                    <td className="py-4 px-5 text-center">
+                                                        <OrderStatusDropdown orderId={order.id} currentStatus={order.status} />
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+
+                    {/* Pagination */}
+                    {totalPages > 1 && (
+                        <div className="flex items-center justify-between px-1">
+                            <p className="text-sm text-slate-400">
+                                Page <span className="text-white font-bold">{page}</span> of <span className="text-white font-bold">{totalPages}</span>
+                                <span className="text-slate-600 mx-2">·</span>
+                                showing <span className="text-white font-bold">{pageOrders.length}</span> of <span className="text-white font-bold">{sortedOrders.length}</span> orders
+                            </p>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => { setPage(1); window.scrollTo(0, 0); }}
+                                    disabled={page === 1}
+                                    className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                                    title="First page"
+                                >
+                                    <span className="material-symbols-outlined !text-[18px]">first_page</span>
+                                </button>
+                                <button
+                                    onClick={() => { setPage(p => Math.max(1, p - 1)); window.scrollTo(0, 0); }}
+                                    disabled={page === 1}
+                                    className="flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-sm font-medium"
+                                >
+                                    <span className="material-symbols-outlined !text-[16px]">chevron_left</span>
+                                    Prev
+                                </button>
+
+                                {/* Page number pills */}
+                                <div className="flex items-center gap-1">
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                                        .filter(p => p === 1 || p === totalPages || Math.abs(p - page) <= 1)
+                                        .reduce<(number | "...")[]>((acc, p, i, arr) => {
+                                            if (i > 0 && p - (arr[i - 1] as number) > 1) acc.push("...");
+                                            acc.push(p);
+                                            return acc;
+                                        }, [])
+                                        .map((p, i) =>
+                                            p === "..." ? (
+                                                <span key={`ellipsis-${i}`} className="px-2 text-slate-600 text-sm">…</span>
+                                            ) : (
+                                                <button
+                                                    key={p}
+                                                    onClick={() => { setPage(p as number); window.scrollTo(0, 0); }}
+                                                    className={`w-9 h-9 rounded-lg text-sm font-bold transition-all ${page === p
+                                                        ? "bg-primary text-black"
+                                                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                                                    }`}
+                                                >
+                                                    {p}
+                                                </button>
+                                            )
+                                        )}
+                                </div>
+
+                                <button
+                                    onClick={() => { setPage(p => Math.min(totalPages, p + 1)); window.scrollTo(0, 0); }}
+                                    disabled={page === totalPages}
+                                    className="flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-sm font-medium"
+                                >
+                                    Next
+                                    <span className="material-symbols-outlined !text-[16px]">chevron_right</span>
+                                </button>
+                                <button
+                                    onClick={() => { setPage(totalPages); window.scrollTo(0, 0); }}
+                                    disabled={page === totalPages}
+                                    className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                                    title="Last page"
+                                >
+                                    <span className="material-symbols-outlined !text-[18px]">last_page</span>
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );
