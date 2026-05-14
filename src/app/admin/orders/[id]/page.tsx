@@ -35,7 +35,7 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
                         Back to Orders
                     </Link>
                     <h1 className="text-3xl font-bold text-white">Order #{order.id.slice(-8).toUpperCase()}</h1>
-                    <p className="text-slate-400 mt-1">Placed on {format(new Date(order.createdAt), "MMMM d, yyyy 'at' h:mm a")}</p>
+                    <p className="text-slate-400 mt-1">Placed on {new Date(order.createdAt).toLocaleString("en-US", { timeZone: "Asia/Kolkata", month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", hour12: true })}</p>
                 </div>
                 <div className="flex items-center gap-3 bg-slate-800 border border-slate-700 px-4 py-3 rounded-xl">
                     <span className="text-sm font-bold text-slate-400 uppercase tracking-wider">Current Status</span>
