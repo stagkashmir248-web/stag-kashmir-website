@@ -14,7 +14,7 @@ export const metadata: Metadata = {
         title: 'Stag Kashmir — Handcrafted Cricket Bats from Kashmir',
         description: 'Authentic Kashmir Willow cricket bats handcrafted by master artisans. Shop hard tennis, soft tennis, season & junior bats.',
         url: 'https://stagkashmir.com',
-        images: [{ url: '/Herosection.jpeg', width: 1200, height: 630, alt: 'Stag Kashmir Cricket Bats' }],
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Stag Kashmir — Handcrafted Cricket Bats' }],
     },
 };
 
@@ -27,9 +27,17 @@ const organizationSchema = {
             "name": "Stag Kashmir",
             "url": "https://stagkashmir.com",
             "logo": { "@type": "ImageObject", "url": "https://stagkashmir.com/Stag_logo.png" },
-            "sameAs": ["https://www.instagram.com/stag.kashmir"],
+            "sameAs": [
+                "https://www.instagram.com/stagkashmir248",
+                "https://wa.me/919469886630"
+            ],
             "description": "Premium handcrafted Kashmir Willow cricket bats made by master artisans in the Kashmir valley.",
-            "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "info@stagkashmir.com" },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-9469886630",
+                "contactType": "customer service",
+                "availableLanguage": ["English", "Hindi", "Kashmiri"]
+            },
             "areaServed": "IN",
         },
         {
@@ -40,9 +48,41 @@ const organizationSchema = {
             "publisher": { "@id": "https://stagkashmir.com/#organization" },
             "potentialAction": {
                 "@type": "SearchAction",
-                "target": { "@type": "EntryPoint", "urlTemplate": "https://stagkashmir.com/shop?q={search_term_string}" },
+                "target": { "@type": "EntryPoint", "urlTemplate": "https://stagkashmir.com/shop?query={search_term_string}" },
                 "query-input": "required name=search_term_string"
             }
+        }
+    ]
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Which Stag Kashmir bat is best for hard tennis cricket?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Our Hard Tennis bat range is specifically engineered for rubber/tennis ball cricket. They feature a reinforced toe, extra pressed blade, and durable PVC grip. Browse the Hard Tennis collection at stagkashmir.com/shop?category=hard-tennis." }
+        },
+        {
+            "@type": "Question",
+            "name": "Does Stag Kashmir deliver across India?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes! We offer fast and secure Pan India delivery to all states and union territories. Orders are typically dispatched within 1-3 business days and delivered within 5-7 working days." }
+        },
+        {
+            "@type": "Question",
+            "name": "Can I order a custom cricket bat with my own specifications?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our 'Customise Your Bat' page lets you choose the willow grade, bat size, weight, handle shape, and grip colour. Our master craftsmen will handcraft it to your exact specifications. Visit stagkashmir.com/customise to get started." }
+        },
+        {
+            "@type": "Question",
+            "name": "What is the difference between Kashmir Willow and English Willow cricket bats?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Kashmir Willow is denser and more durable, making it ideal for hard and soft tennis ball cricket. It offers excellent value for money. English Willow is lighter with a better grain structure, preferred by professional and leather ball cricketers for its superior ping and performance." }
+        },
+        {
+            "@type": "Question",
+            "name": "What payment methods does Stag Kashmir accept?",
+            "acceptedAnswer": { "@type": "Answer", "text": "We accept all major payment methods including UPI (PhonePe, GPay, Paytm), Credit/Debit Cards (Visa, Mastercard, RuPay), Net Banking, and Cash on Delivery for select locations." }
         }
     ]
 };
@@ -56,6 +96,10 @@ export default async function Home() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
             <div className="relative flex w-full flex-col group/design-root">
                 {/* Hero Section */}

@@ -16,7 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     const siteUrl = 'https://stagkashmir.com';
     const productUrl = `${siteUrl}/shop/${product.slug}`;
-    const image = (product as any).imageUrl || (product as any).images?.[0];
+    const rawImage = (product as any).imageUrl || (product as any).images?.[0];
+    // Ensure absolute URL for social sharing
+    const absoluteImage = rawImage
+        ? (rawImage.startsWith('http') ? rawImage : `${siteUrl}${rawImage}`)
+        : `${siteUrl}/og-image.png`;
     const description = product.description.length > 155
         ? product.description.slice(0, 152) + '...'
         : product.description;
@@ -30,6 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             'buy cricket bat online',
             (product as any).category ?? '',
             (product as any).willowType ?? '',
+            'Stag Kashmir bat',
         ].filter(Boolean),
         alternates: { canonical: productUrl },
         openGraph: {
@@ -37,13 +42,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description,
             url: productUrl,
             type: 'website',
-            images: image ? [{ url: image, width: 800, height: 800, alt: product.name }] : [],
+            siteName: 'Stag Kashmir',
+            images: [{ url: absoluteImage, width: 800, height: 800, alt: product.name }],
         },
         twitter: {
             card: 'summary_large_image',
             title: `${product.name} | Stag Kashmir`,
             description,
-            images: image ? [image] : [],
+            images: [absoluteImage],
         },
     };
 }
@@ -68,18 +74,32 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
         "@type": "Product",
         "name": product.name,
         "description": product.description,
-        "image": product.imageUrl || product.images?.[0],
+        "sku": product.slug,
+        "image": product.imageUrl
+            ? (product.imageUrl.startsWith('http') ? product.imageUrl : `https://stagkashmir.com${product.imageUrl}`)
+            : product.images?.[0],
         "url": productUrl,
-        "brand": { "@type": "Brand", "name": "Stag Kashmir" },
+        "brand": {
+            "@type": "Brand",
+            "name": "Stag Kashmir",
+            "logo": "https://stagkashmir.com/Stag_logo.png"
+        },
+        "itemCondition": "https://schema.org/NewCondition",
         "offers": {
             "@type": "Offer",
             "priceCurrency": "INR",
             "price": product.price,
+            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
             "availability": product.stock > 0
                 ? "https://schema.org/InStock"
                 : "https://schema.org/OutOfStock",
             "url": productUrl,
-            "seller": { "@type": "Organization", "name": "Stag Kashmir" }
+            "seller": { "@type": "Organization", "name": "Stag Kashmir", "url": "https://stagkashmir.com" },
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                "merchantReturnDays": 7
+            }
         },
         ...(reviews.length > 0 && {
             "aggregateRating": {
@@ -92,11 +112,25 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
         })
     };
 
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stagkashmir.com" },
+            { "@type": "ListItem", "position": 2, "name": "Cricket Bats", "item": "https://stagkashmir.com/shop" },
+            { "@type": "ListItem", "position": 3, "name": product.name, "item": productUrl }
+        ]
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <main className="flex-1 flex justify-center py-8 px-4 sm:px-8 lg:px-12">
                 <div className="flex flex-col w-full max-w-[1280px]">

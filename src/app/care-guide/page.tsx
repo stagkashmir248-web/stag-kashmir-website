@@ -1,20 +1,56 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: 'Cricket Bat Care Guide — Knocking, Oiling & Storage Tips',
-    description: 'Learn how to properly knock-in, oil and store your Kashmir Willow cricket bat to maximise performance and extend its lifespan by up to 40%.',
-    keywords: ['cricket bat care guide', 'how to knock in a cricket bat', 'cricket bat oiling', 'how to maintain cricket bat', 'Kashmir willow care'],
+    title: 'Cricket Bat Care Guide — Knocking-In, Oiling & Storage Tips',
+    description: 'Learn how to properly knock-in, oil and store your Kashmir Willow cricket bat to maximise performance and extend its lifespan by up to 40%. Official guide by Stag Kashmir.',
+    keywords: ['cricket bat care guide', 'how to knock in a cricket bat', 'cricket bat oiling', 'how to maintain cricket bat', 'Kashmir willow care', 'cricket bat knocking in guide'],
     alternates: { canonical: 'https://stagkashmir.com/care-guide' },
     openGraph: {
         title: 'Cricket Bat Care Guide — Stag Kashmir',
         description: 'Master your Stag Kashmir bat with our official knocking-in, oiling and storage guide.',
         url: 'https://stagkashmir.com/care-guide',
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Cricket Bat Care Guide — Stag Kashmir' }],
     },
+};
+
+const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Care for a Kashmir Willow Cricket Bat",
+    "description": "A complete guide to knock-in, oil and store your Kashmir Willow cricket bat to maximise performance and lifespan.",
+    "totalTime": "PT3H",
+    "supply": [
+        { "@type": "HowToSupply", "name": "Raw Linseed Oil" },
+        { "@type": "HowToSupply", "name": "Wooden Bat Mallet" },
+        { "@type": "HowToSupply", "name": "Clean Cloth" }
+    ],
+    "step": [
+        {
+            "@type": "HowToStep",
+            "name": "Knocking-In",
+            "text": "Use a wooden bat mallet to gently strike the face and edges for 2-3 hours. Increase force gradually. This compresses the soft willow fibers to prevent cracking and improve power.",
+            "url": "https://stagkashmir.com/care-guide#knocking"
+        },
+        {
+            "@type": "HowToStep",
+            "name": "Oiling",
+            "text": "Apply a teaspoon of Raw Linseed Oil to the face, edges, and back. Leave horizontal for 24 hours. Wipe excess oil with a clean cloth. Repeat 2-3 times during initial season.",
+            "url": "https://stagkashmir.com/care-guide#oiling"
+        },
+        {
+            "@type": "HowToStep",
+            "name": "Proper Storage",
+            "text": "Store the bat in a cool, dry place. Keep it standing vertically on its toe or hang it by the handle. Never leave your bat in a hot car or near a radiator.",
+            "url": "https://stagkashmir.com/care-guide#storage"
+        }
+    ]
 };
 
 export default function CareGuide() {
     return (
-        <div className="flex flex-1 justify-center py-8 px-4 md:px-10">
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+            <div className="flex flex-1 justify-center py-8 px-4 md:px-10">
             <div className="layout-content-container flex flex-col max-w-[1000px] flex-1 gap-10">
                 {/* Navigation within page if needed, but we rely on generic Header mostly */}
                 <div className="hidden md:flex flex-1 justify-between items-center mb-4">
@@ -206,5 +242,6 @@ export default function CareGuide() {
                 </div>
             </div>
         </div>
+        </>
     );
 }

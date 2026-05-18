@@ -14,7 +14,18 @@ export const metadata: Metadata = {
         title: 'Shop Cricket Bats — Stag Kashmir',
         description: 'Browse our collection of handcrafted Kashmir Willow cricket bats. Hard tennis, soft tennis, season & junior bats.',
         url: 'https://stagkashmir.com/shop',
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Shop Cricket Bats — Stag Kashmir' }],
     },
+};
+
+// BreadcrumbList schema for shop page
+const shopBreadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stagkashmir.com" },
+        { "@type": "ListItem", "position": 2, "name": "Shop Cricket Bats", "item": "https://stagkashmir.com/shop" }
+    ]
 };
 
 export const dynamic = "force-dynamic";
@@ -80,7 +91,9 @@ export default async function Shop({
     }
 
     return (
-        <main className="flex flex-1 justify-center py-8 md:py-12 px-4 sm:px-8 md:px-12 lg:px-20 bg-slate-50 dark:bg-[#0B0F19] min-h-screen">
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(shopBreadcrumbSchema) }} />
+            <main className="flex flex-1 justify-center py-8 md:py-12 px-4 sm:px-8 md:px-12 lg:px-20 bg-slate-50 dark:bg-[#0B0F19] min-h-screen">
             <div className="flex w-full max-w-[1440px] gap-10">
 
                 <ShopSidebar />
@@ -180,5 +193,6 @@ export default async function Shop({
                 </div>
             </div>
         </main>
+        </>
     );
 }
