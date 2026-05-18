@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 type Counts = {
     orders: number;
     inquiries: number;
+    customBat: number;
     newsletter: number;
     whatsapp: number;
 };
@@ -16,7 +17,7 @@ type AdminNotificationContextType = {
     refreshCounts: () => Promise<void>;
 };
 
-const defaultCounts: Counts = { orders: 0, inquiries: 0, newsletter: 0, whatsapp: 0 };
+const defaultCounts: Counts = { orders: 0, inquiries: 0, customBat: 0, newsletter: 0, whatsapp: 0 };
 
 const AdminNotificationContext = createContext<AdminNotificationContextType>({
     counts: defaultCounts,
@@ -43,6 +44,9 @@ export default function AdminNotificationProvider({ children }: { children: Reac
         }
         if (newCounts.inquiries > previousCounts.current.inquiries) {
             toast.success("New Contact Message!", { icon: "📬", duration: 5000 });
+        }
+        if (newCounts.customBat > previousCounts.current.customBat) {
+            toast.success("New Custom Bat Request!", { icon: "🏏", duration: 5000 });
         }
         if (newCounts.newsletter > previousCounts.current.newsletter) {
             toast.success("New Newsletter Subscriber!", { icon: "✨", duration: 5000 });

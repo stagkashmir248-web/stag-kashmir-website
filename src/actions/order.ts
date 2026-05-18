@@ -7,6 +7,7 @@ import crypto from "crypto";
 import { sendEmail } from "@/lib/mail";
 import { auth } from "@/auth";
 import { ADMIN_EMAIL, LOW_STOCK_THRESHOLD } from "@/lib/constants";
+import { sendTelegramOrderNotification, sendTelegramLowStockAlert, sendTelegramOutOfStockAlert } from "@/lib/telegram";
 
 interface CustomerDetails {
     name: string;
@@ -159,6 +160,16 @@ export async function submitOrder(
             }
         }).catch(() => { });
 
+        // Fire & Forget Telegram Notification
+        sendTelegramOrderNotification({
+            orderId: order.id,
+            trackingCode,
+            customer,
+            items: verifiedItems,
+            serverTotal,
+            amountPaid,
+        });
+
         // Fire & Forget Emails (Do not await so checkout isn't delayed for user)
         sendEmail({
             to: customer.email,
@@ -286,6 +297,7 @@ export async function submitOrder(
   </div>
 </div>`,
                     });
+                    sendTelegramLowStockAlert(product.name, product.stock);
                 }
                 if (product && product.stock === 0) {
                     sendEmail({
@@ -304,6 +316,7 @@ export async function submitOrder(
   </div>
 </div>`,
                     });
+                    sendTelegramOutOfStockAlert(product.name);
                 }
             }
         })().catch(() => { });

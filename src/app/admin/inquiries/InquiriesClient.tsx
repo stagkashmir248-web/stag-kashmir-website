@@ -52,7 +52,7 @@ function PaginationControls({ page, totalPages, onPage }: { page: number; totalP
     );
 }
 
-export default function InquiriesClient({ inquiries }: { inquiries: Inquiry[] }) {
+export default function InquiriesClient({ inquiries, title }: { inquiries: Inquiry[], title: string }) {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
 
@@ -64,6 +64,33 @@ export default function InquiriesClient({ inquiries }: { inquiries: Inquiry[] })
     ), [inquiries, search]);
 
     useEffect(() => { setPage(1); }, [search]);
+
+    const handleExportCSV = () => {
+        if (filtered.length === 0) return;
+        const headers = ["Date", "Time", "Name", "Email", "Subject", "Message"];
+        const csvRows = [headers.join(",")];
+        
+        for (const inq of filtered) {
+            const date = format(new Date(inq.createdAt), "dd MMM yyyy");
+            const time = format(new Date(inq.createdAt), "hh:mm a");
+            const name = `"${inq.name.replace(/"/g, '""')}"`;
+            const email = `"${inq.email.replace(/"/g, '""')}"`;
+            const subject = `"${inq.subject.replace(/"/g, '""')}"`;
+            const message = `"${inq.message.replace(/"/g, '""')}"`;
+            csvRows.push([date, time, name, email, subject, message].join(","));
+        }
+        
+        const csvString = csvRows.join("\n");
+        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${title.replace(/\s+/g, '_').toLowerCase()}_${format(new Date(), "yyyy-MM-dd")}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
 
     const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     const pageItems = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -83,16 +110,21 @@ export default function InquiriesClient({ inquiries }: { inquiries: Inquiry[] })
         <div className="flex flex-col gap-8 w-full max-w-6xl">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Contact Messages</h1>
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{title}</h1>
                     <p className="text-slate-500 mt-2">
                         {filtered.length} of {inquiries.length} message{inquiries.length === 1 ? "" : "s"}
                         {filtered.length !== inquiries.length && " matching search"}
                         {totalPages > 1 && ` — Page ${page} of ${totalPages}`}
                     </p>
                 </div>
-                <div className="relative w-full md:w-72">
-                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search name, email, subject..." className="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg text-sm focus:outline-none focus:border-primary" />
+                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <div className="relative w-full md:w-72">
+                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search name, email, subject..." className="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg text-sm focus:outline-none focus:border-primary" />
+                    </div>
+                    <button onClick={handleExportCSV} disabled={filtered.length === 0} className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap font-medium text-sm">
+                        <span className="material-symbols-outlined !text-[18px]">download</span> Export CSV
+                    </button>
                 </div>
             </div>
 

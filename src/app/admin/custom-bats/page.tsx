@@ -1,26 +1,26 @@
 import { prisma } from "@/lib/prisma";
 import { unstable_cache } from "next/cache";
 import MarkViewedEffect from "@/components/MarkViewedEffect";
-import InquiriesClient from "./InquiriesClient";
+import InquiriesClient from "../inquiries/InquiriesClient";
 
 export const dynamic = "force-dynamic";
 
-const getCachedInquiries = unstable_cache(
+const getCachedCustomBats = unstable_cache(
     async () => prisma.inquiry.findMany({ 
-        where: { subject: { not: "New Custom Bat Request" } },
+        where: { subject: "New Custom Bat Request" },
         orderBy: { createdAt: "desc" } 
     }),
-    ["admin-inquiries-standard"],
+    ["admin-custom-bats"],
     { revalidate: 30, tags: ["admin-inquiries"] }
 );
 
-export default async function AdminInquiriesPage() {
-    const inquiries = await getCachedInquiries();
+export default async function AdminCustomBatsPage() {
+    const customBats = await getCachedCustomBats();
 
     return (
         <div className="flex flex-col gap-8 w-full max-w-6xl">
-            <MarkViewedEffect type="inquiries" />
-            <InquiriesClient inquiries={inquiries} title="Contact Messages" />
+            <MarkViewedEffect type="customBat" />
+            <InquiriesClient inquiries={customBats} title="Custom Bat Requests" />
         </div>
     );
 }

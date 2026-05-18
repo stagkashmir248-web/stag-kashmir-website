@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { markOrdersAsViewed, markInquiriesAsViewed, markNewsletterAsViewed } from "@/actions/admin-notifications";
+import { markOrdersAsViewed, markInquiriesAsViewed, markNewsletterAsViewed, markCustomBatsAsViewed, markWhatsAppLeadsAsViewed } from "@/actions/admin-notifications";
 import { useAdminNotifications } from "@/components/AdminNotificationProvider";
 
-type NotificationType = "orders" | "inquiries" | "newsletter";
+type NotificationType = "orders" | "inquiries" | "newsletter" | "customBat" | "whatsapp";
 
 export default function MarkViewedEffect({ type }: { type: NotificationType }) {
     const { refreshCounts } = useAdminNotifications();
@@ -18,8 +18,12 @@ export default function MarkViewedEffect({ type }: { type: NotificationType }) {
                 result = await markOrdersAsViewed();
             } else if (type === "inquiries") {
                 result = await markInquiriesAsViewed();
+            } else if (type === "customBat") {
+                result = await markCustomBatsAsViewed();
             } else if (type === "newsletter") {
                 result = await markNewsletterAsViewed();
+            } else if (type === "whatsapp") {
+                result = await markWhatsAppLeadsAsViewed();
             }
 
             // If successfully marked viewed on server, refresh our context counts instantly

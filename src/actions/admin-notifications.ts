@@ -11,9 +11,10 @@ export async function getAdminCounts() {
             return { success: false, error: "Unauthorized" };
         }
 
-        const [ordersCount, inquiriesCount, newsletterCount, whatsappCount] = await Promise.all([
+        const [ordersCount, inquiriesCount, customBatCount, newsletterCount, whatsappCount] = await Promise.all([
             prisma.order.count({ where: { adminViewed: false } }),
-            prisma.inquiry.count({ where: { adminViewed: false } }),
+            prisma.inquiry.count({ where: { adminViewed: false, subject: { not: "New Custom Bat Request" } } }),
+            prisma.inquiry.count({ where: { adminViewed: false, subject: "New Custom Bat Request" } }),
             prisma.newsletterSubscriber.count({ where: { adminViewed: false } }),
             prisma.whatsAppLead.count({ where: { adminViewed: false } })
         ]);
@@ -23,6 +24,7 @@ export async function getAdminCounts() {
             data: {
                 orders: ordersCount,
                 inquiries: inquiriesCount,
+                customBat: customBatCount,
                 newsletter: newsletterCount,
                 whatsapp: whatsappCount
             }
@@ -55,7 +57,23 @@ export async function markInquiriesAsViewed() {
         if (session?.user?.email !== ADMIN_EMAIL) return { success: false };
 
         await prisma.inquiry.updateMany({
-            where: { adminViewed: false },
+            where: { adminViewed: false, subject: { not: "New Custom Bat Request" } },
+            data: { adminViewed: true }
+        });
+        return { success: true };
+    } catch (error) {
+        console.error("Failed to mark inquiries as viewed:", error);
+        return { success: false };
+    }
+}
+
+export async function markCustomBatsAsViewed() {
+    try {
+        const session = await auth();
+        if (session?.user?.email !== ADMIN_EMAIL) return { success: false };
+
+        await prisma.inquiry.updateMany({
+            where: { adminViewed: false, subject: "New Custom Bat Request" },
             data: { adminViewed: true }
         });
         return { success: true };
