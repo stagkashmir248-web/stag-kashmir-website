@@ -153,6 +153,7 @@ export async function getAnalyticsData(days = 30) {
         // Top selling products — aggregate JS-side (rows already scoped to window)
         const productSales: Record<string, { name: string; slug: string; quantity: number; revenue: number }> = {};
         orderItems.forEach(item => {
+            if (!item.product) return;
             if (!productSales[item.productId]) {
                 productSales[item.productId] = {
                     name: item.product.name,
