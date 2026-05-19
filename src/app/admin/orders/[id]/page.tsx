@@ -63,6 +63,9 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
                                     </div>
                                     <div className="flex-1">
                                         <h3 className="font-bold text-white text-base">{item.product?.name || "Deleted Product"}</h3>
+                                        {(item as any).variationName && (
+                                            <p className="text-xs text-primary font-semibold mt-1 bg-primary/10 inline-block px-2 py-0.5 rounded border border-primary/20">{(item as any).variationName}</p>
+                                        )}
                                         {item.product?.description && (
                                             <p className="text-sm text-slate-400 line-clamp-2 mt-1">{item.product.description}</p>
                                         )}

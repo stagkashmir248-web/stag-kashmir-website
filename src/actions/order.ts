@@ -22,10 +22,12 @@ interface CustomerDetails {
 }
 
 interface CartItemInput {
+    id?: string;
     productId: string;
     quantity: number;
     price: number;   // kept for fallback but server verifies from DB
     variationId?: string;
+    size?: string;
 }
 
 export async function submitOrder(
@@ -47,35 +49,75 @@ export async function submitOrder(
 
         // ── Security: fetch prices from DB — never trust the client ─────────
         let serverTotal = 0;
-        const verifiedItems: { productId: string; quantity: number; price: number }[] = [];
+        const verifiedItems: { productId: string; quantity: number; price: number, variationId?: string, variationName?: string }[] = [];
 
         for (const item of items) {
             if (item.quantity < 1 || item.quantity > 100) {
                 return { success: false, error: "Invalid quantity." };
             }
 
-            const product = await (prisma.product as any).findUnique({
-                where: { id: item.productId },
-                select: { id: true, price: true, stock: true },
-            });
-
-            if (!product) {
-                return { success: false, error: `Product not found: ${item.productId}` };
+            let variationId = item.variationId;
+            if (!variationId && item.id?.includes("-")) {
+                variationId = item.id.split("-")[1];
             }
 
-            // ── Stock availability check ──────────────────────────────────────
-            if (product.stock < item.quantity) {
-                return {
-                    success: false,
-                    error: product.stock <= 0
-                        ? `Sorry, this product is currently out of stock.`
-                        : `Only ${product.stock} unit(s) left in stock for this product.`,
-                };
-            }
+            if (variationId) {
+                const variation = await (prisma as any).productVariation.findUnique({
+                    where: { id: variationId },
+                    select: { id: true, price: true, stock: true, name: true, productId: true },
+                });
 
-            const serverPrice = Number(product.price);
-            serverTotal += serverPrice * item.quantity;
-            verifiedItems.push({ productId: item.productId, quantity: item.quantity, price: serverPrice });
+                if (!variation || variation.productId !== item.productId) {
+                    return { success: false, error: `Product variation not found: ${variationId}` };
+                }
+
+                if (variation.stock < item.quantity) {
+                    return {
+                        success: false,
+                        error: variation.stock <= 0
+                            ? `Sorry, this variation is currently out of stock.`
+                            : `Only ${variation.stock} unit(s) left in stock for this variation.`,
+                    };
+                }
+
+                const serverPrice = Number(variation.price);
+                serverTotal += serverPrice * item.quantity;
+                verifiedItems.push({ 
+                    productId: item.productId, 
+                    quantity: item.quantity, 
+                    price: serverPrice,
+                    variationId: variation.id,
+                    variationName: item.size || variation.name
+                });
+            } else {
+                const product = await (prisma.product as any).findUnique({
+                    where: { id: item.productId },
+                    select: { id: true, price: true, stock: true },
+                });
+
+                if (!product) {
+                    return { success: false, error: `Product not found: ${item.productId}` };
+                }
+
+                // ── Stock availability check ──────────────────────────────────────
+                if (product.stock < item.quantity) {
+                    return {
+                        success: false,
+                        error: product.stock <= 0
+                            ? `Sorry, this product is currently out of stock.`
+                            : `Only ${product.stock} unit(s) left in stock for this product.`,
+                    };
+                }
+
+                const serverPrice = Number(product.price);
+                serverTotal += serverPrice * item.quantity;
+                verifiedItems.push({ 
+                    productId: item.productId, 
+                    quantity: item.quantity, 
+                    price: serverPrice,
+                    variationName: item.size || undefined
+                });
+            }
         }
 
         // Allow a tiny rounding tolerance (₹1) in case of floating-point drift
@@ -96,12 +138,22 @@ export async function submitOrder(
         const order = await (prisma as any).$transaction(async (tx: any) => {
             // Re-check and decrement stock for each item inside the transaction
             for (const item of verifiedItems) {
-                const updated = await tx.product.updateMany({
-                    where: { id: item.productId, stock: { gte: item.quantity } },
-                    data: { stock: { decrement: item.quantity } },
-                });
-                if (updated.count === 0) {
-                    throw new Error(`STOCK_RACE:${item.productId}`);
+                if (item.variationId) {
+                    const updated = await tx.productVariation.updateMany({
+                        where: { id: item.variationId, stock: { gte: item.quantity } },
+                        data: { stock: { decrement: item.quantity } },
+                    });
+                    if (updated.count === 0) {
+                        throw new Error(`STOCK_RACE:${item.variationId}`);
+                    }
+                } else {
+                    const updated = await tx.product.updateMany({
+                        where: { id: item.productId, stock: { gte: item.quantity } },
+                        data: { stock: { decrement: item.quantity } },
+                    });
+                    if (updated.count === 0) {
+                        throw new Error(`STOCK_RACE:${item.productId}`);
+                    }
                 }
             }
 
@@ -124,6 +176,7 @@ export async function submitOrder(
                         create: verifiedItems.map((item) => ({
                             quantity: item.quantity,
                             price: item.price,
+                            variationName: item.variationName || null,
                             product: { connect: { id: item.productId } },
                         })),
                     },
@@ -193,8 +246,9 @@ export async function submitOrder(
 
         // ── Admin Notification Email ──────────────────────────────────────────
         const itemRows = verifiedItems.map(item => {
+            const varInfo = item.variationName ? `<br/><span style="font-size: 11px; color: #94a3b8;">${item.variationName}</span>` : "";
             return `<tr>
-                <td style="padding:8px 12px;border-bottom:1px solid #1e293b;">${item.productId.slice(-8).toUpperCase()}</td>
+                <td style="padding:8px 12px;border-bottom:1px solid #1e293b;">${item.productId.slice(-8).toUpperCase()}${varInfo}</td>
                 <td style="padding:8px 12px;border-bottom:1px solid #1e293b;text-align:center;">${item.quantity}</td>
                 <td style="padding:8px 12px;border-bottom:1px solid #1e293b;text-align:right;">₹${(item.price * item.quantity).toLocaleString("en-IN")}</td>
             </tr>`;

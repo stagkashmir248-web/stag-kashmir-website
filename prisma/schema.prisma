@@ -115,6 +115,10 @@ model OrderItem {
   quantity    Int
   price       Float
   
+  // Variation info if selected
+  variationName String?
+
+  
   orderId     String
   order       Order    @relation(fields: [orderId], references: [id])
   productId   String

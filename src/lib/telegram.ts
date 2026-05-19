@@ -19,7 +19,7 @@ export async function sendTelegramOrderNotification({
         landmark?: string | null;
         paymentType: string;
     };
-    items: { productId: string; quantity: number; price: number }[];
+    items: { productId: string; quantity: number; price: number; variationName?: string }[];
     serverTotal: number;
     amountPaid?: number | null;
 }) {
@@ -32,7 +32,8 @@ export async function sendTelegramOrderNotification({
     }
 
     const itemRows = items.map(item => {
-        return `• ${item.productId.slice(-8).toUpperCase()} (x${item.quantity}) - ₹${(item.price * item.quantity).toLocaleString("en-IN")}`;
+        const varInfo = item.variationName ? `\n   <i>(${item.variationName})</i>` : "";
+        return `• ${item.productId.slice(-8).toUpperCase()} (x${item.quantity}) - ₹${(item.price * item.quantity).toLocaleString("en-IN")}${varInfo}`;
     }).join("\n");
 
     // Clean up the phone number for the WhatsApp link (assuming India +91 if length is 10)
